@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 28, 2021, 5:31:13 PM
+    Author     : HEXONIC
+*/
+
+.permissions-collapses .card-header{
+    background-color: transparent;
+    background: linear-gradient(to left, #999966 0%, #ffffff 100%);
+}
+.permissions-collapses .card-header .card-link{
+    display: block;
+    color: darkcyan;
+    font-weight: bold;
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active{
+    background-color: lightslategrey;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover{
+    background-color: transparent;
+    color: #343a40;
+    color: white;
+    font-weight: bold;
+    border: 1px solid powderblue;
+    box-shadow: 0px 0px 9px 2px powderblue;
+    border-radius: 0;
+}
+#loader {  
+    position: fixed;  
+    left: 0px;  
+    top: 0px;  
+    width: 100%;  
+    height: 100%;  
+    z-index: 9999;  
+    background: url('images/preloader.gif') 50% 50% no-repeat rgb(250,250,250);  
+}
+.notification-icon{
+    cursor: pointer;
+}
