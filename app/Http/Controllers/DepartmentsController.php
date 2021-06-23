@@ -79,7 +79,7 @@ class DepartmentsController extends Controller {
             
         if (Auth::user()->hasPermission('add_department')) {
             $request->validate([
-                'name'=>'required',
+                'name'=>'required | unique:departments',
                 'description'=>'required'
                 ]);
             $data = $request->input();

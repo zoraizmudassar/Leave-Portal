@@ -75,6 +75,7 @@ Route::prefix('designations')->group(function () {
     Route::get("add", "DesignationsController@add")->name('des-add');
     Route::post("insert", "DesignationsController@insert")->name('des-insert');
     Route::get("edit/{id}", "DesignationsController@edit")->name('des-edit');
+    Route::get("status/{id}/{status}", "DesignationsController@status")->name('des-status');
     Route::post("update/{id}", "DesignationsController@update")->name('des-update');
     Route::get("delete/{id}", "DesignationsController@delete")->name('des-delete');
 });

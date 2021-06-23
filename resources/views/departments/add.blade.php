@@ -43,7 +43,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea style="resize: none;" rows="3" name="description"  placeholder="Department Description"class="form-control"></textarea>
+                                            <textarea style="resize: none;" rows="1" name="description"  placeholder="Department Description"class="form-control"></textarea>
                                             @if ($errors->has('description'))
                                                 <span class="text-danger">{{ $errors->first('description') }}</span>
                                                 @endif

@@ -51,6 +51,25 @@ class DesignationsController extends Controller {
         }
     }
 
+
+    public function status($id, $status) {
+        if (Auth::user()->hasPermission('update_designation')) {
+            //Department::where('id',$id)->update(array('active_status'=>1));
+            if($status == 0)
+            {
+                Designation::where('id',$id)->update(array('active_status'=>1));
+            }
+            else
+            {
+                Designation::where('id',$id)->update(array('active_status'=>0));
+            }
+            return redirect()->route('des-all');
+        } else {
+            return redirect()->route('access-denied');
+        }
+    }
+
+
     /**
      * add designation.
      *
@@ -58,7 +77,7 @@ class DesignationsController extends Controller {
      */
     public function insert(Request $request) {
         $request->validate([
-            'type'=>'required',
+            'type'=>'required | unique:designations',
             'description'=>'required',
         ]);
       

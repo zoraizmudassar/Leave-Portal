@@ -102,7 +102,7 @@ use RegistersUsers;
 //        $role_team_lead = \App\Role::where('name', 'team_lead')->get();
         $users = User::whereRoleIs('team_lead')->get();
         $ec = EmpCategory::select('id', 'name')->get()->all();
-        $des = Designation::select('id', 'type')->get()->all();
+        $des = Designation::select('id', 'type')->where('active_status', 1)->get()->all();
         $dep = Department::select('id', 'name')->where('active_status', 1)->get()->all();
         return view('auth.register')
                         ->with('designations', $des)
