@@ -1,4 +1,112 @@
+function calLeavesAllowed(date_ = false) {
+    var etype = $('#emp_type').val();
+    var ecat = $('#emp_category_id').val();
+    var tdate = $('#reg_date').val();
+    if (etype == '1' && ecat == '3') {
+        var month = new Date(tdate).getMonth();
+        var day = new Date(tdate).getDay();
+        var per_month = 20 / 12;
+        if (day >= 15) {
+            month = month - 1;
+        }
+        var allowed = per_month * month;
+        $('#leaves_allowed').val(allowed);
+    }
+}
 $(function () {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    $('#reg_date').datepicker({
+        value: today,
+        // uiLibrary: 'bootstrap4',
+        // "setDate": new Date(),
+        // "autoclose": true
+    });
+    $('#emp_type').on('change', function () {
+        var etype = $('#emp_type').val();
+        var ecat = $('#emp_category_id').val();
+        var tdate = $('#reg_date').val();
+        if (etype == '1') {
+            console.log('asdfasdf');
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            $('#reg_date').val(today);
+            $('#reg_date').attr('disabled', true);
+            $('#leaves_allowed').attr('disabled', true);
+        }
+        else {
+            $('#reg_date').attr('disabled', false);
+            if (ecat == '3')
+                $('#leaves_allowed').attr('disabled', false);
+        }
+        calLeavesAllowed();
+    });
+    $('#emp_category_id').on('change', function () {
+        var etype = $('#emp_type').val();
+        var ecat = $('#emp_category_id').val();
+        var tdate = $('#reg_date').val();
+        if ($('#emp_category_id').val() != '3') {
+            $('#leaves_allowed').val(0);
+            $('#leaves_allowed').attr('disabled', true);
+        }
+        else {
+
+            $('#leaves_allowed').val('');
+            if (etype != '1')
+                $('#leaves_allowed').attr('disabled', false);
+        }
+        calLeavesAllowed();
+    });
+    $('#reg_date').on('change', function () {
+        calLeavesAllowed();
+    });
+
+    // var a = $('#reg_date').val();
+
+    // var d = new Date();
+    // var month = d.getMonth() + 1;
+    // var dateStr = month;
+    // var cal = 12 - dateStr;
+    // var div = 20 / 12;
+    // var mul = div * cal;
+    // var total = float2int(mul);
+    // function float2int(value) {
+    //     return value | 0;
+    // }
+
+
+
+    // $('#emp_category_id').on('change', function () {
+    //     var empC_val = $('#emp_category_id').val();
+    //     if (empC_val == "1") {
+    //         $('#reg_date').attr('disabled', true);
+    //         $('#leave').attr('disabled', true);
+    //         $('#leave').attr('value', 0);
+    //     }
+    //     else if (empC_val == "2") {
+    //         $('#reg_date').attr('disabled', true);
+    //         $('#leave').attr('disabled', true);
+    //         $('#leave').attr('value', 0);
+    //     }
+    //     else if (empC_val == "5") {
+    //         $a = 12;
+    //         $('#reg_date').attr('disabled', true);
+    //         $('#leave').attr('disabled', true);
+    //         $('#leave').val(total);
+    //     }
+    // });
+
+
+
+
     $('.select2').select2();
     $("#example1").DataTable({
         "responsive": true,
@@ -13,11 +121,11 @@ $(function () {
         "autoWidth": false,
         "responsive": true,
     });
-//    $("#reservationdate").datepicker({
-//        minDate: new Date()
-//    }).focus(function () {
-//        $(this).prop("autocomplete", "off");
-//    });
+    //    $("#reservationdate").datepicker({
+    //        minDate: new Date()
+    //    }).focus(function () {
+    //        $(this).prop("autocomplete", "off");
+    //    });
 
     $('#leave_date').daterangepicker({
         minDate: new Date()
@@ -39,14 +147,14 @@ $(function () {
             $('#leave_date').val('');
             $('#leave_date').data('daterangepicker').setStartDate(moment());
             $('#leave_date').data('daterangepicker').setEndDate(moment());
-//            $('.single-date').css('display', 'block');
-//            $('.date-range').css('display', 'none');
+            //            $('.single-date').css('display', 'block');
+            //            $('.date-range').css('display', 'none');
             $('.half-leave-section').css('display', 'block');
             $('#days').val('0.5');
         } else {
-//            $('#reservationdate').val('');
-//            $('.date-range').css('display', 'block');
-//            $('.single-date').css('display', 'none');
+            //            $('#reservationdate').val('');
+            //            $('.date-range').css('display', 'block');
+            //            $('.single-date').css('display', 'none');
             $('.half-leave-section').css('display', 'none');
             $('#days').val('1');
         }
@@ -54,8 +162,7 @@ $(function () {
     $('form').submit(function () {
         $(this).find('input[type=submit]').prop('disabled', true);
     });
-    for (var i = 1; i <= 9; i++)
-    {
+    for (var i = 1; i <= 9; i++) {
         $("#checkall-1").click(function () {
             $(".check-1").prop('checked', $(this).prop('checked'));
         });

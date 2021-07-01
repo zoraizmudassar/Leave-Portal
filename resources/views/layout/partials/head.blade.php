@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="{{ URL::asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <!-- Tempusdominus Bbootstrap 4 -->
 <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/adminlte.min.css') }}">
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ URL::asset('assets/css/styles.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('assets/css/toastr.min.css') }}">
 <!-- iCheck -->
