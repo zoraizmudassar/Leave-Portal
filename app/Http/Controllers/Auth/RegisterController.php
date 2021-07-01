@@ -104,6 +104,7 @@ class RegisterController extends Controller
             'lq_exp' => $exp_date,
             'start_lq' => $st_lqouta,
             'allowed_leave' => $data['leaves_allowed'],
+            'balance_leave' => $data['leaves_allowed'],
             'created_at' => $created_at
         ]);
         if ($user) {
