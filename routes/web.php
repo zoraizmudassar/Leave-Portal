@@ -92,10 +92,12 @@ Route::prefix('permissions-groups')->group(function () {
 Route::prefix('leaveType')->group(function () {
     Route::get("all", "LeaveTypesController@index")->name('lt-all');
     Route::get("add", "LeaveTypesController@add")->name('lt-add');
+    Route::get("add", "LeaveTypesController@addleave")->name('lt-addleave');
     Route::post("insert", "LeaveTypesController@insert")->name('lt-insert');
     Route::get("edit/{id}", "LeaveTypesController@edit")->name('lt-edit');
     Route::post("update/{id}", "LeaveTypesController@update")->name('lt-update');
     Route::get("delete/{id}", "LeaveTypesController@delete")->name('lt-delete');
+    Route::get("status/{id}/{status}", "LeaveTypesController@status")->name('lt-status');
 });
 
 Route::prefix('empCategory')->group(function () {
@@ -105,6 +107,7 @@ Route::prefix('empCategory')->group(function () {
     Route::get("edit/{id}", "EmpCategoriesController@edit")->name('ec-edit');
     Route::post("update/{id}", "EmpCategoriesController@update")->name('ec-update');
     Route::get("delete/{id}", "EmpCategoriesController@delete")->name('ec-delete');
+    Route::get("status/{id}/{status}", "EmpCategoriesController@status")->name('ec-status');
 });
 
 Route::prefix('employee')->group(function() {
@@ -118,6 +121,7 @@ Route::prefix('employee')->group(function() {
     Route::get("interni", "EmployeeController@interni")->name('emp-int');
     Route::get("probation", "EmployeeController@probation")->name('emp-prob');
     Route::get("permanent", "EmployeeController@permanent")->name('emp-per');
+    Route::get("status/{id}/{status}", "EmployeeController@status")->name('emp-status');
     Route::get('new', function() {
         return view('employee.all');
     })->name('emp-new');

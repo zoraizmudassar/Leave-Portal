@@ -210,7 +210,7 @@ class LeavesController extends Controller {
                 return true;
             }
         } elseif ($days > 6) {
-            if ($datediff < 31) {
+            if ($datediff < 30) {
                 return true;
             }
         }

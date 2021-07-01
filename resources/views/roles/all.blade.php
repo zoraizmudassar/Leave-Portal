@@ -29,8 +29,8 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped projects">
-                                <thead>
+                            <table id="example1" class="text-center table table-bordered table-striped projects">
+                                <thead class="table-dark">
                                     <tr>
                                         <th >
                                             #

@@ -1,5 +1,13 @@
 @extends('layout.mainlayout')
 @section('content')
+<script>
+    $(document).ready(function()
+    {
+    $('#leave_date').datepicker({
+        beforeShowDay: $.datepicker.noWeekends
+    });
+    });
+</script>  
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -49,7 +57,7 @@
                                                     <div>4-6 days Leave => Before 2 Week</div>
                                                 </li>
                                                 <li class="text-warning font-weight-bold">
-                                                    <div>7 or more than 7 days Leave => Before 1 Month</div>
+                                                    <div>7 or more than 7 days Leave => Before 30 days</div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -132,7 +140,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-<!--                                            <div class="form-group single-date" style="display: none;">
+                                            <!--<div class="form-group single-date" style="display: none;">
                                                 <label>Date</label>
                                                 <div class="input-group date">
                                                     <input name="halfday" id="reservationdate" type="text" class="form-control datetimepicker-input" >

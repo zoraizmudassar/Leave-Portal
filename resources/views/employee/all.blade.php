@@ -34,8 +34,8 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped projects">
-                                <thead>
+                            <table id="example1" class="text-center table table-bordered table-striped projects">
+                                <thead class="table-dark">
                                     <tr>
                                         <th >
                                             #
@@ -62,6 +62,10 @@
                                             Balance Leaves
                                         </th>-->
                                         <th>
+                                        Status
+                                        </th>
+                                        <th>
+                                        Action
                                         </th>
                                     </tr>
                                 </thead>
@@ -89,7 +93,10 @@
                                         <td>
                                             {{ $model->email }}
                                         </td>
+                                        <td>
+                                        <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined')?></span></td>
                                         <td class="project-actions text-right">
+                                        <a href="{{route('emp-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white mr-2"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined')?></a>
                                             <a class="btn btn-primary btn-sm" href="{{route('emp-view', ['id' => $model->id])}}">
                                                 <i class="fas fa-eye">
                                                 </i>

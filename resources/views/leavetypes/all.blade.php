@@ -29,8 +29,8 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped projects">
-                                <thead>
+                            <table id="example1" class="table table-bordered table-striped projects text-center">
+                                <thead class="table-dark">
                                     <tr>
                                         <th >
                                             #
@@ -45,7 +45,10 @@
                                             Created at
                                         </th>
                                         <th>
+                                        Action
                                         </th>
+                                        <th>
+                                        Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,15 +68,18 @@
                                         <td>
                                             {{ $model->created_at }}
                                         </td>
+                                        <td>
+                                        <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined')?></span></td>
                                         <td class="project-actions text-right">
+                                        <a href="{{route('lt-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined')?></a> 
                                             <a class="btn btn-success btn-sm" href="{{route('lt-edit', ['id' => $model->id])}}">
                                                 <i class="fas fa-pen">
                                                 </i>
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="{{route('lt-delete', ['id' => $model->id])}}">
+                                            <!-- <a class="btn btn-danger btn-sm" href="{{route('lt-delete', ['id' => $model->id])}}">
                                                 <i class="fas fa-trash">
                                                 </i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                     @endforeach

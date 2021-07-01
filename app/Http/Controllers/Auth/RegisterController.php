@@ -71,8 +71,12 @@ use RegistersUsers;
         date_default_timezone_set("Asia/Karachi");
         $date = date('d-m-Y');
 
-        $futureDate = date('d-m-Y', strtotime('+1 years'));
-        //echo $futureDate;
+        $futureDate = date('Y');
+        $date_1 = "31-12-";
+        $exp_date = $date_1." ".$futureDate;
+
+        $futureDate = date('Y');
+        // echo $futureDate;
 
         $user = User::create([
                     'name' => $data['name'],
@@ -84,7 +88,7 @@ use RegistersUsers;
                     'emp_category_id' => $data['emp_category_id'],
                     'team_lead' => $data['team_lead'],
                     'role' => 2,
-                    'lq_exp' => $futureDate,
+                    'lq_exp' => $exp_date,
                     'start_lq' => $date                    
         ]);
         if ($user) {
@@ -101,7 +105,7 @@ use RegistersUsers;
     public function showRegistrationForm() {
 //        $role_team_lead = \App\Role::where('name', 'team_lead')->get();
         $users = User::whereRoleIs('team_lead')->get();
-        $ec = EmpCategory::select('id', 'name')->get()->all();
+        $ec = EmpCategory::select('id', 'name')->where('active_status', 1)->get()->all();
         $des = Designation::select('id', 'type')->where('active_status', 1)->get()->all();
         $dep = Department::select('id', 'name')->where('active_status', 1)->get()->all();
         return view('auth.register')

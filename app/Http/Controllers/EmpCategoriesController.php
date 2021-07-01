@@ -69,6 +69,23 @@ class EmpCategoriesController extends Controller {
         }
     }
 
+    public function status($id, $status) {
+        if (Auth::user()->hasPermission('view_employee_category')) {
+            //Department::where('id',$id)->update(array('active_status'=>1));
+            if($status == 0)
+            {
+                EmpCategory::where('id',$id)->update(array('active_status'=>1));
+            }
+            else
+            {
+                EmpCategory::where('id',$id)->update(array('active_status'=>0));
+            }
+            return redirect()->route('ec-all');
+        } else {
+            return redirect()->route('access-denied');
+        }
+    }
+
     /**
      * update leave type.
      *

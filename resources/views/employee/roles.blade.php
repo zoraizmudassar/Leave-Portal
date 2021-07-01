@@ -43,6 +43,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             @foreach($roles as $role)
+                                            <?php
+                                            if($role->name!='team_lead')
+                                            {
+                                                echo "No";
+                                            }
+                                            ?>
                                             <div class="checkbox icheck-warning d-inline">
                                                 <input name="roles[]" {{in_array($role->id, $user_roles) ? 'checked' : ''}} value="{{$role->id}}" type="checkbox" class="check-1" id="checkbox-{{$role->id}}">
                                                 <label class="font-weight-normal" for="checkbox-{{$role->id}}">

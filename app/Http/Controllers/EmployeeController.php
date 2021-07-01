@@ -58,6 +58,23 @@ class EmployeeController extends Controller {
         }
     }
 
+    public function status($id, $status) {
+        if (Auth::user()->hasPermission('update_designation')) {
+            //Department::where('id',$id)->update(array('active_status'=>1));
+            if($status == 0)
+            {
+                User::where('id',$id)->update(array('active_status'=>1));
+            }
+            else
+            {
+                User::where('id',$id)->update(array('active_status'=>0));
+            }
+            return redirect()->route('emp-all');
+        } else {
+            return redirect()->route('access-denied');
+        }
+    }
+
 //    public function interni($id) {
 //        $users = User::where('emp_category_id', $id)->get();
 //        return view('employee.interni')->with('data', $users)->with('no', 1);

@@ -43,6 +43,10 @@ class LeaveTypesController extends Controller {
         }
     }
 
+    public function addleave() {
+            return view('leavetypes.add');
+    }
+
     public function edit($id) {
         if (Auth::user()->hasPermission('update_leave_type')) {
             $des = LeaveType::find($id);
@@ -82,6 +86,23 @@ class LeaveTypesController extends Controller {
                 'alert-type' => 'danger'
             );
             return redirect()->route('lt-add')->with($notification);
+        }
+    }
+
+    public function status($id, $status) {
+        if (Auth::user()->hasPermission('update_leave_type')) {
+            //Department::where('id',$id)->update(array('active_status'=>1));
+            if($status == 0)
+            {
+                LeaveType::where('id',$id)->update(array('active_status'=>1));
+            }
+            else
+            {
+                LeaveType::where('id',$id)->update(array('active_status'=>0));
+            }
+            return redirect()->route('lt-all');
+        } else {
+            return redirect()->route('access-denied');
         }
     }
 

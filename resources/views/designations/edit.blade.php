@@ -34,13 +34,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" value="{{$data->type}}" type="text" name="type" placeholder="Designation Name" class="form-control"/>
+                                            <input value="{{$data->type}}" type="text" name="type" placeholder="Designation Name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea required="" rows="3" name="description"  placeholder="Designation Description"class="form-control">{{$data->description}}</textarea>
+                                            <textarea rows="3" name="description" placeholder="Designation Description"class="form-control">{{$data->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
