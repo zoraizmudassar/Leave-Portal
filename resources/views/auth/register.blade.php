@@ -58,8 +58,8 @@
                                         <div class="form-group">
                                             <label for="emp_type">{{ __('Employee Type (New/Existing)') }}</label>
                                             <select name="emp_type" id="emp_type" class="form-control select2" style="width: 100%;">
-                                                <option value=1>New Employee</option>
-                                                <option value=2 selected>Existing Employee</option>
+                                                <option value=1 selected>New Employee</option>
+                                                <option value=2>Existing Employee</option>
 
                                             </select>
                                             @if ($errors->has('emp_type'))
@@ -88,7 +88,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="department_id">{{ __('Registration Date') }}</label>
-                                            <input name="reg_date" id="reg_date" width="100%">
+                                            <input class="form-control" autocomplete="off" name="reg_date" id="reg_date" width="100%">
 
                                             <!-- <h5 id="demo"></h5> -->
                                             <!-- <h5 id="demo1"></h5> -->

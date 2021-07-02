@@ -2,18 +2,21 @@ function calLeavesAllowed(date_ = false) {
     var etype = $('#emp_type').val();
     var ecat = $('#emp_category_id').val();
     var tdate = $('#reg_date').val();
+    console.log(tdate);
     if (etype == '1' && ecat == '3') {
         var month = new Date(tdate).getMonth();
         var day = new Date(tdate).getDay();
         var per_month = 20 / 12;
+        month = 12-month;
         if (day >= 15) {
-            month = month - 1;
+            month = month + 1;
         }
         var allowed = per_month * month;
-        $('#leaves_allowed').val(allowed);
+        $('#leaves_allowed').val(parseInt(allowed));
     }
 }
 $(function () {
+    calLeavesAllowed();
     $('#leave_type').on('change', function () {
         var leave_type_value = $('#leave_type').val();
         var leave_type = $('#leave_type option:selected').text();
@@ -32,7 +35,8 @@ $(function () {
 
     today = mm + '/' + dd + '/' + yyyy;
     $('#reg_date').datepicker({
-        value: today,
+        // value: today,
+        maxDate: new Date,
     });
     $('#emp_type').on('change', function () {
         var etype = $('#emp_type').val();
@@ -47,8 +51,8 @@ $(function () {
 
             today = mm + '/' + dd + '/' + yyyy;
             $('#reg_date').val(today);
-            $('#reg_date').attr('disabled', true);
-            $('#leaves_allowed').attr('disabled', true);
+            // $('#reg_date').attr('disabled', true);
+            // $('#leaves_allowed').attr('disabled', true);
         }
         else {
             $('#reg_date').attr('disabled', false);

@@ -98,7 +98,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Description</label>
+                                                <label>Reason</label>
                                                 <textarea style="resize: none;" rows="3" name="description"  placeholder="Leave Description"class="form-control"></textarea>
                                                 @if ($errors->has('description'))
                                                 <span class="text-danger">{{ $errors->first('description') }}</span>
