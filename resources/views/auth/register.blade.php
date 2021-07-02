@@ -56,15 +56,15 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="department_id">{{ __('Employee Type (New/Existing)') }}</label>
+                                            <label for="emp_type">{{ __('Employee Type (New/Existing)') }}</label>
                                             <select name="emp_type" id="emp_type" class="form-control select2" style="width: 100%;">
                                                 <option value=1>New Employee</option>
                                                 <option value=2 selected>Existing Employee</option>
 
                                             </select>
 
-                                            @if ($errors->has('department_id'))
-                                            <span class="text-danger">{{ $errors->first('department_id') }}</span>
+                                            @if ($errors->has('emp_type'))
+                                            <span class="text-danger">{{ $errors->first('emp_type') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -106,11 +106,11 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="department_id">{{ __('Allowed Leaves') }}</label>
+                                            <label for="leaves_allowed">{{ __('Allowed Leaves') }}</label>
                                             <input type="number" id="leaves_allowed" class="form-control" name="leaves_allowed" value="">
 
-                                            @if ($errors->has('department_id'))
-                                            <span class="text-danger">{{ $errors->first('department_id') }}</span>
+                                            @if ($errors->has('leaves_allowed'))
+                                            <span class="text-danger">{{ $errors->first('leaves_allowed') }}</span>
                                             @endif
                                         </div>
                                     </div>

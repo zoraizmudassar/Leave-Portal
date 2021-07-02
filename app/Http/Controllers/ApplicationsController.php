@@ -100,18 +100,18 @@ class ApplicationsController extends Controller {
     public function view($id) {
         if (Auth::user()->hasPermission('view_application')) {
             $leave = Application::find($id);
-            $count_accept = Application::where('user_id', $leave->user_id)
-                    ->where('status', 1)
-                    ->count();
-            $count_balance = 20 - $count_accept;
             $user_ = \App\User::where('id', $leave->status_changed_by)->get();
             $st_by = '';
             if (isset($user_[0])) {
                 $st_by = $user_[0]->name;
             }
+            $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->count();
             return view('applications.view')->with('data', $leave)->with('status_changed_by', $st_by)
-                            ->with('used', $count_accept)
-                            ->with('balance', $count_balance);
+                ->with('used', $leave->user->used_leave)
+                ->with('balance', $leave->user->balance_leave)
+                ->with('unpaid', $unpaid_leaves)
+                ->with('allowed', $leave->user->allowed_leave);
+
         } else {
             return redirect()->route('access-denied');
         }
@@ -127,6 +127,14 @@ class ApplicationsController extends Controller {
         if (Auth::user()->hasPermission('accept_application')) {
             $leave = Application::where('id', $id)
                     ->update(['status' => 1, 'status_changed_by' => Auth::user()->id]);
+
+                    $apld_leave = Application::where('id', $id)->first();
+            if (!$apld_leave->unpaid) {
+                $user_ = \App\User::where('id', $apld_leave->user_id)->get()->first();
+                $user_->balance_leave = $user_->balance_leave - $apld_leave->no_of_days;
+                $user_->used_leave = $user_->used_leave + $apld_leave->no_of_days;
+                $user_->save();
+            }
             $mail_from = $_ENV['MAIL_FROM_ADDRESS'];
             $app = Application::where('id', $id)->get();
             $mail_from_name = $_ENV['MAIL_FROM_NAME'];
