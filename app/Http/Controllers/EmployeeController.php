@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller {
 
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct() {
+        // $this->middleware('auth');
+        date_default_timezone_set("Asia/Karachi");
+    }
+
     public function index() {
         if (Auth::user()->hasPermission('view_employee')) {
             return view('employee');

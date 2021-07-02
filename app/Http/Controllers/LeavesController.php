@@ -22,8 +22,8 @@ class LeavesController extends Controller
      */
     public function __construct()
     {
-        
         $this->middleware('auth');
+        date_default_timezone_set("Asia/Karachi");
     }
 
     /**
@@ -33,8 +33,7 @@ class LeavesController extends Controller
      */
     public function allLeaves()
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
         $leaves = Application::where('user_id', Auth::user()->id)->latest()->get();
@@ -51,8 +50,7 @@ class LeavesController extends Controller
      */
     public function pendingLeaves()
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
         $pending_leaves = Application::where('status', 2)->where('user_id', Auth::user()->id)
@@ -63,8 +61,7 @@ class LeavesController extends Controller
 
     public function rejectedLeaves()
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
         $leaves = Application::where('status', 0)
@@ -76,8 +73,7 @@ class LeavesController extends Controller
 
     public function acceptedLeaves()
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
         $leaves = Application::where('status', 1)
@@ -89,22 +85,21 @@ class LeavesController extends Controller
 
     public function viewLeave($id)
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
         $leave = Application::find($id);
-            $user_ = \App\User::where('id', $leave->status_changed_by)->get();
-            $st_by = '';
-            if (isset($user_[0])) {
-                $st_by = $user_[0]->name;
-            }
-            $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->count();
-            return view('applications.view')->with('data', $leave)->with('status_changed_by', $st_by)
-                ->with('used', $leave->user->used_leave)
-                ->with('balance', $leave->user->balance_leave)
-                ->with('unpaid', $unpaid_leaves)
-                ->with('allowed', $leave->user->allowed_leave);
+        $user_ = \App\User::where('id', $leave->status_changed_by)->get();
+        $st_by = '';
+        if (isset($user_[0])) {
+            $st_by = $user_[0]->name;
+        }
+        $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->count();
+        return view('applications.view')->with('data', $leave)->with('status_changed_by', $st_by)
+            ->with('used', $leave->user->used_leave)
+            ->with('balance', $leave->user->balance_leave)
+            ->with('unpaid', $unpaid_leaves)
+            ->with('allowed', $leave->user->allowed_leave);
     }
 
     /**
@@ -114,8 +109,7 @@ class LeavesController extends Controller
      */
     public function apply()
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
         $leavetypes = LeaveType::latest()->get();
@@ -129,8 +123,7 @@ class LeavesController extends Controller
      */
     public function add(Request $request)
     {
-        if(Auth::user()->hasRole(['admin']))
-        {
+        if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
 
@@ -158,9 +151,13 @@ class LeavesController extends Controller
         date_default_timezone_set("Asia/Karachi");
         $date = date('d-m-Y h:i:s A');
         $date_new = date('d-m-Y');
+        if ($data['short_leave'] == true) {
+            $dates[0] = $data['duration'];
+            $dates[1] = $data['duration'];
+        } else {
+            $dates = explode(' - ', $data['duration']);
+        }
 
-
-        $dates = explode(' - ', $data['duration']);
         $islate = $this->isLate($dates[0], $data['no_of_days']);
         try {
             $app = new Application;

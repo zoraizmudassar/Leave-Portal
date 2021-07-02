@@ -14,6 +14,17 @@ function calLeavesAllowed(date_ = false) {
     }
 }
 $(function () {
+    $('#leave_type').on('change', function () {
+        var leave_type_value = $('#leave_type').val();
+        var leave_type = $('#leave_type option:selected').text();
+        if (leave_type_value != '') {
+            $('#leave_subject').val(leave_type);
+        }
+        else{
+            $('#leave_subject').val('');
+        }
+    });
+
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -22,9 +33,6 @@ $(function () {
     today = mm + '/' + dd + '/' + yyyy;
     $('#reg_date').datepicker({
         value: today,
-        // uiLibrary: 'bootstrap4',
-        // "setDate": new Date(),
-        // "autoclose": true
     });
     $('#emp_type').on('change', function () {
         var etype = $('#emp_type').val();
@@ -69,44 +77,6 @@ $(function () {
         calLeavesAllowed();
     });
 
-    // var a = $('#reg_date').val();
-
-    // var d = new Date();
-    // var month = d.getMonth() + 1;
-    // var dateStr = month;
-    // var cal = 12 - dateStr;
-    // var div = 20 / 12;
-    // var mul = div * cal;
-    // var total = float2int(mul);
-    // function float2int(value) {
-    //     return value | 0;
-    // }
-
-
-
-    // $('#emp_category_id').on('change', function () {
-    //     var empC_val = $('#emp_category_id').val();
-    //     if (empC_val == "1") {
-    //         $('#reg_date').attr('disabled', true);
-    //         $('#leave').attr('disabled', true);
-    //         $('#leave').attr('value', 0);
-    //     }
-    //     else if (empC_val == "2") {
-    //         $('#reg_date').attr('disabled', true);
-    //         $('#leave').attr('disabled', true);
-    //         $('#leave').attr('value', 0);
-    //     }
-    //     else if (empC_val == "5") {
-    //         $a = 12;
-    //         $('#reg_date').attr('disabled', true);
-    //         $('#leave').attr('disabled', true);
-    //         $('#leave').val(total);
-    //     }
-    // });
-
-
-
-
     $('.select2').select2();
     $("#example1").DataTable({
         "responsive": true,
@@ -126,7 +96,7 @@ $(function () {
     //    }).focus(function () {
     //        $(this).prop("autocomplete", "off");
     //    });
-
+    var singleDate = false;
     $('#leave_date').daterangepicker({
         minDate: new Date(),
         isInvalidDate: function (date) {
@@ -134,6 +104,7 @@ $(function () {
                 return true;
             return false;
         },
+        singleDatePicker: singleDate,
     }).focus(function () {
         $(this).prop("autocomplete", "off");
     });
@@ -164,6 +135,19 @@ $(function () {
     });
     $('#short-leave').on('change', function () {
         if ($(this).prop("checked") == true) {
+            singleDate = true;
+            $('#leave_date').daterangepicker({
+                minDate: new Date(),
+                isInvalidDate: function (date) {
+                    if (date.day() == 0 || date.day() == 6)
+                        return true;
+                    return false;
+                },
+                singleDatePicker: singleDate,
+            }).focus(function () {
+                $(this).prop("autocomplete", "off");
+            });
+
             $('#leave_date').val('');
             $('#leave_date').data('daterangepicker').setStartDate(moment());
             $('#leave_date').data('daterangepicker').setEndDate(moment());
@@ -172,6 +156,18 @@ $(function () {
             $('.half-leave-section').css('display', 'block');
             $('#days').val('0.5');
         } else {
+            singleDate = false;
+            $('#leave_date').daterangepicker({
+                minDate: new Date(),
+                isInvalidDate: function (date) {
+                    if (date.day() == 0 || date.day() == 6)
+                        return true;
+                    return false;
+                },
+                singleDatePicker: singleDate,
+            }).focus(function () {
+                $(this).prop("autocomplete", "off");
+            });
             //            $('#reservationdate').val('');
             //            $('.date-range').css('display', 'block');
             //            $('.single-date').css('display', 'none');

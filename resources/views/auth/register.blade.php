@@ -106,7 +106,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="leaves_allowed">{{ __('Allowed Leaves') }}</label>
-                                            <input type="number" id="leaves_allowed" class="form-control" name="leaves_allowed" value="{{ old('leaves_allowed') }}">
+                                            <input type="number" max="20" id="leaves_allowed" class="form-control" name="leaves_allowed" value="{{ old('leaves_allowed') }}">
 
                                             @if ($errors->has('leaves_allowed'))
                                             <span class="text-danger">{{ $errors->first('leaves_allowed') }}</span>

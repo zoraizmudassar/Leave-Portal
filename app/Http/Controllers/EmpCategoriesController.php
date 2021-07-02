@@ -17,6 +17,7 @@ class EmpCategoriesController extends Controller {
      */
     public function __construct() {
         $this->middleware('auth');
+        date_default_timezone_set("Asia/Karachi");
     }
 
     /**
@@ -42,7 +43,7 @@ class EmpCategoriesController extends Controller {
     }
 
     public function edit($id) {
-        if (Auth::user()->hasPermission('update_employee_category')) {
+        if (Auth::user()->hasPermission('update_category')) {
             $des = EmpCategory::find($id);
             return view('empcategories.edit')->with('data', $des);
         } else {

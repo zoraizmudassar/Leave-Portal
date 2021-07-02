@@ -74,7 +74,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Type</label>
-                                                <select name="leave_type_id" class="form-control select2" style="width: 100%;">
+                                                <select id="leave_type" name="leave_type_id" class="form-control select2" style="width: 100%;">
                                                     <option value="">---Select Option---</option>
                                                     @foreach($leavetypes as $model)
                                                     <option value="{{$model->id}}">{{$model->name}}</option>
@@ -88,7 +88,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Subject</label>
-                                                <input type="text" name="subject" placeholder="Leave Subject" class="form-control">
+                                                <input type="text" readonly id="leave_subject" name="subject" placeholder="Leave Subject" class="form-control">
                                                 @if ($errors->has('subject'))
                                                 <span class="text-danger">{{ $errors->first('subject') }}</span>
                                                 @endif
