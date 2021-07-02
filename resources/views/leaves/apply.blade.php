@@ -43,6 +43,8 @@
                                             Instructions for Leave Apply.
                                         </a>
                                     </div>
+                                    <div class="row">
+                                    <div class="col-8">
                                     <div id="collapse-1" class="collapse show" data-parent="#accordion">
                                         <div class="card-body">
                                             <h4 class="text-danger">You have to Apply/Inform your leave according to the listed Rules!</h4>
@@ -59,11 +61,21 @@
                                                 <li class="text-warning font-weight-bold">
                                                     <div>7 or more than 7 days Leave => Before 30 days</div>
                                                 </li>
+                                                
                                             </ul>
                                         </div>
+                                    </div></div>
+                                    <div class="col-4 p-5">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted">Balance Leaves</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{$balance}}</span>
                                     </div>
                                 </div>
-
+                            </div>
+                            </div>       
+                                </div>
+                  
                                 <form class="leave-apply-form" action="{{route('leave-add')}}" method="post">
                                     @csrf
                                     <div class="row">

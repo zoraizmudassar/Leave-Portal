@@ -60,7 +60,9 @@ class RegisterController extends Controller
             'department_id' => ['required'],
             'designation_id' => ['required'],
             'emp_category_id' => ['required'],
-            'team_lead' => ['required']
+            'team_lead' => ['required'],
+            'emp_type' => ['required'],
+            'leaves_allowed' => ['required']
         ]);
     }
 
@@ -109,6 +111,11 @@ class RegisterController extends Controller
         ]);
         if ($user) {
             $user->attachRole('employee');
+            $notification = array(
+                'message' => 'You have Successfully Registered! '.$data['name'],
+                'alert-type' => 'success'
+            );
+            return redirect()->route('emp-all')->with($notification);
         }
         return $user;
     }

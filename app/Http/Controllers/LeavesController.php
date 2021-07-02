@@ -22,6 +22,7 @@ class LeavesController extends Controller
      */
     public function __construct()
     {
+        
         $this->middleware('auth');
     }
 
@@ -32,6 +33,10 @@ class LeavesController extends Controller
      */
     public function allLeaves()
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
         $leaves = Application::where('user_id', Auth::user()->id)->latest()->get();
         return view('leaves.all')->with('data', $leaves);
     }
@@ -46,6 +51,10 @@ class LeavesController extends Controller
      */
     public function pendingLeaves()
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
         $pending_leaves = Application::where('status', 2)->where('user_id', Auth::user()->id)
             ->latest()
             ->get();
@@ -54,6 +63,10 @@ class LeavesController extends Controller
 
     public function rejectedLeaves()
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
         $leaves = Application::where('status', 0)
             ->where('user_id', Auth::user()->id)
             ->latest()
@@ -63,6 +76,10 @@ class LeavesController extends Controller
 
     public function acceptedLeaves()
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
         $leaves = Application::where('status', 1)
             ->where('user_id', Auth::user()->id)
             ->latest()
@@ -72,6 +89,10 @@ class LeavesController extends Controller
 
     public function viewLeave($id)
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
         $leave = Application::find($id);
             $user_ = \App\User::where('id', $leave->status_changed_by)->get();
             $st_by = '';
@@ -93,8 +114,12 @@ class LeavesController extends Controller
      */
     public function apply()
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
         $leavetypes = LeaveType::latest()->get();
-        return view('leaves.apply')->with('leavetypes', $leavetypes);
+        return view('leaves.apply')->with('leavetypes', $leavetypes)->with('balance', Auth::user()->balance_leave);
     }
 
     /**
@@ -104,6 +129,10 @@ class LeavesController extends Controller
      */
     public function add(Request $request)
     {
+        if(Auth::user()->hasRole(['admin']))
+        {
+            return redirect()->route('access-denied');
+        }
 
         $request->validate([
             'leave_type_id' => 'required',

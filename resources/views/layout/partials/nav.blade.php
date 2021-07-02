@@ -321,6 +321,7 @@
                 </li>
                 @endif
                 
+                @if(!Auth::user()->hasRole(['admin']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'active' : '' }}">
                         <img src="{{URL::asset('assets/images/sidebar-images/my_leaves.png')}}" height="20"/>
@@ -363,6 +364,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
