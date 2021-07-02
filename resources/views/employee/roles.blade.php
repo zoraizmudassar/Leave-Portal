@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <style>
-    .project-actions{
+    .project-actions {
         display: flex;
     }
 </style>
@@ -38,23 +38,32 @@
                         <div class="card-body">
                             <form class="leave-apply-form" action="{{route('emp-assign-roles')}}" method="post">
                                 @csrf
-                                <input type="hidden" name="emp_id" value="{{$user->id}}"/>
+                                <input type="hidden" name="emp_id" value="{{$user->id}}" />
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             @foreach($roles as $role)
                                             <?php
-                                            if($role->name!='team_lead')
-                                            {
-                                                echo "No";
-                                            }
+                                            if ($role->name == 'team_lead') {
+                                                if ($user->empCategory->id == '2' || $user->empCategory->id == '3') {
                                             ?>
-                                            <div class="checkbox icheck-warning d-inline">
-                                                <input name="roles[]" {{in_array($role->id, $user_roles) ? 'checked' : ''}} value="{{$role->id}}" type="checkbox" class="check-1" id="checkbox-{{$role->id}}">
-                                                <label class="font-weight-normal" for="checkbox-{{$role->id}}">
-                                                    {{ $role->display_name }}
-                                                </label>
-                                            </div>
+                                                    <div class="checkbox icheck-warning d-inline">
+                                                        <input name="roles[]" {{in_array($role->id, $user_roles) ? 'checked' : ''}} value="{{$role->id}}" type="checkbox" class="check-1" id="checkbox-{{$role->id}}">
+                                                        <label class="font-weight-normal" for="checkbox-{{$role->id}}">
+                                                            {{ $role->display_name }}
+                                                        </label>
+                                                    </div>
+                                                <?php }
+                                            } else { ?>
+                                                <div class="checkbox icheck-warning d-inline">
+                                                    <input name="roles[]" {{in_array($role->id, $user_roles) ? 'checked' : ''}} value="{{$role->id}}" type="checkbox" class="check-1" id="checkbox-{{$role->id}}">
+                                                    <label class="font-weight-normal" for="checkbox-{{$role->id}}">
+                                                        {{ $role->display_name }}
+                                                    </label>
+                                                </div>
+                                            <?php }
+                                            ?>
+
                                             @endforeach
                                         </div>
                                     </div>
@@ -62,7 +71,7 @@
                                 <div class="row">
 
                                     <div class="col-md-12 text-right">
-                                        <input type="submit" name="submit" value="Update Roles" class="btn btn-success"/>
+                                        <input type="submit" name="submit" value="Update Roles" class="btn btn-success" />
                                     </div>
                                 </div>
                             </form>
