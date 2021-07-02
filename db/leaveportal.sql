@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2021 at 03:58 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.13
+-- Generation Time: Jul 02, 2021 at 03:37 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.3.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,50 +57,18 @@ CREATE TABLE `applications` (
   `team_lead` int(11) NOT NULL DEFAULT 0,
   `late_apply` tinyint(1) NOT NULL DEFAULT 0,
   `half` int(11) NOT NULL DEFAULT 0,
-  `short_leave` tinyint(1) NOT NULL DEFAULT 0
+  `short_leave` tinyint(1) NOT NULL DEFAULT 0,
+  `datetime` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unpaid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `user_id`, `leave_type_id`, `start_from`, `end_to`, `no_of_days`, `subject`, `description`, `created_at`, `updated_at`, `status`, `status_changed_by`, `team_lead`, `late_apply`, `half`, `short_leave`) VALUES
-(1, 1, 1, '05/17/2021', '05/17/2021', 0, 'asdfsadf', 'fdsaafsa', '2021-05-17 02:58:34', '2021-05-19 03:57:46', '1', 0, 10, 0, 0, 0),
-(2, 3, 2, '05/22/2021', '05/25/2021', 0, 'cadual subject', 'cadual description', '2021-05-17 04:15:56', '2021-05-17 23:51:55', '0', 0, 6, 0, 0, 0),
-(3, 2, 2, '06/08/2021', '06/16/2021', 0, 'cadual subject by demo', 'cadual description by demo', '2021-05-17 04:18:26', '2021-05-17 05:39:12', '1', 0, 6, 0, 0, 0),
-(4, 4, 2, '05/21/2021', '05/28/2021', 8, 'Test Subject for Leave by Dummy', 'Test Description for Leave by Dummy', '2021-05-17 08:52:09', '2021-05-17 08:52:09', '2', 0, 6, 0, 0, 0),
-(5, 3, 2, '06/08/2021', '06/10/2021', 3, 'cadual subject', 'cadual description', '2021-05-19 04:46:59', '2021-05-21 03:48:24', '1', 0, 9, 0, 0, 0),
-(6, 3, 2, '05/27/2021', '05/28/2021', 2, 'test', 'tst', '2021-05-21 01:17:03', '2021-05-21 03:50:50', '0', 0, 9, 0, 0, 0),
-(7, 6, 1, '05/22/2021', '05/22/2021', 1, 'Sick Leave', 'Sick Leave Description', '2021-05-21 01:43:16', '2021-05-21 01:43:16', '2', 0, 9, 0, 0, 0),
-(12, 7, 2, '05/22/2021', '05/22/2021', 1, 'Cadual Leave for 1 day', 'Its a cadual leave', '2021-05-21 06:00:32', '2021-05-26 07:20:53', '1', 0, 1, 0, 0, 0),
-(13, 1, 1, '05/22/2021', '05/23/2021', 2, 'Sick Leave Subject', 'Sick Leave For 2 days', '2021-05-21 06:11:02', '2021-05-21 06:11:02', '2', 0, 10, 0, 0, 0),
-(14, 1, 1, '05/22/2021', '05/23/2021', 2, 'Sick Leave Subject', 'Sick Leave For 2 days', '2021-05-21 06:12:22', '2021-05-21 06:12:22', '2', 0, 10, 0, 0, 0),
-(15, 7, 1, '05/22/2021', '05/23/2021', 2, 'Sick Leave', 'Sick Leave for 2 days', '2021-05-21 06:13:33', '2021-05-21 06:55:11', '0', 0, 1, 0, 0, 0),
-(16, 7, 1, '05/28/2021', '05/29/2021', 2, 'Sick Leave', 'test', '2021-05-21 06:41:04', '2021-05-21 06:55:03', '1', 0, 1, 0, 0, 0),
-(17, 7, 2, '05/22/2021', '05/23/2021', 2, 'cadual subject', 'cadual leave description', '2021-05-21 07:56:12', '2021-05-26 07:46:24', '1', 0, 1, 0, 0, 0),
-(22, 7, 2, '05/28/2021', '05/29/2021', 2, 'sdfs', 'sdfsdfsdfdsf', '2021-05-27 02:10:05', '2021-05-27 02:10:05', '2', 0, 1, 0, 0, 0),
-(23, 7, 1, '06/20/2021', '06/21/2021', 2, 'cadual subject', 'testsdfasdfasdf', '2021-05-27 07:15:11', '2021-05-27 07:15:11', '2', 0, 1, 0, 0, 0),
-(24, 7, 1, '05/28/2021', '05/29/2021', 2, 'Sick Leave', 'test description', '2021-05-27 07:21:38', '2021-05-27 07:21:38', '2', 0, 1, 0, 0, 0),
-(25, 7, 1, '05/28/2021', '05/28/2021', 0, 'test', 'test decription', '2021-05-28 01:03:46', '2021-05-28 01:03:46', '2', 0, 1, 0, 0, 0),
-(26, 7, 1, '05/28/2021', '05/28/2021', 0, 'test', 'test decription', '2021-05-28 01:03:49', '2021-05-28 01:03:49', '2', 0, 1, 0, 0, 0),
-(27, 7, 1, '05/28/2021', '05/28/2021', 0, 'test', 'test decription', '2021-05-28 01:03:50', '2021-05-28 01:03:50', '2', 0, 1, 0, 0, 0),
-(28, 7, 1, '05/31/2021', '05/31/2021', 1, 'test', 'sdfsdaf', '2021-05-31 04:25:57', '2021-05-31 04:25:57', '2', 0, 1, 0, 0, 0),
-(29, 7, 1, '05/31/2021', '05/31/2021', 1, 'cadual subject', 'test', '2021-05-31 06:44:51', '2021-05-31 06:44:51', '2', 0, 1, 0, 0, 0),
-(38, 7, 1, '06/01/2021', '06/01/2021', 1, 'Sick Leave', 'sfdsdfsdf', '2021-06-01 05:26:32', '2021-06-01 05:26:32', '2', 0, 1, 1, 1, 0),
-(45, 11, 1, '06/16/2021', '06/16/2021', 1, 'test', 'dsfsdfsdfdsf', '2021-06-01 05:46:28', '2021-06-01 05:46:28', '2', 0, 1, 1, 0, 0),
-(46, 11, 1, '06/18/2021', '06/18/2021', 1, 'cadual subject', 'sadfasdfasdf', '2021-06-01 05:53:21', '2021-06-01 05:53:21', '2', 0, 1, 0, 0, 0),
-(47, 11, 1, '06/02/2021', '06/02/2021', 1, 'test', 'sadfsadf', '2021-06-01 06:15:25', '2021-06-01 06:15:25', '2', 0, 1, 0, 0, 0),
-(48, 11, 1, '06/01/2021', '06/01/2021', 1, 'cadual subject', 'sadfsadfdsa', '2021-06-01 06:16:12', '2021-06-01 07:47:38', '1', 10, 1, 1, 0, 0),
-(49, 11, 1, '06/11/2021', '06/11/2021', 1, 'Sick Leave', 'tst', '2021-06-01 07:10:41', '2021-06-01 07:10:41', '2', 0, 1, 0, 1, 1),
-(50, 11, 1, '06/11/2021', '06/11/2021', 1, 'Sick Leave', 'test description', '2021-06-01 07:53:46', '2021-06-01 07:53:46', '2', 0, 1, 0, 2, 1),
-(51, 11, 1, '06/10/2021', '06/10/2021', 1, 'cadual subject', 'xzvczv', '2021-06-01 07:54:53', '2021-06-01 07:54:53', '2', 0, 1, 0, 2, 1),
-(52, 7, 2, '07/07/2021', '07/08/2021', 2, 'Cadual Leave Subject', 'Cadual Leave Description', '2021-06-01 08:06:47', '2021-06-01 08:57:09', '0', 1, 1, 0, 0, 0),
-(53, 7, 1, '07/07/2021', '07/08/2021', 2, 'Sick Leave Subject', 'Sick Leave Description', '2021-06-01 08:09:30', '2021-06-01 08:55:14', '1', 1, 1, 0, 0, 0),
-(54, 7, 1, '07/14/2021', '07/14/2021', 1, 'Sick Leave Subject', 'Sick Leave Description', '2021-06-01 08:11:50', '2021-06-01 08:54:23', '1', 1, 1, 0, 0, 0),
-(55, 7, 2, '07/13/2021', '07/13/2021', 1, 'Sick Leave', 'sadfsadf', '2021-06-01 08:13:05', '2021-06-01 08:52:02', '1', 1, 1, 0, 0, 0),
-(56, 7, 1, '06/01/2021', '06/01/2021', 1, 'cadual subject', 'asdfasdf', '2021-06-01 08:15:13', '2021-06-01 08:51:33', '1', 1, 1, 1, 0, 0),
-(57, 1, 1, '06/03/2021', '06/03/2021', 1, 'test', 'asdfsadf', '2021-06-01 08:39:41', '2021-06-01 08:39:41', '2', 0, 10, 0, 0, 0),
-(58, 1, 1, '06/03/2021', '06/03/2021', 1, 'test', 'asdfsadf', '2021-06-01 08:40:45', '2021-06-01 08:48:43', '0', 1, 10, 0, 0, 0);
+INSERT INTO `applications` (`id`, `user_id`, `leave_type_id`, `start_from`, `end_to`, `no_of_days`, `subject`, `description`, `created_at`, `updated_at`, `status`, `status_changed_by`, `team_lead`, `late_apply`, `half`, `short_leave`, `datetime`, `unpaid`) VALUES
+(247, 26, 1, '08/08/2021', '08/10/2021', 3, 'Sick Leave', 'Sick Leave Required for 2 days', '2021-07-01 11:57:11', '2021-07-02 06:28:56', '1', 10, 10, 0, 0, 0, '01-07-2021 04:57:11 PM', '0'),
+(248, 26, 1, '07/02/2021', '07/02/2021', 1, 'Sick Leave', 'sdafasdf', '2021-07-02 12:41:09', '2021-07-02 12:41:09', '2', 0, 10, 1, 1, 1, '02-07-2021 05:41:09 PM', '0');
 
 -- --------------------------------------------------------
 
@@ -113,17 +81,21 @@ CREATE TABLE `departments` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Webiste Development', 'Website Development Description', '2021-05-18 04:26:12', '2021-05-18 05:37:27'),
-(2, 'Mobile Development', 'Mobile Development Description', '2021-05-18 04:30:03', '2021-05-18 04:30:03'),
-(4, 'Digital Marketing', 'Digital Marketing Description', '2021-05-18 05:19:34', '2021-05-18 05:19:34');
+INSERT INTO `departments` (`id`, `name`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
+(1, 'Webiste Development', 'Website Development Description', '2021-05-18 04:26:12', '2021-06-25 07:11:04', '1'),
+(2, 'Mobile Development', 'Mobile Development Description', '2021-05-18 04:30:03', '2021-06-22 06:02:25', '1'),
+(4, 'Digital Marketing', 'Digital Marketing Description', '2021-05-18 05:19:34', '2021-07-02 06:47:58', '0'),
+(5, 'Digital Marketing', 'Digital Marketing Deparments', '2021-06-22 17:32:41', '2021-06-24 07:39:02', '0'),
+(6, 'Digii Markt', 'asdfasdf', '2021-07-02 06:48:32', '2021-07-02 06:48:32', '1'),
+(7, 'twsf', 'adsdfasdf', '2021-07-02 11:51:22', '2021-07-02 11:51:22', '1');
 
 -- --------------------------------------------------------
 
@@ -136,15 +108,19 @@ CREATE TABLE `designations` (
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `designations`
 --
 
-INSERT INTO `designations` (`id`, `type`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'Laravel Developer', 'Laravel Developer Description', '2021-05-18 05:38:59', '2021-05-18 05:38:59');
+INSERT INTO `designations` (`id`, `type`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
+(2, 'Name', 'NameName', '2021-05-18 05:38:59', '2021-06-24 07:00:33', '0'),
+(3, 'Name', 'Name', '2021-06-15 02:01:04', '2021-06-24 07:41:03', '0'),
+(4, 'Name', 'Mobile Appp', '2021-06-21 05:37:22', '2021-06-24 08:17:04', '0'),
+(5, 'Laravel Developer Name', 'Laravel Developer Name', '2021-06-25 07:07:53', '2021-06-25 07:07:53', '1');
 
 -- --------------------------------------------------------
 
@@ -176,17 +152,19 @@ CREATE TABLE `emp_categories` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `emp_categories`
 --
 
-INSERT INTO `emp_categories` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Interni', 'Internship', '2021-05-19 07:17:46', '2021-05-19 07:18:10'),
-(2, 'Probation', 'Probation', '2021-05-19 07:18:31', '2021-05-19 07:18:31'),
-(3, 'Permanent', 'Permanent', '2021-05-19 07:18:43', '2021-05-19 07:18:43');
+INSERT INTO `emp_categories` (`id`, `name`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
+(1, 'Internship', 'Internship', '2021-05-19 07:17:46', '2021-05-19 07:18:10', '1'),
+(2, 'Probation', 'Probation', '2021-05-19 07:18:31', '2021-06-25 07:17:23', '1'),
+(3, 'Permanent', 'Permanent', '2021-05-19 07:18:43', '2021-07-01 00:02:33', '1'),
+(4, 'Traineeee', 'Traineeee', '2021-06-25 07:09:18', '2021-07-01 00:02:31', '1');
 
 -- --------------------------------------------------------
 
@@ -232,16 +210,19 @@ CREATE TABLE `leave_types` (
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `leaves_allow` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `leave_types`
 --
 
-INSERT INTO `leave_types` (`id`, `name`, `description`, `leaves_allow`, `created_at`, `updated_at`) VALUES
-(1, 'Sick Leave', 'sick leave description', 20, '2021-05-17 05:43:16', '2021-05-19 06:44:58'),
-(2, 'Cadual Leave', 'cadual leave description', 20, '2021-05-17 05:41:53', '2021-05-19 06:45:16');
+INSERT INTO `leave_types` (`id`, `name`, `description`, `leaves_allow`, `created_at`, `updated_at`, `active_status`) VALUES
+(1, 'Sick Leave', 'sick leave description', 20, '2021-05-17 05:43:16', '2021-06-24 07:42:41', '0'),
+(2, 'Cadual Leave', 'cadual leave description', 20, '2021-05-17 05:41:53', '2021-05-19 06:45:16', '1'),
+(3, 'Covid', 'COVID', 20, '2021-06-21 05:52:35', '2021-06-21 05:52:35', '1'),
+(4, 'COVID', 'Covid', 20, '2021-06-22 07:45:19', '2021-06-24 07:42:12', '0');
 
 -- --------------------------------------------------------
 
@@ -286,7 +267,29 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2021_05_28_063018_add_permissions_group_id_to_permissions_table', 22),
 (25, '2021_06_01_060455_add_late_apply_to_applications_table', 23),
 (26, '2021_06_01_071744_add_half_to_applications_table', 24),
-(27, '2021_06_01_072114_add_short_leave_to_applications_table', 25);
+(27, '2021_06_01_072114_add_short_leave_to_applications_table', 25),
+(28, '2021_06_15_102013_add_datetime_to_applications_table', 26),
+(29, '2021_06_16_082934_create_userdetail_table', 27),
+(30, '2021_06_18_051343_regdate_to_users_table', 28),
+(31, '2021_06_18_052656_add_regdate_to_users_table', 29),
+(32, '2021_06_18_053739_add_reggdate_to_users_table', 30),
+(33, '2021_06_18_054542_add_regdate_to_users_table', 31),
+(34, '2021_06_18_062040_add_regdate_to_users_table', 32),
+(35, '2021_06_18_070713_add_allowed_leave_to_users_table', 33),
+(36, '2021_06_18_070922_add_balance_leave_to_users_table', 34),
+(37, '2021_06_18_071059_add_used_leave_to_users_table', 35),
+(38, '2021_06_18_071257_add_lq_exp_to_users_table', 36),
+(39, '2021_06_18_071421_add_start_lq_to_users_table', 37),
+(40, '2021_06_18_071734_add_balance_leave_to_users_table', 38),
+(41, '2021_06_18_071857_add_used_leave_to_users_table', 39),
+(42, '2021_06_18_075029_add_allowed_leave_to_users_table', 40),
+(43, '2021_06_22_093228_add_active_status_to_departments_table', 41),
+(44, '2021_06_22_220445_add_active_status_to_designations_table', 42),
+(45, '2021_06_24_122806_add_active_status_to_leave_types', 43),
+(46, '2021_06_24_130103_add_active_status_to_emp_categories_table', 44),
+(47, '2021_06_25_123646_add_active_status_to_users_table', 45),
+(48, '2021_07_01_101605_add_unpaid_to_applications_table', 46),
+(49, '2021_07_01_110423_add_unpaid_to_applications_table', 47);
 
 -- --------------------------------------------------------
 
@@ -310,9 +313,45 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
-('36181632-20d7-4372-aa1c-3bfa359222ee', 'App\\Notifications\\LeaveApplied', 'App\\Application', 23, '[]', NULL, '2021-05-27 07:15:11', '2021-05-27 07:15:11'),
-('87b80ec8-1a34-493e-9f12-0af32b1d50da', 'App\\Notifications\\LeaveApplied', 'App\\Application', 13, '[]', NULL, '2021-05-27 06:51:11', '2021-05-27 06:51:11'),
-('fda90a55-ceb8-4f08-8b6f-86416dfb3e04', 'App\\Notifications\\LeaveApplied', 'App\\Application', 24, '[]', NULL, '2021-05-27 07:21:39', '2021-05-27 07:21:39');
+('0023bd21-1822-493d-af9f-6cc6b83dafc4', 'App\\Notifications\\LeaveApplied', 'App\\Application', 190, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/190\",\"name\":\"demo\",\"useremail\":\"demo@gmail.com\",\"team_lead\":\"user\"}', NULL, '2021-06-18 09:30:13', '2021-06-18 09:30:13'),
+('07eb1e65-1c37-4865-a9e3-d2e4f3d70096', 'App\\Notifications\\LeaveApplied', 'App\\Application', 236, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/236\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:08:24', '2021-07-01 09:08:24'),
+('0a4a1533-43f6-410b-ade9-3c1120742e86', 'App\\Notifications\\LeaveApplied', 'App\\Application', 227, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/227\",\"name\":\"demo\",\"useremail\":\"demo@gmail.com\",\"team_lead\":\"user\"}', NULL, '2021-06-22 12:51:12', '2021-06-22 12:51:12'),
+('0c97b208-f3e1-47d1-8b0a-32bece77fd02', 'App\\Notifications\\LeaveApplied', 'App\\Application', 246, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/246\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 10:51:14', '2021-07-01 10:51:14'),
+('169f68f9-9687-40c3-8e43-ebad36d2f563', 'App\\Notifications\\LeaveApplied', 'App\\Application', 181, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/181\",\"name\":\"user\",\"useremail\":\"user@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:39:45', '2021-06-18 06:39:45'),
+('23886cbf-ea07-46e2-82c7-2c6ed967f57b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 241, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/241\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:35:45', '2021-07-01 09:35:45'),
+('23e79684-2bf9-4192-a5e9-1df2e3533b37', 'App\\Notifications\\LeaveApplied', 'App\\Application', 240, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/240\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:33:58', '2021-07-01 09:33:58'),
+('283b8051-0a99-4e72-9f0a-5b8a893bb5e0', 'App\\Notifications\\LeaveApplied', 'App\\Application', 185, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/185\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:53:44', '2021-06-18 06:53:44'),
+('28d262ad-ad39-4c15-ba1b-a17772d7f00a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 179, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/179\",\"name\":\"demo\",\"useremail\":\"demo@gmail.com\",\"team_lead\":\"user\"}', NULL, '2021-06-17 22:20:19', '2021-06-17 22:20:19'),
+('29bf586c-be44-4e2c-867d-a6c24faa4fed', 'App\\Notifications\\LeaveApplied', 'App\\Application', 235, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/235\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:01:14', '2021-07-01 09:01:14'),
+('2b206422-82b2-4c8b-ad9f-6f58972af65d', 'App\\Notifications\\LeaveApplied', 'App\\Application', 247, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/247\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-01 11:57:12', '2021-07-01 11:57:12'),
+('2f04e871-593c-46f4-9614-d761df8e853a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 233, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/233\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:53:55', '2021-07-01 08:53:55'),
+('2f2aa2cd-15df-43a0-bd5f-739e2b89500a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 230, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/230\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 06:02:33', '2021-07-01 06:02:33'),
+('377eafbb-259e-4b54-b6ef-e28ee0024bb7', 'App\\Notifications\\LeaveApplied', 'App\\Application', 244, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/244\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:46:50', '2021-07-01 09:46:50'),
+('3bc94f00-4d7b-4d52-a012-62de13d73add', 'App\\Notifications\\LeaveApplied', 'App\\Application', 237, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/237\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:13:49', '2021-07-01 09:13:49'),
+('3ce5adf9-fcb6-4722-bf6e-9f1a7f6aaecd', 'App\\Notifications\\LeaveApplied', 'App\\Application', 231, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/231\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 06:10:16', '2021-07-01 06:10:16'),
+('3d67e95a-bdff-400b-9729-af177fb4bd93', 'App\\Notifications\\LeaveApplied', 'App\\Application', 220, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/220\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-20 19:42:46', '2021-06-20 19:42:46'),
+('4b3469d5-5f9e-45af-a16e-573b0b59ad21', 'App\\Notifications\\LeaveApplied', 'App\\Application', 182, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/182\",\"name\":\"user\",\"useremail\":\"user@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:40:41', '2021-06-18 06:40:41'),
+('4c8da1b0-2250-4fe9-8396-8babc1896882', 'App\\Notifications\\LeaveApplied', 'App\\Application', 183, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/183\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:44:15', '2021-06-18 06:44:15'),
+('5ca4a551-2a20-4287-bc32-3e2b8f9f6494', 'App\\Notifications\\LeaveApplied', 'App\\Application', 186, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/186\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:53:56', '2021-06-18 06:53:56'),
+('604b6aca-c524-4448-b96f-4985bf40fc9b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 239, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/239\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:30:48', '2021-07-01 09:30:48'),
+('6ae3ab1a-37b8-4a93-bc83-5f66567e7aa6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 226, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/226\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-22 12:44:17', '2021-06-22 12:44:17'),
+('710e241a-1292-454d-b4ae-fccd17213468', 'App\\Notifications\\LeaveApplied', 'App\\Application', 222, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/222\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 07:31:18', '2021-06-21 07:31:18'),
+('73f6afbf-41e1-4cc4-be69-69a52b182069', 'App\\Notifications\\LeaveApplied', 'App\\Application', 232, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/232\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:42:05', '2021-07-01 08:42:05'),
+('7d053d89-0c35-4f17-b6ef-439f8082add2', 'App\\Notifications\\LeaveApplied', 'App\\Application', 238, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/238\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:27:20', '2021-07-01 09:27:20'),
+('898342a0-a098-4b81-9192-534a146610a9', 'App\\Notifications\\LeaveApplied', 'App\\Application', 180, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/180\",\"name\":\"demo\",\"useremail\":\"demo@gmail.com\",\"team_lead\":\"user\"}', NULL, '2021-06-18 06:38:40', '2021-06-18 06:38:40'),
+('9569486d-a3a5-4312-a41c-c2f3b7152eee', 'App\\Notifications\\LeaveApplied', 'App\\Application', 229, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/229\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-25 13:05:14', '2021-06-25 13:05:14'),
+('9a9a0828-7510-4c5e-830b-7a29853c2e92', 'App\\Notifications\\LeaveApplied', 'App\\Application', 248, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/248\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-02 12:41:11', '2021-07-02 12:41:11'),
+('9d478c40-7712-4352-a450-8617e2942d44', 'App\\Notifications\\LeaveApplied', 'App\\Application', 188, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/188\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:17', '2021-06-18 06:54:17'),
+('a0258b6e-3adb-4aa4-a7d8-03d3f55c12e6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 242, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/242\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:37:44', '2021-07-01 09:37:44'),
+('bf0e33a2-4c81-45ee-9aaf-4aa228d8db56', 'App\\Notifications\\LeaveApplied', 'App\\Application', 225, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/225\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 09:53:48', '2021-06-21 09:53:48'),
+('c200b284-27ee-428d-8436-90d0d20e5bde', 'App\\Notifications\\LeaveApplied', 'App\\Application', 184, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/184\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:44:45', '2021-06-18 06:44:45'),
+('c38c7847-365e-4cc6-befe-c53af79d8a1b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 187, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/187\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:07', '2021-06-18 06:54:07'),
+('c88c5878-b84e-4cee-a883-dee766d13322', 'App\\Notifications\\LeaveApplied', 'App\\Application', 221, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/221\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 01:46:29', '2021-06-21 01:46:29'),
+('ebe9848f-14db-4084-8b18-698e2cb9ae8b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 243, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/243\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:41:09', '2021-07-01 09:41:09'),
+('ee81e409-4ad5-45e2-9e2c-f38e211a0023', 'App\\Notifications\\LeaveApplied', 'App\\Application', 245, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/245\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 10:31:07', '2021-07-01 10:31:07'),
+('efb11aa6-9d6f-4306-a7ca-47098a8b45c9', 'App\\Notifications\\LeaveApplied', 'App\\Application', 228, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/228\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-23 10:21:35', '2021-06-23 10:21:35'),
+('f18a9b43-177b-40c6-bcd1-eb877d09a9f6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 234, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/234\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:57:17', '2021-07-01 08:57:17'),
+('ffc518d0-89f2-4e19-b0e9-778049868c1c', 'App\\Notifications\\LeaveApplied', 'App\\Application', 189, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/189\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:29', '2021-06-18 06:54:29');
 
 -- --------------------------------------------------------
 
@@ -325,6 +364,17 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('sirajulhaq363@gmail.com', '$2y$10$FivHRZ.J1LVtKZTuBnNYKuIe3dgLECzhVwJJMRmXNb8i0Zn0zMyv6', '2021-06-03 02:34:39'),
+('user@gmail.com', '$2y$10$SzC2mhVrLhRttjbwVRbtHeuSXBcPr803A4atHG.HImWc18XPKydAu', '2021-06-04 05:13:25'),
+('admin@amcoitsystems.com', '$2y$10$lqciuMxBUFAsmuJ3jFLOGu5X8raVZHJaATx2e09gsQvHeQOT2VUjC', '2021-06-10 07:53:09'),
+('demo@gmail.com', '$2y$10$sP.rGIU74EvcSkjF5ph/veFj0LxntBArAQijV3QQDw6LulDtEI066', '2021-06-15 07:42:58'),
+('Siraaj@gmail.com', '$2y$10$w.KJXW8mPDIzb61NBif/Qej7Uh1V5QMi3KfO/L6a7Uev8vuuIMlXa', '2021-06-15 07:44:06');
 
 -- --------------------------------------------------------
 
@@ -377,7 +427,8 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (29, 'view_employee', 'View Employee', 'This allows user to view any employee.', '2021-05-28 08:26:03', '2021-05-28 08:26:03', 8),
 (30, 'view_application', 'View Application', 'This allows user to view all applications applied by employee', '2021-05-31 00:55:03', '2021-05-31 00:55:03', 9),
 (31, 'assign_roles', 'Assign Roles to Employee', 'This allows user to assign roles to employee.', '2021-05-31 02:36:41', '2021-05-31 02:36:41', 8),
-(32, 'assign_permissions', 'Assign Permissions to Role', 'This allows user to assign permissions to any role.', '2021-05-31 03:06:12', '2021-05-31 03:06:12', 3);
+(32, 'assign_permissions', 'Assign Permissions to Role', 'This allows user to assign permissions to any role.', '2021-05-31 03:06:12', '2021-05-31 03:06:12', 3),
+(33, 'update_password', 'Update Password', 'Change Password', '2021-06-11 01:56:41', '2021-06-11 01:56:41', 8);
 
 -- --------------------------------------------------------
 
@@ -458,7 +509,8 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (30, 1),
 (30, 3),
 (31, 1),
-(32, 1);
+(32, 1),
+(33, 1);
 
 -- --------------------------------------------------------
 
@@ -492,9 +544,12 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Admin', 'Administrator', '2021-05-20 01:02:36', '2021-05-20 04:40:17'),
+(1, 'admin', 'admin', 'Administrator', '2021-05-20 01:02:36', '2021-06-02 06:49:27'),
 (2, 'employee', 'Employee', 'Regular Employee', '2021-05-20 02:40:40', '2021-05-20 04:40:29'),
-(3, 'team_lead', 'Team Lead', 'Regular Employee + Team Lead', '2021-05-20 02:41:03', '2021-05-20 04:40:40');
+(3, 'team_lead', 'Team Lead', 'Regular Employee + Team Lead', '2021-05-20 02:41:03', '2021-05-20 04:40:40'),
+(4, 'Test', 'Tester', 'TESTER', '2021-06-09 23:49:25', '2021-06-09 23:49:25'),
+(5, 'update_quota', 'Update leave Quota', 'Update leave Quota', '2021-06-21 01:17:15', '2021-06-21 01:17:15'),
+(6, 'delete_leave_type', 'delete_leave_type', 'Delete_Leave Type', '2021-06-24 06:49:06', '2021-06-24 06:49:06');
 
 -- --------------------------------------------------------
 
@@ -527,7 +582,60 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (3, 9, 'App\\User'),
 (1, 10, 'App\\User'),
 (2, 10, 'App\\User'),
-(2, 11, 'App\\User');
+(3, 10, 'App\\User'),
+(2, 11, 'App\\User'),
+(2, 12, 'App\\User'),
+(2, 13, 'App\\User'),
+(2, 14, 'App\\User'),
+(2, 15, 'App\\User'),
+(2, 16, 'App\\User'),
+(2, 17, 'App\\User'),
+(2, 18, 'App\\User'),
+(2, 19, 'App\\User'),
+(2, 20, 'App\\User'),
+(2, 21, 'App\\User'),
+(2, 22, 'App\\User'),
+(2, 23, 'App\\User'),
+(2, 24, 'App\\User'),
+(2, 25, 'App\\User'),
+(2, 26, 'App\\User');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userdetail`
+--
+
+CREATE TABLE `userdetail` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `notify_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `userdetail`
+--
+
+INSERT INTO `userdetail` (`id`, `user_id`, `notify_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, '2021-06-16 09:54:20', '2021-06-16 09:54:20'),
+(2, 2, 2, '2021-06-16 09:55:11', '2021-06-16 09:55:11'),
+(3, 2, 2, '2021-06-16 09:56:01', '2021-06-16 09:56:01'),
+(4, 2, 2, '2021-06-16 10:54:38', '2021-06-16 10:54:38'),
+(5, 2, 2, '2021-06-16 18:31:44', '2021-06-16 18:31:44'),
+(6, 2, 2, '2021-06-16 18:51:47', '2021-06-16 18:51:47'),
+(7, 2, 2, '2021-06-16 19:00:55', '2021-06-16 19:00:55'),
+(8, 2, 2, '2021-06-16 19:01:51', '2021-06-16 19:01:51'),
+(9, 2, 2, '2021-06-16 19:02:32', '2021-06-16 19:02:32'),
+(10, 2, 2, '2021-06-17 04:38:47', '2021-06-17 04:38:47'),
+(11, 2, 2, '2021-06-17 04:57:28', '2021-06-17 04:57:28'),
+(12, 2, 2, '2021-06-17 05:20:22', '2021-06-17 05:20:22'),
+(13, 2, 2, '2021-06-17 06:48:06', '2021-06-17 06:48:06'),
+(14, 2, 2, '2021-06-17 06:49:01', '2021-06-17 06:49:01'),
+(15, 2, 2, '2021-06-17 08:07:56', '2021-06-17 08:07:56'),
+(16, 2, 2, '2021-06-17 10:17:03', '2021-06-17 10:17:03'),
+(17, 2, 2, '2021-06-17 22:12:08', '2021-06-17 22:12:08');
 
 -- --------------------------------------------------------
 
@@ -548,25 +656,22 @@ CREATE TABLE `users` (
   `designation_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
   `emp_category_id` int(11) NOT NULL,
-  `team_lead` int(11) NOT NULL DEFAULT 0
+  `team_lead` int(11) NOT NULL DEFAULT 0,
+  `lq_exp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_lq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `balance_leave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `used_leave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `allowed_leave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '20',
+  `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `designation_id`, `department_id`, `emp_category_id`, `team_lead`) VALUES
-(1, 'siraj', 'sirajulhaq363@gmail.com', NULL, '$2y$10$pBCSWFGn0fRvYbP8lX9Z7OP3wqEnpX45Ei/VFIK.USruP8N/ahSTK', NULL, '2021-05-07 01:41:55', '2021-05-07 01:41:55', 1, 2, 1, 3, 10),
-(2, 'demo', 'demo@gmail.com', NULL, '$2y$10$DxWW/BA4R.z3Vn9ydmV18uotpBmL9fYkEarIKp/GutOgY9RjsNXKG', NULL, '2021-05-17 04:09:48', '2021-05-21 02:41:22', 2, 2, 1, 1, 6),
-(3, 'test', 'test@gmail.com', NULL, '$2y$10$c3bSOCGxtiWjSxg/VuE7VOD9tMqS2GbyeAGNeUEM7ZsKH7E9oIUf.', NULL, '2021-05-17 04:12:56', '2021-05-21 02:41:30', 2, 2, 1, 2, 6),
-(4, 'dummy', 'dummy@gmail.com', NULL, '$2y$10$GBn4pDJ.NXjyRATjbuG29eyorUhW1nrPWMiwOSkXlXmNnvUqnS8Mi', NULL, '2021-05-17 08:31:05', '2021-05-21 02:41:38', 2, 2, 1, 3, 6),
-(5, 'testUser', 'testuser@gmail.com', NULL, '$2y$10$gWjcGqNjrSL9nfhn2C19YODmv4Egj.5YDVFOlU9G82KjyMsXuXTFy', NULL, '2021-05-18 07:28:42', '2021-05-21 02:41:46', 2, 2, 1, 2, 9),
-(6, 'user', 'user@gmail.com', NULL, '$2y$10$eD8GLUkHOy/wx6qmdzJIMuBJBeDCGU.1Hygs5yPlrmPQYnzuSwDGm', NULL, '2021-05-19 07:57:44', '2021-05-21 02:41:55', 2, 2, 1, 1, 9),
-(7, 'Zoraiz', 'jiranaji384@gmail.com', NULL, '$2y$10$l7McW/uxLDQI/89gtDtTbO7NophaGF60MbLNkh9v9VIiT29sE8sKW', NULL, '2021-05-20 05:49:17', '2021-05-21 05:31:01', 2, 2, 1, 1, 1),
-(8, 'Saad', 'saad@gmail.com', NULL, '$2y$10$v3pudCHdPSEA8mmoB1h5rOrkpevrUPZM0lMjPWVGLSPYltw.oqQg.', NULL, '2021-05-20 07:22:29', '2021-05-21 02:42:10', 2, 2, 1, 3, 6),
-(9, 'Faisal Ashraf', 'faisal@gmail.com', NULL, '$2y$10$t.SOZU2gsvdxUQBQKR8KIeKEA72Y1qTxpeUqT26KNxiSs7BGdhUOu', NULL, '2021-05-20 07:30:26', '2021-05-21 02:42:19', 2, 2, 1, 3, 6),
-(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-05-31 02:41:07', 2, 2, 1, 3, 6),
-(11, 'newuser', 'newuser@gmail.com', NULL, '$2y$10$MZXBo3mnQf/igU3RqzwQOOEV6yj8Nt.GSmaWOSLNAHUBUoduPs5j2', NULL, '2021-05-31 06:51:07', '2021-05-31 06:51:07', 2, 2, 1, 3, 1);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `designation_id`, `department_id`, `emp_category_id`, `team_lead`, `lq_exp`, `start_lq`, `balance_leave`, `used_leave`, `allowed_leave`, `active_status`) VALUES
+(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-05-31 02:41:07', 2, 2, 1, 3, 6, '', '', '0', '0', '20', '1'),
+(26, 'Usama', 'usama@gmail.com', NULL, '$2y$10$AC0xcouShsajGLi6KlbL6.lm7sCDOBBCblWImTcGem5qVlZ3NezlK', NULL, '2018-12-11 19:00:00', '2021-07-02 06:28:56', 2, 5, 1, 1, 10, '31-12-2021', '01-01-2021', '2', '3', '5', '1');
 
 --
 -- Indexes for dumped tables
@@ -687,6 +792,12 @@ ALTER TABLE `role_user`
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `userdetail`
+--
+ALTER TABLE `userdetail`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -707,19 +818,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employee_details`
@@ -731,7 +842,7 @@ ALTER TABLE `employee_details`
 -- AUTO_INCREMENT for table `emp_categories`
 --
 ALTER TABLE `emp_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -749,19 +860,19 @@ ALTER TABLE `leave_details`
 -- AUTO_INCREMENT for table `leave_types`
 --
 ALTER TABLE `leave_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `permissions_groups`
@@ -773,13 +884,19 @@ ALTER TABLE `permissions_groups`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `userdetail`
+--
+ALTER TABLE `userdetail`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
