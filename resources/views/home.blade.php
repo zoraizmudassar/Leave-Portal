@@ -2,6 +2,9 @@
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 ?>
+@section('title')
+<title> Admin Dashboard</title>
+@endsection
 @extends('layout.mainlayout')
 
 @section('content')

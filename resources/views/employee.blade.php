@@ -1,5 +1,7 @@
 @extends('layout.mainlayout')
-
+@section('title')
+<title>Dashboard</title>
+@endsection
 @section('content')
 
 <div class="content-wrapper">

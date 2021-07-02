@@ -1,4 +1,7 @@
 @extends('layout.authlayout')
+@section('title')
+<title>Login</title>
+@endsection
 @section('auth_css')
 <script src="{{ asset('css/app.css') }}"></script>
 @endsection
