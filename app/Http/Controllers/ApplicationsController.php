@@ -132,8 +132,6 @@ class ApplicationsController extends Controller
     public function accept($id)
     {
         if (Auth::user()->hasPermission('accept_application')) {
-            $leave = Application::where('id', $id)
-                ->update(['status' => 1, 'status_changed_by' => Auth::user()->id]);
             $apld_leave = Application::where('id', $id)->first();
             if (!$apld_leave->unpaid) {
                 $user_ = User::where('id', $apld_leave->user_id)->get()->first();
@@ -141,6 +139,9 @@ class ApplicationsController extends Controller
                 $user_->used_leave = $user_->used_leave + $apld_leave->no_of_days;
                 $user_->save();
             }
+            $leave = Application::where('id', $id)
+                ->update(['status' => 1, 'status_changed_by' => Auth::user()->id]);
+            
             $mail_from = $_ENV['MAIL_FROM_ADDRESS'];
             $app = Application::where('id', $id)->get();
             $mail_from_name = $_ENV['MAIL_FROM_NAME'];
@@ -160,7 +161,7 @@ class ApplicationsController extends Controller
                 'message' => 'Application Successfully moved to Accepted Leaves!',
                 'alert-type' => 'success'
             );
-            return redirect('/applications/pending')->with($notification);
+            return redirect('/applications/accepted')->with($notification);
             //        return redirect('/applications/view/'.$id);
         } else {
             return redirect()->route('access-denied');
@@ -175,17 +176,25 @@ class ApplicationsController extends Controller
     public function reject($id)
     {
         if (Auth::user()->hasPermission('reject_application')) {
+            $app = Application::where('id', $id)->get()->first();
+            if($app->status == 1)
+            {
+                $user_ = User::where('id', $app->user_id)->get()->first();
+                $user_->used_leave = $user_->used_leave - $app->no_of_days;
+                $user_->balance_leave = $user_->allowed_leave - $user_->used_leave;
+                $user_->save();
+            }
             $leave = Application::where('id', $id)->update(['status' => 0, 'status_changed_by' => Auth::user()->id]);
+            
             $mail_from = $_ENV['MAIL_FROM_ADDRESS'];
-            $app = Application::where('id', $id)->get();
             $mail_from_name = $_ENV['MAIL_FROM_NAME'];
             //                Notification::send($app, new LeaveApplied($app, Auth::user()));
             $rejected_by = \App\User::find(Auth::user()->id);
-            $applied_user = \App\User::find($app[0]->user_id);
+            $applied_user = \App\User::find($app->user_id);
             // Send Email to Team Lead from Employee
-            $to_name = $app[0]->user->name;
-            $to_email = $app[0]->user->email;
-            $data = array('rejected_by' => $rejected_by, 'applied_user' => $applied_user, 'app_id' => $app[0]->id);
+            $to_name = $app->user->name;
+            $to_email = $app->user->email;
+            $data = array('rejected_by' => $rejected_by, 'applied_user' => $applied_user, 'app_id' => $app->id);
             \Illuminate\Support\Facades\Mail::send('mail.accept-reject-leave', $data, function ($message) use ($to_name, $to_email, $mail_from, $mail_from_name) {
                 $message->to($to_email, $to_name)
                     ->subject('Leave Rejected');
@@ -195,7 +204,7 @@ class ApplicationsController extends Controller
                 'message' => 'Application Successfully moved to Rejected Leaves !',
                 'alert-type' => 'success'
             );
-            return redirect('/applications/pending')->with($notification);
+            return redirect('/applications/rejected')->with($notification);
         } else {
             return redirect()->route('access-denied');
         }
