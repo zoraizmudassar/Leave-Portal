@@ -1,13 +1,5 @@
 @extends('layout.mainlayout')
 @section('content')
-<script>
-    $(document).ready(function()
-    {
-    $('#leave_date').datepicker({
-        beforeShowDay: $.datepicker.noWeekends
-    });
-    });
-</script>  
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

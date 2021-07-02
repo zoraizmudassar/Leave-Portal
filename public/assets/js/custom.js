@@ -128,18 +128,38 @@ $(function () {
     //    });
 
     $('#leave_date').daterangepicker({
-        minDate: new Date()
+        minDate: new Date(),
+        isInvalidDate: function (date) {
+            if (date.day() == 0 || date.day() == 6)
+                return true;
+            return false;
+        },
     }).focus(function () {
         $(this).prop("autocomplete", "off");
     });
     $('#leave_date').on('change.datepicker', function (ev) {
+
         if ($('#short-leave').prop("checked") == false) {
             var daterange = $('#leave_date').val().split('-')
-            var start = new Date(daterange[0]);
-            var end = new Date(daterange[1]);
-            var diff = new Date(end - start);
-            var days = diff / 1000 / 60 / 60 / 24;
-            $('#days').val(days + 1);
+            var start_ = new Date(daterange[0]);
+            var end_ = new Date(daterange[1]);
+            // initial total
+            var totalBusinessDays = 0;
+            // normalize both start and end to beginning of the day
+            start_.setHours(0, 0, 0, 0);
+            end_.setHours(0, 0, 0, 0);
+            var current = new Date(start_);
+            current.setDate(current.getDate() + 1);
+            var day;
+            // loop through each day, checking
+            while (current <= end_) {
+                day = current.getDay();
+                if (day >= 1 && day <= 5) {
+                    ++totalBusinessDays;
+                }
+                current.setDate(current.getDate() + 1);
+            }
+            $('#days').val(totalBusinessDays + 1);
         }
     });
     $('#short-leave').on('change', function () {

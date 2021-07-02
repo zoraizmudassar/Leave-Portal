@@ -35,9 +35,9 @@
                                      alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">{{$user->name}}</h3>
+                            <h3 class="profile-username text-center">{{$user->name}} <span class="badge badge-info">{{$user->empCategory->name}}</span></h3>
 
-                            <p class="text-muted text-center">{{$user->designation->type}} {{$user->empCategory->name}} ({{$user->department->name}})</p>
+                            <p class="text-muted text-center">{{$user->designation->type}} ({{$user->department->name}})</p>
 
 
                         </div>
