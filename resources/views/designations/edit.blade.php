@@ -35,12 +35,18 @@
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input value="{{$data->type}}" type="text" name="type" placeholder="Designation Name" class="form-control"/>
+                                            @if ($errors->has('type'))
+                                                <span class="text-danger">{{ $errors->first('type') }}</span>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
                                             <textarea rows="3" name="description" placeholder="Designation Description"class="form-control">{{$data->description}}</textarea>
+                                            @if ($errors->has('description'))
+                                                <span class="text-danger">{{ $errors->first('description') }}</span>
+                                                @endif
                                         </div>
                                     </div>
                                 </div>

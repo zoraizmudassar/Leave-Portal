@@ -106,7 +106,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="leaves_allowed">{{ __('Allowed Leaves') }}</label>
-                                            <input type="number" id="leaves_allowed" class="form-control" name="leaves_allowed" value="">
+                                            <input type="number" id="leaves_allowed" class="form-control" name="leaves_allowed" value="{{ old('leaves_allowed') }}">
 
                                             @if ($errors->has('leaves_allowed'))
                                             <span class="text-danger">{{ $errors->first('leaves_allowed') }}</span>
@@ -134,8 +134,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="designation_id">{{ __('Designation') }}</label>
-                                            <select name="designation_id" id="designation_id" class="form-control select2" style="width: 100%;">
-                                                <option value="">---Select Option---</option>
+                                            <select name="designation_id" id="designation_id" class="form-control select2" style="width: 100%;" >
+                                                <option value="{{ old('designation_id') }}">---Select Option---</option>
                                                 @foreach($designations as $item)
                                                 <option value="{{ $item->id }}">{{ $item->type }}</option>
                                                 @endforeach
@@ -173,7 +173,7 @@
                                         <div class="form-group">
                                             <label for="password">{{ __('Password') }}</label>
 
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" value="{{ old('password') }}">
 
                                             @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
@@ -183,7 +183,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" >
                                             @if ($errors->has('password-confirm'))
                                             <span class="text-danger">{{ $errors->first('password-confirm') }}</span>
                                             @endif

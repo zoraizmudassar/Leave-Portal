@@ -112,11 +112,10 @@ class DepartmentsController extends Controller {
      */
     public function update(Request $request, $id) {
         if (Auth::user()->hasPermission('update_department')) {
-            $rules = [
-                'name' => 'required',
-                'description' => 'required',
-            ];
-            $validator = Validator::make($request->all(), $rules);
+            $request->validate([
+                'type'=>'required | unique:departments',
+                'description'=>'required',
+            ]);
             $data = $request->input();
             try {
                 $dep = Department::find($id);

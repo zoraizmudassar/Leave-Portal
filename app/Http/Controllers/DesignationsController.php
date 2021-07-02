@@ -107,11 +107,10 @@ class DesignationsController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function update(Request $request, $id) {
-        $rules = [
-            'type' => 'required',
-            'description' => 'required',
-        ];
-        $validator = Validator::make($request->all(), $rules);
+        $request->validate([
+            'type'=>'required | unique:designations',
+            'description'=>'required',
+        ]);
         $data = $request->input();
         try {
             $dep = Designation::find($id);
