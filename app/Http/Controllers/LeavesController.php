@@ -94,7 +94,7 @@ class LeavesController extends Controller
         if (isset($user_[0])) {
             $st_by = $user_[0]->name;
         }
-        $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->count();
+        $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->where('status', 1)->count();
         return view('applications.view')->with('data', $leave)->with('status_changed_by', $st_by)
             ->with('used', $leave->user->used_leave)
             ->with('balance', $leave->user->balance_leave)
@@ -137,6 +137,14 @@ class LeavesController extends Controller
         $data = $request->input();
         $user_ = Auth::user();
         $unpaid = false;
+        $count_app = Application::where('user_id', $user_->id)->where('status', 2)->get()->count();
+        if ($count_app > 0) {
+            $notification = array(
+                'message' => 'Your last application is already in pending state!',
+                'alert-type' => 'warning'
+            );
+            return redirect()->route('leave-apply')->with($notification);
+        }
         if ($user_->balance_leave > 0) {
             if ($data['no_of_days'] > $user_->balance_leave) {
                 $notification = array(
@@ -151,7 +159,7 @@ class LeavesController extends Controller
         date_default_timezone_set("Asia/Karachi");
         $date = date('d-m-Y h:i:s A');
         $date_new = date('d-m-Y');
-        if ($data['short_leave'] == true) {
+        if (isset($data['short_leave']) && $data['short_leave'] == true) {
             $dates[0] = $data['duration'];
             $dates[1] = $data['duration'];
         } else {
@@ -166,7 +174,7 @@ class LeavesController extends Controller
             $app->description = $data['description'];
             $app->start_from = $dates[0];
             $app->end_to = $dates[1];
-            $app->no_of_days = $data['no_of_days'];
+            $app->no_of_days = isset($data['short_leave']) && $data['short_leave'] == true ? '0.5' : $data['no_of_days'];
             $app->user_id = \Illuminate\Support\Facades\Auth::id();
             $app->team_lead = Auth::user()->team_lead;
             $app->late_apply = $islate;
@@ -174,7 +182,6 @@ class LeavesController extends Controller
             $app->unpaid = $unpaid;
             $app->half = isset($data['short_leave']) && $data['short_leave'] == true ? $data['half'] : 0;
             $app->short_leave = isset($data['short_leave']) && $data['short_leave'] == true ? true : false;
-
             if ($app->save()) {
                 $mail_from = $_ENV['MAIL_FROM_ADDRESS'];
                 $mail_from_name = $_ENV['MAIL_FROM_NAME'];

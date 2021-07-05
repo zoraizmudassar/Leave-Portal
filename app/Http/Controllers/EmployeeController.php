@@ -105,11 +105,13 @@ class EmployeeController extends Controller {
             $acc_count = Application::where('user_id', $id)->where('status', 1)->count();
             $rej_count = Application::where('user_id', $id)->where('status', 0)->count();
             $user = User::find($id);
+            $team_lead = user::where('id', $user->team_lead)->get()->first();
             return view('employee.view')
                             ->with('user', $user)
                             ->with('all_count', $all_count)
                             ->with('pen_count', $pen_count)
                             ->with('acc_count', $acc_count)
+                            ->with('team_lead', $team_lead)
                             ->with('rej_count', $rej_count);
         } else {
             return redirect()->route('access-denied');
@@ -122,11 +124,13 @@ class EmployeeController extends Controller {
         $acc_count = Application::where('user_id', $id)->where('status', 1)->count();
         $rej_count = Application::where('user_id', $id)->where('status', 0)->count();
         $user = User::find($id);
+        $team_lead = user::where('id', $user->team_lead)->get()->first();
         return view('employee.profile')
                         ->with('user', $user)
                         ->with('all_count', $all_count)
                         ->with('pen_count', $pen_count)
                         ->with('acc_count', $acc_count)
+                        ->with('team_lead', $team_lead)
                         ->with('rej_count', $rej_count);
     }
 

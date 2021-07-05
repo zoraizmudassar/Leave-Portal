@@ -1,3 +1,6 @@
+<?php
+$view_route_name = 'leave-view';
+?>
 @extends('layout.mainlayout')
 @section('title')
 <title>Dashboard</title>
@@ -120,82 +123,9 @@
                                             </div>
                                         </div>
                                         <!-- /.card-header -->
-                                        <div class="card-body p-0">
+                                        <div class="card-body">
                                             <div class="table-responsive">
-                                                <table  class="table table-bordered table-striped projects text-center">
-                                                    <thead class="table-dark">
-                                                        <tr>
-                                                            <th >
-                                                                #
-                                                            </th>
-                                                            <th>
-                                                                Employee
-                                                            </th>
-                                                            <th>
-                                                                Leave Type
-                                                            </th>
-                                                            <th>
-                                                                Leave Subject
-                                                            </th>
-                                                           
-                                                            <th>
-                                                                No of days
-                                                            </th>
-                                                            <th class="text-center">
-                                                                Status
-                                                            </th>
-                                                            <th>
-                                                                Date of Apply
-                                                            </th>
-                                                            <th>
-                                                                Detail
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($latest_app as $model)
-                                                        <tr>
-                                                            <td>
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <img alt="Avatar" class="table-avatar" src="{{URL::asset("assets/dist/img/avatar.png")}}">
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                            <td>
-                                                                <a>
-                                                                    {{ $model->user->name }}
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                {{$model->leaveType->name}}
-                                                                
-                                                            </td>
-                                                            <td>
-                                                                {{$model->subject}}
-                                                            </td>
-                                                       
-                                                            <td>
-                                                                {{ $model->no_of_days }}
-                                                            </td>
-
-                                                            <td class="project-state">
-                                                                <span class="badge badge-{{$model->status == '0' ? 'danger' : ($model->status == '1' ? 'success' : 'warning')}}"><?= $model->status == 0 ? 'Rejected' : ($model->status == 1 ? 'Accepted' : 'Pending') ?></span>
-                                                            </td>
-                                                            <td>
-                                                                {{$model->datetime}}
-                                                            </td>
-                                                            <td class="project-actions text-right">
-                                                                <a class="btn btn-secondary btn-sm" href="{{route('leave-view', ['id'=>$model->id])}}">
-                                                                    <i class="fas fa-eye">
-                                                                    </i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-
-                                                    </tbody>
-                                                </table>
+                                            @include('partials.applications_listing')
                                             </div>
                                             <!-- /.table-responsive -->
                                         </div>

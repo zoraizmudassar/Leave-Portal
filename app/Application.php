@@ -10,7 +10,16 @@ class Application extends Model
 {
     use Notifiable;
 
-//    protected $fillable = ['leave_type_id', 'user_id', 'start_from', 'end_to', 'no_of_days'];
+/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'no_of_days'
+    ];
+
+
     /**
      * Get the post that owns the comment.
      */

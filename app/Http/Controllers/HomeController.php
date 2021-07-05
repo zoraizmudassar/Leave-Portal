@@ -35,7 +35,7 @@ class HomeController extends Controller {
                         ->with('acc_count', $acc_app_count)
                         ->with('rej_count', $rej_app_count)
                         ->with('pen_count', $pen_app_count)
-                        ->with('latest_app', $latest_app);
+                        ->with('data', $latest_app);
     }
 
     /**
@@ -78,7 +78,7 @@ class HomeController extends Controller {
                         ->with('acc_count', $acc_app_count)
                         ->with('rej_count', $rej_app_count)
                         ->with('pen_count', $pen_app_count)
-                        ->with('latest_app', $latest_app);
+                        ->with('data', $latest_app);
     }
 
     public function index5() {

@@ -222,7 +222,7 @@
                         <li class="nav-item">
                             <a href="{{route('emp-int')}}" class="nav-link {{strpos(Request::route()->getName(),'emp-int') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Interni</p>
+                                <p>Internee</p>
                             </a>
                         </li>
                         <li class="nav-item">

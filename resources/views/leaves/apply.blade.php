@@ -166,8 +166,8 @@
                                                     </div>
                                                     <input type="text" name="duration" class="form-control float-right duration" id="leave_date" placeholder="Leave Duration">
                                                 </div>
-                                                @if ($errors->has('no_of_days'))
-                                                <span class="text-danger">{{ $errors->first('no_of_days') }}</span>
+                                                @if ($errors->has('duration'))
+                                                <span class="text-danger">{{ $errors->first('duration') }}</span>
                                                 @endif
                                                 <!-- /.input group -->
                                             </div>
