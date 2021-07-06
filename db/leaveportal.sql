@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2021 at 03:22 PM
+-- Generation Time: Jul 06, 2021 at 09:03 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.20
 
@@ -62,16 +62,6 @@ CREATE TABLE `applications` (
   `unpaid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `applications`
---
-
-INSERT INTO `applications` (`id`, `user_id`, `leave_type_id`, `start_from`, `end_to`, `no_of_days`, `subject`, `description`, `created_at`, `updated_at`, `status`, `status_changed_by`, `team_lead`, `late_apply`, `half`, `short_leave`, `datetime`, `unpaid`) VALUES
-(247, 26, 1, '08/08/2021', '08/10/2021', '3', 'Sick Leave', 'Sick Leave Required for 2 days', '2021-07-01 11:57:11', '2021-07-02 06:28:56', '1', 10, 10, 0, 0, 0, '01-07-2021 04:57:11 PM', '0'),
-(258, 26, 2, '07/06/2021', '07/06/2021', '0.5', 'Cadual Leave', 'cadual leave reason', '2021-07-05 06:15:23', '2021-07-05 06:16:20', '1', 10, 10, 0, 2, 1, '05-07-2021 11:15:23 AM', '0'),
-(259, 27, 1, '07/06/2021', '07/07/2021', '2', 'Sick Leave', 'sick leave reason', '2021-07-05 11:53:18', '2021-07-05 11:59:44', '0', 10, 10, 1, 0, 0, '05-07-2021 04:53:18 PM', '1'),
-(260, 28, 1, '07/06/2021', '07/07/2021', '2', 'Sick Leave', 'sick leave reason', '2021-07-05 12:21:39', '2021-07-05 13:04:25', '0', 10, 10, 1, 0, 0, '05-07-2021 05:21:39 PM', '0');
-
 -- --------------------------------------------------------
 
 --
@@ -87,18 +77,6 @@ CREATE TABLE `departments` (
   `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `departments`
---
-
-INSERT INTO `departments` (`id`, `name`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
-(1, 'Webiste Development', 'Website Development Description', '2021-05-18 04:26:12', '2021-06-25 07:11:04', '1'),
-(2, 'Mobile Development', 'Mobile Development Description', '2021-05-18 04:30:03', '2021-06-22 06:02:25', '1'),
-(4, 'Digital Marketing', 'Digital Marketing Description', '2021-05-18 05:19:34', '2021-07-02 06:47:58', '0'),
-(5, 'Digital Marketing', 'Digital Marketing Deparments', '2021-06-22 17:32:41', '2021-06-24 07:39:02', '0'),
-(6, 'Digii Markt', 'asdfasdf', '2021-07-02 06:48:32', '2021-07-02 06:48:32', '1'),
-(7, 'twsf', 'adsdfasdf', '2021-07-02 11:51:22', '2021-07-02 11:51:22', '1');
-
 -- --------------------------------------------------------
 
 --
@@ -113,16 +91,6 @@ CREATE TABLE `designations` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `designations`
---
-
-INSERT INTO `designations` (`id`, `type`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
-(2, 'HR', 'Human Resource', '2021-05-18 05:38:59', '2021-07-05 09:19:55', '0'),
-(3, 'Name', 'Name', '2021-06-15 02:01:04', '2021-06-24 07:41:03', '0'),
-(4, 'Mobile Developer', 'Mobile Appp', '2021-06-21 05:37:22', '2021-07-05 09:18:49', '0'),
-(5, 'Laravel Developer', 'Laravel Developer', '2021-06-25 07:07:53', '2021-06-25 07:07:53', '1');
 
 -- --------------------------------------------------------
 
@@ -215,16 +183,6 @@ CREATE TABLE `leave_types` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `leave_types`
---
-
-INSERT INTO `leave_types` (`id`, `name`, `description`, `leaves_allow`, `created_at`, `updated_at`, `active_status`) VALUES
-(1, 'Sick Leave', 'sick leave description', 20, '2021-05-17 05:43:16', '2021-06-24 07:42:41', '0'),
-(2, 'Cadual Leave', 'cadual leave description', 20, '2021-05-17 05:41:53', '2021-05-19 06:45:16', '1'),
-(3, 'Covid', 'COVID', 20, '2021-06-21 05:52:35', '2021-06-21 05:52:35', '1'),
-(4, 'COVID', 'Covid', 20, '2021-06-22 07:45:19', '2021-06-24 07:42:12', '0');
 
 -- --------------------------------------------------------
 
@@ -442,7 +400,8 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (30, 'view_application', 'View Application', 'This allows user to view all applications applied by employee', '2021-05-31 00:55:03', '2021-05-31 00:55:03', 9),
 (31, 'assign_roles', 'Assign Roles to Employee', 'This allows user to assign roles to employee.', '2021-05-31 02:36:41', '2021-05-31 02:36:41', 8),
 (32, 'assign_permissions', 'Assign Permissions to Role', 'This allows user to assign permissions to any role.', '2021-05-31 03:06:12', '2021-05-31 03:06:12', 3),
-(33, 'update_password', 'Update Password', 'Change Password', '2021-06-11 01:56:41', '2021-06-11 01:56:41', 8);
+(33, 'update_password', 'Update Password', 'Change Password', '2021-06-11 01:56:41', '2021-06-11 01:56:41', 8),
+(34, 'update_leave_quota', 'Update Leave Quota', 'This allows user to update leave quota against permanent Employee', '2021-07-06 05:49:46', '2021-07-06 05:49:46', 8);
 
 -- --------------------------------------------------------
 
@@ -524,7 +483,8 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (30, 3),
 (31, 1),
 (32, 1),
-(33, 1);
+(33, 1),
+(34, 1);
 
 -- --------------------------------------------------------
 
@@ -560,10 +520,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'Administrator', '2021-05-20 01:02:36', '2021-06-02 06:49:27'),
 (2, 'employee', 'Employee', 'Regular Employee', '2021-05-20 02:40:40', '2021-05-20 04:40:29'),
-(3, 'team_lead', 'Team Lead', 'Regular Employee + Team Lead', '2021-05-20 02:41:03', '2021-05-20 04:40:40'),
-(4, 'Test', 'Tester', 'TESTER', '2021-06-09 23:49:25', '2021-06-09 23:49:25'),
-(5, 'update_quota', 'Update leave Quota', 'Update leave Quota', '2021-06-21 01:17:15', '2021-06-21 01:17:15'),
-(6, 'delete_leave_type', 'delete_leave_type', 'Delete_Leave Type', '2021-06-24 06:49:06', '2021-06-24 06:49:06');
+(3, 'team_lead', 'Team Lead', 'Regular Employee + Team Lead', '2021-05-20 02:41:03', '2021-05-20 04:40:40');
 
 -- --------------------------------------------------------
 
@@ -686,10 +643,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `designation_id`, `department_id`, `emp_category_id`, `team_lead`, `lq_exp`, `start_lq`, `balance_leave`, `used_leave`, `allowed_leave`, `active_status`) VALUES
-(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-05-31 02:41:07', 2, 2, 1, 3, 6, '', '', '0', '0', '20', '1'),
-(26, 'Usama', 'usama@gmail.com', NULL, '$2y$10$AC0xcouShsajGLi6KlbL6.lm7sCDOBBCblWImTcGem5qVlZ3NezlK', NULL, '2018-12-11 19:00:00', '2021-07-05 06:16:19', 2, 5, 1, 1, 10, '31-12-2021', '01-01-2021', '1.5', '3.5', '5', '1'),
-(27, 'Siraj Ul Haq', 'sirajulhaq363@gmail.com', NULL, '$2y$10$lQ85SkWWE537DT4VSIw4eer4lSvCuCTbAdKSeUF4bUBBypjrO28Mq', NULL, '2021-04-11 19:00:00', '2021-07-05 11:57:19', 2, 5, 1, 1, 10, '31-12-2021', '05-07-2021', '0', '0', '0', '1'),
-(28, 'M. Ahmed', 'ahmed@gmail.com', NULL, '$2y$10$f8u84Ug4BazKqWwJFAvd8uWcvn5zDQ7WKrNuVuHrYKL5tFdRkLLn.', NULL, '2021-07-04 19:00:00', '2021-07-05 13:04:25', 2, 5, 1, 3, 10, '31-12-2021', '05-07-2021', '10', '0', '10', '1');
+(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-07-06 05:50:51', 2, 2, 1, 3, 6, '31-12-2021', '01-01-2021', '20', '0', '20', '1');
 
 --
 -- Indexes for dumped tables
@@ -890,7 +844,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `permissions_groups`

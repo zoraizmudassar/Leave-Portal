@@ -67,13 +67,13 @@ $(function () {
         var tdate = $('#reg_date').val();
         if ($('#emp_category_id').val() != '3') {
             $('#leaves_allowed').val(0);
-            $('#leaves_allowed').attr('disabled', true);
+            $('#leaves_allowed').attr('readonly', true);
         }
         else {
 
             $('#leaves_allowed').val('');
             if (etype != '1')
-                $('#leaves_allowed').attr('disabled', false);
+                $('#leaves_allowed').attr('readonly', false);
         }
         calLeavesAllowed();
     });
