@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2021 at 03:37 PM
+-- Generation Time: Jul 05, 2021 at 03:22 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.20
 
@@ -47,7 +47,7 @@ CREATE TABLE `applications` (
   `leave_type_id` int(11) NOT NULL,
   `start_from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `end_to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_of_days` int(11) NOT NULL DEFAULT 1,
+  `no_of_days` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -67,8 +67,10 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id`, `user_id`, `leave_type_id`, `start_from`, `end_to`, `no_of_days`, `subject`, `description`, `created_at`, `updated_at`, `status`, `status_changed_by`, `team_lead`, `late_apply`, `half`, `short_leave`, `datetime`, `unpaid`) VALUES
-(247, 26, 1, '08/08/2021', '08/10/2021', 3, 'Sick Leave', 'Sick Leave Required for 2 days', '2021-07-01 11:57:11', '2021-07-02 06:28:56', '1', 10, 10, 0, 0, 0, '01-07-2021 04:57:11 PM', '0'),
-(248, 26, 1, '07/02/2021', '07/02/2021', 1, 'Sick Leave', 'sdafasdf', '2021-07-02 12:41:09', '2021-07-02 12:41:09', '2', 0, 10, 1, 1, 1, '02-07-2021 05:41:09 PM', '0');
+(247, 26, 1, '08/08/2021', '08/10/2021', '3', 'Sick Leave', 'Sick Leave Required for 2 days', '2021-07-01 11:57:11', '2021-07-02 06:28:56', '1', 10, 10, 0, 0, 0, '01-07-2021 04:57:11 PM', '0'),
+(258, 26, 2, '07/06/2021', '07/06/2021', '0.5', 'Cadual Leave', 'cadual leave reason', '2021-07-05 06:15:23', '2021-07-05 06:16:20', '1', 10, 10, 0, 2, 1, '05-07-2021 11:15:23 AM', '0'),
+(259, 27, 1, '07/06/2021', '07/07/2021', '2', 'Sick Leave', 'sick leave reason', '2021-07-05 11:53:18', '2021-07-05 11:59:44', '0', 10, 10, 1, 0, 0, '05-07-2021 04:53:18 PM', '1'),
+(260, 28, 1, '07/06/2021', '07/07/2021', '2', 'Sick Leave', 'sick leave reason', '2021-07-05 12:21:39', '2021-07-05 13:04:25', '0', 10, 10, 1, 0, 0, '05-07-2021 05:21:39 PM', '0');
 
 -- --------------------------------------------------------
 
@@ -117,10 +119,10 @@ CREATE TABLE `designations` (
 --
 
 INSERT INTO `designations` (`id`, `type`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
-(2, 'Name', 'NameName', '2021-05-18 05:38:59', '2021-06-24 07:00:33', '0'),
+(2, 'HR', 'Human Resource', '2021-05-18 05:38:59', '2021-07-05 09:19:55', '0'),
 (3, 'Name', 'Name', '2021-06-15 02:01:04', '2021-06-24 07:41:03', '0'),
-(4, 'Name', 'Mobile Appp', '2021-06-21 05:37:22', '2021-06-24 08:17:04', '0'),
-(5, 'Laravel Developer Name', 'Laravel Developer Name', '2021-06-25 07:07:53', '2021-06-25 07:07:53', '1');
+(4, 'Mobile Developer', 'Mobile Appp', '2021-06-21 05:37:22', '2021-07-05 09:18:49', '0'),
+(5, 'Laravel Developer', 'Laravel Developer', '2021-06-25 07:07:53', '2021-06-25 07:07:53', '1');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,7 @@ CREATE TABLE `emp_categories` (
 --
 
 INSERT INTO `emp_categories` (`id`, `name`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
-(1, 'Internship', 'Internship', '2021-05-19 07:17:46', '2021-05-19 07:18:10', '1'),
+(1, 'Internee', 'Internship', '2021-05-19 07:17:46', '2021-07-05 07:49:23', '1'),
 (2, 'Probation', 'Probation', '2021-05-19 07:18:31', '2021-06-25 07:17:23', '1'),
 (3, 'Permanent', 'Permanent', '2021-05-19 07:18:43', '2021-07-01 00:02:33', '1'),
 (4, 'Traineeee', 'Traineeee', '2021-06-25 07:09:18', '2021-07-01 00:02:31', '1');
@@ -326,31 +328,43 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('2b206422-82b2-4c8b-ad9f-6f58972af65d', 'App\\Notifications\\LeaveApplied', 'App\\Application', 247, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/247\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-01 11:57:12', '2021-07-01 11:57:12'),
 ('2f04e871-593c-46f4-9614-d761df8e853a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 233, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/233\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:53:55', '2021-07-01 08:53:55'),
 ('2f2aa2cd-15df-43a0-bd5f-739e2b89500a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 230, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/230\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 06:02:33', '2021-07-01 06:02:33'),
+('359d372a-003e-488f-bf89-4fc0930cb205', 'App\\Notifications\\LeaveApplied', 'App\\Application', 254, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/254\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:47:26', '2021-07-05 05:47:26'),
 ('377eafbb-259e-4b54-b6ef-e28ee0024bb7', 'App\\Notifications\\LeaveApplied', 'App\\Application', 244, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/244\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:46:50', '2021-07-01 09:46:50'),
 ('3bc94f00-4d7b-4d52-a012-62de13d73add', 'App\\Notifications\\LeaveApplied', 'App\\Application', 237, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/237\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:13:49', '2021-07-01 09:13:49'),
 ('3ce5adf9-fcb6-4722-bf6e-9f1a7f6aaecd', 'App\\Notifications\\LeaveApplied', 'App\\Application', 231, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/231\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 06:10:16', '2021-07-01 06:10:16'),
 ('3d67e95a-bdff-400b-9729-af177fb4bd93', 'App\\Notifications\\LeaveApplied', 'App\\Application', 220, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/220\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-20 19:42:46', '2021-06-20 19:42:46'),
 ('4b3469d5-5f9e-45af-a16e-573b0b59ad21', 'App\\Notifications\\LeaveApplied', 'App\\Application', 182, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/182\",\"name\":\"user\",\"useremail\":\"user@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:40:41', '2021-06-18 06:40:41'),
 ('4c8da1b0-2250-4fe9-8396-8babc1896882', 'App\\Notifications\\LeaveApplied', 'App\\Application', 183, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/183\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:44:15', '2021-06-18 06:44:15'),
+('4cd1fd93-11cc-4365-a227-95f72871a284', 'App\\Notifications\\LeaveApplied', 'App\\Application', 252, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/252\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:42:15', '2021-07-05 05:42:15'),
 ('5ca4a551-2a20-4287-bc32-3e2b8f9f6494', 'App\\Notifications\\LeaveApplied', 'App\\Application', 186, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/186\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:53:56', '2021-06-18 06:53:56'),
 ('604b6aca-c524-4448-b96f-4985bf40fc9b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 239, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/239\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:30:48', '2021-07-01 09:30:48'),
 ('6ae3ab1a-37b8-4a93-bc83-5f66567e7aa6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 226, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/226\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-22 12:44:17', '2021-06-22 12:44:17'),
 ('710e241a-1292-454d-b4ae-fccd17213468', 'App\\Notifications\\LeaveApplied', 'App\\Application', 222, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/222\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 07:31:18', '2021-06-21 07:31:18'),
+('71fdf0c2-48a4-432f-92b7-fc64c7dadc9a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 258, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/258\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 06:15:24', '2021-07-05 06:15:24'),
 ('73f6afbf-41e1-4cc4-be69-69a52b182069', 'App\\Notifications\\LeaveApplied', 'App\\Application', 232, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/232\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:42:05', '2021-07-01 08:42:05'),
 ('7d053d89-0c35-4f17-b6ef-439f8082add2', 'App\\Notifications\\LeaveApplied', 'App\\Application', 238, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/238\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:27:20', '2021-07-01 09:27:20'),
 ('898342a0-a098-4b81-9192-534a146610a9', 'App\\Notifications\\LeaveApplied', 'App\\Application', 180, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/180\",\"name\":\"demo\",\"useremail\":\"demo@gmail.com\",\"team_lead\":\"user\"}', NULL, '2021-06-18 06:38:40', '2021-06-18 06:38:40'),
 ('9569486d-a3a5-4312-a41c-c2f3b7152eee', 'App\\Notifications\\LeaveApplied', 'App\\Application', 229, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/229\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-25 13:05:14', '2021-06-25 13:05:14'),
+('96d53210-4b85-4026-83f2-fd8188865b72', 'App\\Notifications\\LeaveApplied', 'App\\Application', 253, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/253\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:46:15', '2021-07-05 05:46:15'),
+('98409358-5349-480f-8dc0-9ee0cc40939a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 255, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/255\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:48:40', '2021-07-05 05:48:40'),
 ('9a9a0828-7510-4c5e-830b-7a29853c2e92', 'App\\Notifications\\LeaveApplied', 'App\\Application', 248, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/248\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-02 12:41:11', '2021-07-02 12:41:11'),
+('9c423673-d84d-4f49-afc9-d5b17e5818f3', 'App\\Notifications\\LeaveApplied', 'App\\Application', 251, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/251\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:37:39', '2021-07-05 05:37:39'),
 ('9d478c40-7712-4352-a450-8617e2942d44', 'App\\Notifications\\LeaveApplied', 'App\\Application', 188, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/188\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:17', '2021-06-18 06:54:17'),
+('9ea46966-ee1e-4d77-bdfa-057aeb5dde8c', 'App\\Notifications\\LeaveApplied', 'App\\Application', 250, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/250\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:34:26', '2021-07-05 05:34:26'),
 ('a0258b6e-3adb-4aa4-a7d8-03d3f55c12e6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 242, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/242\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:37:44', '2021-07-01 09:37:44'),
+('a919ab39-317b-4bc6-bae8-e9993369b7a8', 'App\\Notifications\\LeaveApplied', 'App\\Application', 249, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/249\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:06:05', '2021-07-05 05:06:05'),
+('accb3d07-f002-40ce-84cb-e851b5b61eff', 'App\\Notifications\\LeaveApplied', 'App\\Application', 259, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/259\",\"name\":\"Siraj Ul Haq\",\"useremail\":\"sirajulhaq363@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 11:53:19', '2021-07-05 11:53:19'),
+('aff844c3-df60-467d-9ecb-712550a7b35b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 256, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/256\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:51:38', '2021-07-05 05:51:38'),
 ('bf0e33a2-4c81-45ee-9aaf-4aa228d8db56', 'App\\Notifications\\LeaveApplied', 'App\\Application', 225, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/225\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 09:53:48', '2021-06-21 09:53:48'),
 ('c200b284-27ee-428d-8436-90d0d20e5bde', 'App\\Notifications\\LeaveApplied', 'App\\Application', 184, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/184\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:44:45', '2021-06-18 06:44:45'),
 ('c38c7847-365e-4cc6-befe-c53af79d8a1b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 187, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/187\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:07', '2021-06-18 06:54:07'),
 ('c88c5878-b84e-4cee-a883-dee766d13322', 'App\\Notifications\\LeaveApplied', 'App\\Application', 221, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/221\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 01:46:29', '2021-06-21 01:46:29'),
+('e43f951b-ec74-40d5-b305-13ca7cb949d9', 'App\\Notifications\\LeaveApplied', 'App\\Application', 260, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/260\",\"name\":\"M. Ahmed\",\"useremail\":\"ahmed@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 12:21:40', '2021-07-05 12:21:40'),
 ('ebe9848f-14db-4084-8b18-698e2cb9ae8b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 243, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/243\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:41:09', '2021-07-01 09:41:09'),
 ('ee81e409-4ad5-45e2-9e2c-f38e211a0023', 'App\\Notifications\\LeaveApplied', 'App\\Application', 245, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/245\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 10:31:07', '2021-07-01 10:31:07'),
 ('efb11aa6-9d6f-4306-a7ca-47098a8b45c9', 'App\\Notifications\\LeaveApplied', 'App\\Application', 228, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/228\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-23 10:21:35', '2021-06-23 10:21:35'),
 ('f18a9b43-177b-40c6-bcd1-eb877d09a9f6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 234, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/234\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:57:17', '2021-07-01 08:57:17'),
+('ff025f23-1707-48ab-a25c-ea9909b4e717', 'App\\Notifications\\LeaveApplied', 'App\\Application', 257, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/257\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 06:14:03', '2021-07-05 06:14:03'),
 ('ffc518d0-89f2-4e19-b0e9-778049868c1c', 'App\\Notifications\\LeaveApplied', 'App\\Application', 189, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/189\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:29', '2021-06-18 06:54:29');
 
 -- --------------------------------------------------------
@@ -598,7 +612,9 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (2, 23, 'App\\User'),
 (2, 24, 'App\\User'),
 (2, 25, 'App\\User'),
-(2, 26, 'App\\User');
+(2, 26, 'App\\User'),
+(2, 27, 'App\\User'),
+(2, 28, 'App\\User');
 
 -- --------------------------------------------------------
 
@@ -671,7 +687,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `designation_id`, `department_id`, `emp_category_id`, `team_lead`, `lq_exp`, `start_lq`, `balance_leave`, `used_leave`, `allowed_leave`, `active_status`) VALUES
 (10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-05-31 02:41:07', 2, 2, 1, 3, 6, '', '', '0', '0', '20', '1'),
-(26, 'Usama', 'usama@gmail.com', NULL, '$2y$10$AC0xcouShsajGLi6KlbL6.lm7sCDOBBCblWImTcGem5qVlZ3NezlK', NULL, '2018-12-11 19:00:00', '2021-07-02 06:28:56', 2, 5, 1, 1, 10, '31-12-2021', '01-01-2021', '2', '3', '5', '1');
+(26, 'Usama', 'usama@gmail.com', NULL, '$2y$10$AC0xcouShsajGLi6KlbL6.lm7sCDOBBCblWImTcGem5qVlZ3NezlK', NULL, '2018-12-11 19:00:00', '2021-07-05 06:16:19', 2, 5, 1, 1, 10, '31-12-2021', '01-01-2021', '1.5', '3.5', '5', '1'),
+(27, 'Siraj Ul Haq', 'sirajulhaq363@gmail.com', NULL, '$2y$10$lQ85SkWWE537DT4VSIw4eer4lSvCuCTbAdKSeUF4bUBBypjrO28Mq', NULL, '2021-04-11 19:00:00', '2021-07-05 11:57:19', 2, 5, 1, 1, 10, '31-12-2021', '05-07-2021', '0', '0', '0', '1'),
+(28, 'M. Ahmed', 'ahmed@gmail.com', NULL, '$2y$10$f8u84Ug4BazKqWwJFAvd8uWcvn5zDQ7WKrNuVuHrYKL5tFdRkLLn.', NULL, '2021-07-04 19:00:00', '2021-07-05 13:04:25', 2, 5, 1, 3, 10, '31-12-2021', '05-07-2021', '10', '0', '10', '1');
 
 --
 -- Indexes for dumped tables
@@ -818,7 +836,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -896,7 +914,7 @@ ALTER TABLE `userdetail`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables

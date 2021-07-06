@@ -11,7 +11,6 @@
   |
  */
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/quota', 'HomeController@index5')->name('quota');
 Route::get('/access-denied', function () {
     return view('access_denied');
 })->name('access-denied');
@@ -122,6 +121,7 @@ Route::prefix('employee')->group(function() {
     Route::get("probation", "EmployeeController@probation")->name('emp-prob');
     Route::get("permanent", "EmployeeController@permanent")->name('emp-per');
     Route::get("status/{id}/{status}", "EmployeeController@status")->name('emp-status');
+    Route::get('quota', 'EmployeeController@quota')->name('quota');
     Route::get('new', function() {
         return view('employee.all');
     })->name('emp-new');
@@ -132,10 +132,3 @@ Route::get('profile', function() {
 });
 
 Auth::routes();
-
-//Route::get("/datecheck","LeavesController@viewLeave");
-Route::get("/datecheck","LeavesController@viewLeave5");
-Route::get("/submit","LeavesController@add");
-
-// Route::get("/updatequota","HomeController@updatequota");
-Route::get("updatequota/{id}", "HomeController@updatequota")->name('updatequota');

@@ -2,9 +2,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link">
-<!--      <img src="assets/images/logo.png" alt="Amco Logo" class="brand-image img-circle elevation-3"
+        <!--      <img src="assets/images/logo.png" alt="Amco Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">-->
-        <img src="{{ URL::asset('assets/images/logo.png') }}"/>
+        <img src="{{ URL::asset('assets/images/logo.png') }}" />
         <!--<span class="brand-text font-weight-light"> </span>-->
     </a>
 
@@ -30,7 +30,7 @@
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'dep-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'dep-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-building"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/dep.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/dep.png')}}" height="20" />
                         <p>
                             Departments
                             <i class="fas fa-angle-left right"></i>
@@ -52,12 +52,12 @@
                         </li>
                     </ul>
                 </li>
-                
-                
+
+
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'des-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'des-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/designation.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/designation.png')}}" height="20" />
                         <p>
                             Designations
                             <i class="fas fa-angle-left right"></i>
@@ -79,11 +79,11 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'role-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'role-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/roles.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/roles.png')}}" height="20" />
                         <p>
                             Roles
                             <i class="fas fa-angle-left right"></i>
@@ -105,8 +105,8 @@
                         </li>
                     </ul>
                 </li>
-                
-<!--                <li class="nav-item has-treeview">
+
+                <!--                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
@@ -154,11 +154,11 @@
                         </li>
                     </ul>
                 </li>-->
-               
+
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'lt-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'lt-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/leave_type.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/leave_type.png')}}" height="20" />
                         <p>
                             Leave Types
                             <i class="fas fa-angle-left right"></i>
@@ -175,11 +175,11 @@
 
                     </ul>
                 </li>
-                
+
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'ec-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'ec-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/emp_category.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/emp_category.png')}}" height="20" />
                         <p>
                             Employee Categories
                             <i class="fas fa-angle-left right"></i>
@@ -201,11 +201,11 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'emp-') !== false || strpos(Request::route()->getName(),'register') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'emp-') !== false || strpos(Request::route()->getName(),'register') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-users"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/employee.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/employee.png')}}" height="20" />
                         <p>
                             Employee
                             <i class="fas fa-angle-left right"></i>
@@ -244,16 +244,16 @@
                             </a>
                         </li>
                     </ul>
-                    
+
                 </li>
                 @if(Auth::user()->hasPermission('update_password') )
                 <li class="nav-item has-treeview">
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}"  class="nav-link">
+                    @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="nav-link">
                         <!--<i class="nav-icon fas fa-users"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/key.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/key.png')}}" height="20" />
                         <p>
-                                            <!--<a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>-->                                           
+                            <!--<a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>-->
                             Update Password
                             <!-- <i class="fas fa-angle-left right"></i> -->
                             <!--<span class="badge badge-info right">6</span>-->
@@ -263,29 +263,13 @@
 
                 </li>
                 @endif
-
-                <li class="nav-item has-treeview">
-                
-                <a href="{{route('quota')}}" class="nav-link">
-                        <!--<i class="nav-icon fas fa-users"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/key.png')}}" height="20"/>
-                        <p>
-                                            <!--<a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>-->                                           
-                            Update Leave Quota
-                            <!-- <i class="fas fa-angle-left right"></i> -->
-                            <!--<span class="badge badge-info right">6</span>-->
-                        </p>
-                    </a>
-                
-
-                </li>
                 @endif
 
-                 @if(Auth::user()->hasRole(['admin', 'team_lead']))
+                @if(Auth::user()->hasRole(['admin', 'team_lead']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'app-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'app-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
-                        <img src="{{URL::asset('assets/images/sidebar-images/applications.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/applications.png')}}" height="20" />
                         <p>
                             Leave Applications
                             <i class="fas fa-angle-left right"></i>
@@ -320,11 +304,11 @@
                     </ul>
                 </li>
                 @endif
-                
+
                 @if(!Auth::user()->hasRole(['admin']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'active' : '' }}">
-                        <img src="{{URL::asset('assets/images/sidebar-images/my_leaves.png')}}" height="20"/>
+                        <img src="{{URL::asset('assets/images/sidebar-images/my_leaves.png')}}" height="20" />
                         <p>
                             My Leaves
                             <i class="fas fa-angle-left right"></i>
