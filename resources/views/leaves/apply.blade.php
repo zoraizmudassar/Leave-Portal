@@ -80,7 +80,7 @@
                                                 <select id="leave_type" name="leave_type_id" class="form-control select2" style="width: 100%;">
                                                     <option value="">---Select Option---</option>
                                                     @foreach($leavetypes as $model)
-                                                    <option value="{{$model->id}}">{{$model->name}}</option>
+                                                    <option {{ old('leave_type_id') == $model->id ? 'selected' : '' }} value="{{$model->id}}">{{$model->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if ($errors->has('leave_type_id'))
@@ -91,7 +91,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Subject</label>
-                                                <input type="text" readonly id="leave_subject" name="subject" placeholder="Leave Subject" class="form-control">
+                                                <input value="{{ old('subject') ? old('subject') : '' }}" type="text" readonly id="leave_subject" name="subject" placeholder="Leave Subject" class="form-control">
                                                 @if ($errors->has('subject'))
                                                 <span class="text-danger">{{ $errors->first('subject') }}</span>
                                                 @endif
@@ -102,7 +102,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Reason</label>
-                                                <textarea style="resize: none;" rows="3" name="description"  placeholder="Leave Description"class="form-control"></textarea>
+                                                <textarea style="resize: none;" rows="3" name="description"  placeholder="Leave Description"class="form-control">{{old('description')}}</textarea>
                                                 @if ($errors->has('description'))
                                                 <span class="text-danger">{{ $errors->first('description') }}</span>
                                                 @endif
@@ -113,19 +113,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="checkbox icheck-warning d-inline">
-                                                    <input name="short_leave" value="true" type="checkbox" class="short-leave" id="short-leave">
+                                                    <input name="short_leave" value="true" {{old('short_leave') == true ? 'checked' : ''}} type="checkbox" class="short-leave" id="short-leave">
                                                     <label class="font-weight-normal" for="short-leave">
                                                         Half Day Leave
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 half-leave-section" style="display: none;">
+                                        <div class="col-md-6 half-leave-section" style="{{!old('half') ? 'display: none;' : ''}}">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="checkbox icheck-warning d-inline">
-                                                            <input checked="" name="half" value="1" type="radio" class="first-half" id="first-half">
+                                                            <input {{old('half') == '1' ? 'checked' : (!old('half') ? 'checked' : '')}} name="half" value="1" type="radio" class="first-half" id="first-half">
                                                             <label class="font-weight-normal" for="first-half">
                                                                 1st Half
                                                             </label>
@@ -135,7 +135,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="checkbox icheck-warning d-inline">
-                                                            <input name="half" value="2" type="radio" class="second-half" id="second-half">
+                                                            <input name="half" {{old('half') == '2' ? 'checked' : ''}} value="2" type="radio" class="second-half" id="second-half">
                                                             <label class="font-weight-normal" for="second-half">
                                                                 2nd half
                                                             </label>
@@ -164,7 +164,7 @@
                                                             <i class="far fa-calendar-alt"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="duration" class="form-control float-right duration" id="leave_date" placeholder="Leave Duration">
+                                                    <input value="{{ old('duration') }}" single="{{old('short_leave') ? true : false}}" type="text" name="duration" class="form-control float-right duration" id="leave_date" placeholder="Leave Duration">
                                                 </div>
                                                 @if ($errors->has('duration'))
                                                 <span class="text-danger">{{ $errors->first('duration') }}</span>
@@ -175,7 +175,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Days</label>
-                                                <input class="form-control days" id="days" type="number" readonly="" value="1" name="no_of_days"/>
+                                                <input class="form-control days" id="days" type="number" readonly="" value="{{ old('no_of_days') ? old('no_of_days') : '1' }}" name="no_of_days"/>
                                             </div>
                                         </div>
                                     </div>

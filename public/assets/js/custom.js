@@ -108,7 +108,7 @@ $(function () {
                 return true;
             return false;
         },
-        singleDatePicker: singleDate,
+        singleDatePicker: $('#leave_date').attr('single') == 1 ? true : singleDate,
     }).focus(function () {
         $(this).prop("autocomplete", "off");
     });
