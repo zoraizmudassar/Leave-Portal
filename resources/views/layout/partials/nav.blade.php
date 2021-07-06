@@ -172,6 +172,12 @@
                                 <p>All</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('lt-add')}}" class="nav-link {{strpos(Request::route()->getName(),'lt-add') !== false ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-success"></i>
+                                <p>Add New Leave Type</p>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

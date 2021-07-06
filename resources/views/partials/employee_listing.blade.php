@@ -40,10 +40,10 @@
                 </a>
             </td>
             <td>
-                {{$model->designation->type}}
+                {{isset($model->designation) ? $model->designation->type : 'Not Set'}}
             </td>
             <td>
-                {{ $model->department->name }}
+                {{isset($model->department) ? $model->department->name : 'Not Set' }}
             </td>
             <td>
                 {{ $model->email }}

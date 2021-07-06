@@ -91,7 +91,6 @@ Route::prefix('permissions-groups')->group(function () {
 Route::prefix('leaveType')->group(function () {
     Route::get("all", "LeaveTypesController@index")->name('lt-all');
     Route::get("add", "LeaveTypesController@add")->name('lt-add');
-    Route::get("add", "LeaveTypesController@addleave")->name('lt-addleave');
     Route::post("insert", "LeaveTypesController@insert")->name('lt-insert');
     Route::get("edit/{id}", "LeaveTypesController@edit")->name('lt-edit');
     Route::post("update/{id}", "LeaveTypesController@update")->name('lt-update');

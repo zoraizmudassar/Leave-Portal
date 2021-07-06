@@ -44,10 +44,6 @@ class LeaveTypesController extends Controller {
         }
     }
 
-    public function addleave() {
-            return view('leavetypes.add');
-    }
-
     public function edit($id) {
         if (Auth::user()->hasPermission('update_leave_type')) {
             $des = LeaveType::find($id);
