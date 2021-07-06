@@ -9,14 +9,16 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class DesignationsController extends Controller {
+class DesignationsController extends Controller
+{
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
         date_default_timezone_set("Asia/Karachi");
     }
@@ -26,7 +28,8 @@ class DesignationsController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
+    public function index()
+    {
         if (Auth::user()->hasPermission('view_designation')) {
             $des = Designation::latest()->get();
             return view('designations.all')->with('data', $des)->with('no', 1);
@@ -35,7 +38,8 @@ class DesignationsController extends Controller {
         }
     }
 
-    public function add() {
+    public function add()
+    {
         if (Auth::user()->hasPermission('add_designation')) {
             return view('designations.add');
         } else {
@@ -43,7 +47,8 @@ class DesignationsController extends Controller {
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         if (Auth::user()->hasPermission('update_designation')) {
             $des = Designation::find($id);
             return view('designations.edit')->with('data', $des);
@@ -53,16 +58,14 @@ class DesignationsController extends Controller {
     }
 
 
-    public function status($id, $status) {
+    public function status($id, $status)
+    {
         if (Auth::user()->hasPermission('update_designation')) {
             //Department::where('id',$id)->update(array('active_status'=>1));
-            if($status == 0)
-            {
-                Designation::where('id',$id)->update(array('active_status'=>1));
-            }
-            else
-            {
-                Designation::where('id',$id)->update(array('active_status'=>0));
+            if ($status == 0) {
+                Designation::where('id', $id)->update(array('active_status' => 1));
+            } else {
+                Designation::where('id', $id)->update(array('active_status' => 0));
             }
             return redirect()->route('des-all');
         } else {
@@ -76,12 +79,18 @@ class DesignationsController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function insert(Request $request) {
-        $request->validate([
-            'type'=>'required | unique:designations',
-            'description'=>'required',
-        ]);
-      
+    public function insert(Request $request)
+    {
+        $request->validate(
+            [
+                'type' => 'required | unique:designations',
+                'description' => 'required',
+            ],
+            [
+                'type.required' => "The designation name field is required",
+            ]
+        );
+
         $data = $request->input();
         try {
             $dep = new Designation;
@@ -107,11 +116,20 @@ class DesignationsController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function update(Request $request, $id) {
-        $request->validate([
-            'type'=>'required | unique:designations',
-            'description'=>'required',
-        ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'type'   =>  [
+                    'required',
+                    Rule::unique('designations')->ignore($id),
+                ],
+                'description' => 'required',
+            ],
+            [
+                'type.required' => "The designation name field is required",
+            ]
+        );
         $data = $request->input();
         try {
             $dep = Designation::find($id);
@@ -137,7 +155,8 @@ class DesignationsController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         if (Auth::user()->hasPermission('delete_designation')) {
             try {
                 $dep = Designation::find($id);
@@ -150,5 +169,4 @@ class DesignationsController extends Controller {
             return redirect()->route('access-denied');
         }
     }
-
 }
