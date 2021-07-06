@@ -36,7 +36,7 @@
                                             #
                                         </th>
                                         <th>
-                                            Department
+                                            Designation
                                         </th>
                                         <th>
                                             Description
