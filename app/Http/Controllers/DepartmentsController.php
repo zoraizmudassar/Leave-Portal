@@ -114,7 +114,11 @@ class DepartmentsController extends Controller {
     public function update(Request $request, $id) {
         if (Auth::user()->hasPermission('update_department')) {
             $request->validate([
-                'name'=>'required | unique:departments',
+                // 'name'=>'required | unique:departments',
+                'name'   =>  [
+                    'required',
+                     Rule::unique('departments')->ignore($id),
+                ],
                 'description'=>'required',
             ]);
             $data = $request->input();

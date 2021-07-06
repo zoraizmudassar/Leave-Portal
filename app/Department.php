@@ -13,4 +13,8 @@ class Department extends Model
     {
         return $this->hasMany('App\User');
     }
+    // validator rules
+    public static $rules = array(
+        'name' => 'required|unique:departments,id'
+    );
 }
