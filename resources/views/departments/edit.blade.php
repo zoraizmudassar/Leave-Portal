@@ -43,7 +43,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea required="" rows="3" name="description"  placeholder="Department Description"class="form-control">{{$data->description}}</textarea>
+                                            <textarea required="" rows="1" name="description"  placeholder="Department Description"class="form-control">{{$data->description}}</textarea>
                                             @if ($errors->has('type'))
                                                 <span class="text-danger">{{ $errors->first('type') }}</span>
                                                 @endif
