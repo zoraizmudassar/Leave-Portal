@@ -112,7 +112,7 @@ class LeavesController extends Controller
         if (Auth::user()->hasRole(['admin'])) {
             return redirect()->route('access-denied');
         }
-        $leavetypes = LeaveType::latest()->get();
+        $leavetypes = LeaveType::where('active_status', 1)->latest()->get();
         return view('leaves.apply')->with('leavetypes', $leavetypes)->with('balance', Auth::user()->balance_leave);
     }
 
