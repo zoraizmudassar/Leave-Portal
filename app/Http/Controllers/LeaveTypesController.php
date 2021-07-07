@@ -61,7 +61,7 @@ class LeaveTypesController extends Controller {
     public function insert(Request $request) {
          
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:leave_types',
             'description'=>'required'
             ]);
 
@@ -109,6 +109,14 @@ class LeaveTypesController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function update(Request $request, $id) {
+        $request->validate([
+            // 'name'=>'required | unique:departments',
+            'name'   =>  [
+                'required',
+                 Rule::unique('leave_types')->ignore($id),
+            ],
+            'description'=>'required',
+        ]);
         $data = $request->input();
         try {
             $dep = LeaveType::find($id);

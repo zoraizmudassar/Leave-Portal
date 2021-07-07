@@ -32,7 +32,7 @@
                             <table id="example1" class="table table-bordered table-striped projects text-center">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th >
+                                        <th>
                                             #
                                         </th>
                                         <th>
@@ -45,10 +45,11 @@
                                             Created at
                                         </th>
                                         <th>
-                                        Action
+                                            Status
                                         </th>
                                         <th>
-                                        Status</th>
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,9 +70,10 @@
                                             {{ $model->created_at }}
                                         </td>
                                         <td>
-                                        <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined')?></span></td>
+                                            <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined') ?></span>
+                                        </td>
                                         <td class="project-actions text-right">
-                                        <a href="{{route('lt-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined')?></a> 
+                                            <a href="{{route('lt-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a>
                                             <a class="btn btn-success btn-sm" href="{{route('lt-edit', ['id' => $model->id])}}">
                                                 <i class="fas fa-pen">
                                                 </i>

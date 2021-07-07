@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application;
+use App\EmpCategory;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +56,7 @@ class HomeController extends Controller
 
         $date->subDays(7); // or $date->subDays(7),  2014-03-27 13:58:25
 
-        if (Auth::user()->hasRole('team_lead')) {
+        if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
             $latest_app = Application::where('created_at', '>', $date->toDateTimeString())
                 ->where('team_lead', Auth::user()->id)
                 ->latest()

@@ -1,3 +1,9 @@
+<?php
+
+use App\EmpCategory;
+
+$emp_categories = EmpCategory::get();
+?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -225,24 +231,17 @@
                                 <p>All</p>
                             </a>
                         </li>
+
+                        @if(isset($emp_categories) && count($emp_categories))
+                        @foreach($emp_categories as $cat)
                         <li class="nav-item">
-                            <a href="{{route('emp-int')}}" class="nav-link {{strpos(Request::route()->getName(),'emp-int') !== false ? 'active' : '' }}">
+                            <a href="{{route('emp-cat', ['id' => $cat->id])}}" class="nav-link {{strpos(Request::route()->getName(),'emp-int') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-danger"></i>
-                                <p>Internee</p>
+                                <p>{{$cat->name}}</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('emp-prob')}}" class="nav-link {{strpos(Request::route()->getName(),'emp-prob') !== false ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon text-warning"></i>
-                                <p>Probation</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('emp-per')}}" class="nav-link {{strpos(Request::route()->getName(),'emp-per') !== false ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon text-primary"></i>
-                                <p>Permanent</p>
-                            </a>
-                        </li>
+                        @endforeach
+                        @endif
                         <li class="nav-item">
                             <a href="{{route('register')}}" class="nav-link {{strpos(Request::route()->getName(),'register') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-info"></i>

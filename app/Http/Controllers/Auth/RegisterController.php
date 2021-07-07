@@ -63,7 +63,12 @@ class RegisterController extends Controller
             'team_lead' => ['required'],
             'emp_type' => ['required'],
             'leaves_allowed' => ['required']
-        ]);
+        ],
+    [
+        'department_id.required' => 'The department field is required',
+        'designation_id.required' => 'The designation field is required'
+    ]
+    );
     }
 
     /**

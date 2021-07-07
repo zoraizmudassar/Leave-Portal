@@ -34,7 +34,7 @@ class ApplicationsController extends Controller
     public function index()
     {
         if (Auth::user()->hasPermission('view_application')) {
-            if (Auth::user()->hasRole('team_lead')) {
+            if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
                 $leaves = Application::where('team_lead', Auth::user()->id)->latest()->get();
             } else {
                 $leaves = Application::latest()->get();

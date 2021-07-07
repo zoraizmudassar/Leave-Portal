@@ -34,25 +34,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input  type="text" name="name" placeholder="Leave Type" class="form-control"/>
+                                            <input type="text" name="name" placeholder="Leave Type" class="form-control" />
                                             @if ($errors->has('name'))
-                                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                                                @endif
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea style="resize: none;" rows="1" name="description"  placeholder="Leave Type Description"class="form-control"></textarea>
+                                            <textarea style="resize: none;" rows="1" name="description" placeholder="Leave Type Description" class="form-control"></textarea>
                                             @if ($errors->has('description'))
-                                                <span class="text-danger">{{ $errors->first('description') }}</span>
-                                                @endif
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-right">
-                                        <input type="submit" name="submit" value="Add Leave Type" class="btn btn-success"/>
+                                        <input type="submit" name="submit" value="Add Leave Type" class="btn btn-success" />
                                     </div>
                                 </div>
                             </form>

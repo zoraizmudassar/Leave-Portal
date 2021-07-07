@@ -11,6 +11,7 @@ use App\Department;
 use App\Permission;
 use App\Application;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -45,31 +46,11 @@ class EmployeeController extends Controller
         }
     }
 
-    public function interni()
+    public function type($id)
     {
         if (Auth::user()->hasPermission('view_employee')) {
-            $users = User::where('emp_category_id', 1)->latest()->get();
-            return view('employee.interni')->with('data', $users)->with('no', 1);
-        } else {
-            return redirect()->route('access-denied');
-        }
-    }
-
-    public function probation()
-    {
-        if (Auth::user()->hasPermission('view_employee')) {
-            $users = User::where('emp_category_id', 2)->latest()->get();
-            return view('employee.probation')->with('data', $users)->with('no', 1);
-        } else {
-            return redirect()->route('access-denied');
-        }
-    }
-
-    public function permanent()
-    {
-        if (Auth::user()->hasPermission('view_employee')) {
-            $users = User::where('emp_category_id', 3)->latest()->get();
-            return view('employee.permanent')->with('data', $users)->with('no', 1);
+            $users = User::where('emp_category_id', $id)->latest()->get();
+            return view('employee.type')->with('data', $users)->with('no', 1);
         } else {
             return redirect()->route('access-denied');
         }
@@ -184,9 +165,9 @@ class EmployeeController extends Controller
         if (Auth::user()->hasPermission('update_employee')) {
             $user = User::where('id', $id)->first();
             $users = User::whereRoleIs('team_lead')->get();
-            $ec = EmpCategory::select('id', 'name')->get()->all();
-            $des = Designation::select('id', 'type')->get()->all();
-            $dep = Department::select('id', 'name')->get()->all();
+            $ec = EmpCategory::select('id', 'name')->where('active_status', 1)->get()->all();
+            $des = Designation::select('id', 'type')->where('active_status', 1)->get()->all();
+            $dep = Department::select('id', 'name')->where('active_status', 1)->get()->all();
             return view('employee.edit')
                 ->with('designations', $des)
                 ->with('departments', $dep)
@@ -200,6 +181,17 @@ class EmployeeController extends Controller
 
     public function updateEmployee(Request $request, $id)
     {
+        $request->validate([
+            'email'   =>  [
+                'required',
+                Rule::unique('users')->ignore($id),
+            ],
+            'name' => 'required',
+            'designation_id' => 'required',
+            'department_id' => 'required',
+            'emp_category_id' => 'required',
+            'team_lead' => 'required',
+        ]);
         $employee = User::where('id', $id)->get();
         $data = $request->input();
 

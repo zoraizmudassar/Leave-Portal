@@ -116,9 +116,7 @@ Route::prefix('employee')->group(function() {
     Route::get("roles/{id}", "EmployeeController@empRoles")->name('emp-roles');
     Route::get("view/{id}", "EmployeeController@view")->name('emp-view');
     Route::get("profile/{id}", "EmployeeController@viewProfile")->name('emp-view-profile');
-    Route::get("interni", "EmployeeController@interni")->name('emp-int');
-    Route::get("probation", "EmployeeController@probation")->name('emp-prob');
-    Route::get("permanent", "EmployeeController@permanent")->name('emp-per');
+    Route::get("type/{id}", "EmployeeController@type")->name('emp-cat');
     Route::get("status/{id}/{status}", "EmployeeController@status")->name('emp-status');
     Route::get('quota', 'EmployeeController@quota')->name('quota');
     Route::get('new', function() {

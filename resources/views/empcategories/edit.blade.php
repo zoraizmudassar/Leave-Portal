@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>Update Employee Category</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -34,19 +37,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" value="{{$data->name}}" type="text" name="name" placeholder="Employee Category" class="form-control"/>
+                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Employee Category" class="form-control" />
+                                            @if ($errors->has('name'))
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea required="" rows="3" name="description"  placeholder="Employee Category Description"class="form-control">{{$data->description}}</textarea>
+                                            <textarea rows="1" name="description" placeholder="Employee Category Description" class="form-control">{{$data->description}}</textarea>
+                                            @if ($errors->has('description'))
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-right">
-                                        <input type="submit" name="submit" value="Update Employee Category" class="btn btn-success"/>
+                                        <input type="submit" name="submit" value="Update Employee Category" class="btn btn-success" />
                                     </div>
                                 </div>
                             </form>

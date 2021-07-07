@@ -54,7 +54,7 @@ class EmpCategoriesController extends Controller {
     public function insert(Request $request) {
 
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:emp_categories',
             'description'=>'required'
         ]);
 
@@ -93,6 +93,13 @@ class EmpCategoriesController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function update(Request $request, $id) {
+        $request->validate([
+            'name'   =>  [
+                'required',
+                 Rule::unique('emp_categories')->ignore($id),
+            ],
+            'description'=>'required',
+        ]);
         $data = $request->input();
         try {
             $dep = EmpCategory::find($id);
