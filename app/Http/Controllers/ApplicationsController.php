@@ -48,7 +48,7 @@ class ApplicationsController extends Controller
     public function pending()
     {
         if (Auth::user()->hasPermission('view_application')) {
-            if (Auth::user()->hasRole('team_lead')) {
+            if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
                 $pending_leaves = Application::where('status', 2)
                     ->where('team_lead', Auth::user()->id)
                     ->latest()
@@ -69,7 +69,7 @@ class ApplicationsController extends Controller
     public function rejected()
     {
         if (Auth::user()->hasPermission('view_application')) {
-            if (Auth::user()->hasRole('team_lead')) {
+            if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
                 $leaves = Application::where('status', 0)
                     ->where('team_lead', Auth::user()->id)
                     ->latest()
@@ -88,7 +88,7 @@ class ApplicationsController extends Controller
     public function accepted()
     {
         if (Auth::user()->hasPermission('view_application')) {
-            if (Auth::user()->hasRole('team_lead')) {
+            if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
                 $leaves = Application::where('status', 1)
                     ->where('team_lead', Auth::user()->id)
                     ->latest()

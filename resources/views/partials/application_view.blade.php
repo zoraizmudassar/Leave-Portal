@@ -85,7 +85,7 @@
                         </div>
                         @endif
                         <br>
-                        <?php if(strtotime($data->start_from) > strtotime(date('Y-m-d'))) {?>
+                        <?php if(strtotime($data->start_from . ' + 1 day') > strtotime(date('Y-m-d'))) {?>
                         <div class="text-center mt-5 mb-3">
                             @if($data->status != 1 && Auth::user()->hasPermission('accept_application'))
                             <a href="{{route('app-accept', ['id' => $data->id])}}" class="btn btn-sm btn-success"><i class="fas fa-thumbs-up"></i> Accept</a>

@@ -181,17 +181,24 @@ class EmployeeController extends Controller
 
     public function updateEmployee(Request $request, $id)
     {
-        $request->validate([
-            'email'   =>  [
-                'required',
-                Rule::unique('users')->ignore($id),
+        $request->validate(
+            [
+                'email'   =>  [
+                    'required',
+                    Rule::unique('users')->ignore($id),
+                ],
+                'name' => 'required',
+                'designation_id' => 'required',
+                'department_id' => 'required',
+                'emp_category_id' => 'required',
+                'team_lead' => 'required',
             ],
-            'name' => 'required',
-            'designation_id' => 'required',
-            'department_id' => 'required',
-            'emp_category_id' => 'required',
-            'team_lead' => 'required',
-        ]);
+            [
+                'designation_id.required' => 'The designation field is required',
+                'department_id.required' => 'The department field is required',
+                'emp_category_id.required' => 'The Employee category field is required'
+            ]
+        );
         $employee = User::where('id', $id)->get();
         $data = $request->input();
 

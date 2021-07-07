@@ -38,13 +38,10 @@
                                         <div class="form-group">
                                             <label for="name">{{ __('Name') }}</label>
 
-                                            <input  value="{{$model->name}}" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
-
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            <input value="{{$model->name}}" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                            @if ($errors->has('name'))
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -52,12 +49,9 @@
                                             <label for="email">{{ __('E-Mail Address') }}</label>
 
                                             <input value="{{$model->email}}" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
-
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            @if ($errors->has('email'))
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -71,12 +65,9 @@
                                                 <option {{$model->department_id == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
-
-                                            @error('department')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            @if ($errors->has('department_id'))
+                                            <span class="text-danger">{{ $errors->first('department_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -88,12 +79,9 @@
                                                 <option {{$model->designation_id == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->type }}</option>
                                                 @endforeach
                                             </select>
-
-                                            @error('designation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            @if ($errors->has('designation_id'))
+                                            <span class="text-danger">{{ $errors->first('designation_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -107,12 +95,9 @@
                                                 <option {{$model->emp_category_id == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
-
-                                            @error('emp_category')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            @if ($errors->has('emp_category_id'))
+                                            <span class="text-danger">{{ $errors->first('emp_category_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -124,12 +109,9 @@
                                                 <option {{$model->team_lead == $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
-
-                                            @error('team_lead')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            @if ($errors->has('team_lead'))
+                                            <span class="text-danger">{{ $errors->first('team_lead') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
