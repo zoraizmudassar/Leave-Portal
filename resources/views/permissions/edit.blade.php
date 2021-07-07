@@ -34,7 +34,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="permissions_group_id">{{ __('Permission Group') }}</label>
-                                            <select required="" name="permissions_group_id" id="permissions_group_id" class="form-control select2" style="width: 100%;">
+                                            <select name="permissions_group_id" id="permissions_group_id" class="form-control select2" style="width: 100%;">
                                                 <option value="">---Select Option---</option>
                                                 @foreach($groups as $item)
                                                 <option {{$item->id == $data->permissions_group_id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
@@ -45,13 +45,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" value="{{$data->name}}" type="text" name="name" placeholder="Permission Name" class="form-control"/>
+                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Permission Name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display Name</label>
-                                            <input required="" value="{{$data->display_name}}" type="text" name="display_name" placeholder="Permission Display Name" class="form-control"/>
+                                            <input value="{{$data->display_name}}" type="text" name="display_name" placeholder="Permission Display Name" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea required="" rows="3" name="description"  placeholder="Permission Description"class="form-control">{{$data->description}}</textarea>
+                                            <textarea rows="3" name="description"  placeholder="Permission Description"class="form-control">{{$data->description}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">

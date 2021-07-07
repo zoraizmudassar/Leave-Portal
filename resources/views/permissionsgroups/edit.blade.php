@@ -34,13 +34,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" value="{{$data->name}}" type="text" name="name" placeholder="Permission Group Name" class="form-control"/>
+                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Permission Group Name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display Name</label>
-                                            <input required="" value="{{$data->display_name}}" type="text" name="display_name" placeholder="Permission Group Display Name" class="form-control"/>
+                                            <input value="{{$data->display_name}}" type="text" name="display_name" placeholder="Permission Group Display Name" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>

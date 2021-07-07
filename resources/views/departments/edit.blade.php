@@ -34,7 +34,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" value="{{$data->name}}" type="text" name="name" placeholder="Department Name" class="form-control"/>
+                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Department Name" class="form-control"/>
                                             @if ($errors->has('name'))
                                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                                 @endif
@@ -43,7 +43,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea required="" rows="1" name="description"  placeholder="Department Description"class="form-control">{{$data->description}}</textarea>
+                                            <textarea rows="1" name="description"  placeholder="Department Description"class="form-control">{{$data->description}}</textarea>
                                             @if ($errors->has('type'))
                                                 <span class="text-danger">{{ $errors->first('type') }}</span>
                                                 @endif

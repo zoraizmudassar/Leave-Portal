@@ -34,7 +34,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="permissions_group_id">{{ __('Permission Group') }}</label>
-                                            <select required="" name="permissions_group_id" id="permissions_group_id" class="form-control select2" style="width: 100%;">
+                                            <select name="permissions_group_id" id="permissions_group_id" class="form-control select2" style="width: 100%;">
                                                 <option value="">---Select Option---</option>
                                                 @foreach($groups as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -45,7 +45,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" type="text" name="name" placeholder="Permission Name" class="form-control"/>
+                                            <input type="text" name="name" placeholder="Permission Name" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -53,13 +53,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display name</label>
-                                            <input required="" type="text" name="display_name" placeholder="Permission Display Name" class="form-control"/>
+                                            <input type="text" name="display_name" placeholder="Permission Display Name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea required="" rows="3" name="description"  placeholder="Permission Description"class="form-control"></textarea>
+                                            <textarea rows="3" name="description"  placeholder="Permission Description"class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">

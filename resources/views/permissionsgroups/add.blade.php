@@ -34,13 +34,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input required="" type="text" name="name" placeholder="Group Name" class="form-control"/>
+                                            <input type="text" name="name" placeholder="Group Name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display Name</label>
-                                            <input required="" type="text" name="display_name" placeholder="Group Display Name" class="form-control"/>
+                                            <input type="text" name="display_name" placeholder="Group Display Name" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
