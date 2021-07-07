@@ -232,13 +232,13 @@ class EmployeeController extends Controller
                     'message' => 'Leave Quota has been generated for all Permanent Employee!',
                     'alert-type' => 'success'
                 );
-                return redirect()->route('emp-per')->with($notification);
+                return redirect()->route('emp-all')->with($notification);
             } else {
                 $notification = array(
                     'message' => 'Something Went Wrong! Please try Again',
                     'alert-type' => 'error'
                 );
-                return redirect()->route('emp-per')->with($notification);
+                return redirect()->route('emp-all')->with($notification);
             }
         } else {
             return redirect()->route('access-denied');

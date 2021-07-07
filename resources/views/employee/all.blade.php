@@ -30,7 +30,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List of All Employee</h3>
-                            <h3 class="card-title float-right"><a href="{{route('register')}}" class="btn btn-primary">Add New</a></h3>
+                            <a href="{{route('register')}}" class="float-right btn btn-primary">Add New</a>
+                            <a class="float-right mr-3 btn btn-success" href="{{route('quota')}}">Update Leave Quota</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

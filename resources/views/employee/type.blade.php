@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List of All Interni</h3>
-                            <h3 class="card-title float-right"><a href="{{route('register')}}" class="btn btn-primary">Add New</a></h3>
+                            <!-- <h3 class="card-title float-right"><a href="{{route('register')}}" class="btn btn-primary">Add New</a></h3> -->
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
