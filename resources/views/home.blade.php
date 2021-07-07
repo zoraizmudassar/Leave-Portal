@@ -1,6 +1,8 @@
 <?php
+
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+
 $view_route_name = 'app-view';
 ?>
 @section('title')
@@ -17,6 +19,9 @@ $view_route_name = 'app-view';
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Dashboard</h1>
+                    @if(!Auth::user()->hasRole('admin'))
+                    <a href="{{route('leave-apply')}}" class="btn btn-info mt-1">Apply New Leave</a>
+                    @endif
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -139,7 +144,7 @@ $view_route_name = 'app-view';
                                     </div>
                                 </div>
                                 <!-- /.col -->
-<!--                                <div class="col-md-4">
+                                <!--                                <div class="col-md-4">
                                     <p class="text-center">
                                         <strong>Goal Completion</strong>
                                     </p>
@@ -189,7 +194,8 @@ $view_route_name = 'app-view';
                 </div>
                 <!-- /.col -->
             </div>
-        </div><!--/. container-fluid -->
+        </div>
+        <!--/. container-fluid -->
     </section>
     <!-- /.content -->
 </div>

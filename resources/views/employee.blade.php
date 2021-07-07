@@ -14,7 +14,7 @@ $view_route_name = 'leave-view';
             <div class="row mb-2">
                 <div class="col-sm-6">    
                 <h1 class="m-0 text-dark">Dashboard</h1>
-                <a href="#" class="btn btn-info mt-1">Apply New Leave</a>
+                <a href="{{route('leave-apply')}}" class="btn btn-info mt-1">Apply New Leave</a>
                 
                 </div><!-- /.col -->
                 <div class="col-sm-6">

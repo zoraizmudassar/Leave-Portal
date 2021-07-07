@@ -13,8 +13,8 @@
 
                 <h3 class="profile-username text-center">{{$user->name}} <span class="badge badge-info">{{$user->empCategory->name}}</span></h3>
                 <h5 class="text-muted text-center">{{$user->email}}</h5>
-                <p class="text-muted text-center">{{$user->designation->type}} ({{$user->department->name}})</p>
-                <h5 class="text-muted text-center">Team Lead: {{$team_lead->name}}</h5>
+                <p class="text-muted text-center">{{isset($user->designation) ? $user->designation->type : ''}} ({{isset($user->department) ? $user->department->name : ''}})</p>
+                <h5 class="text-muted text-center">Team Lead: {{isset($team_lead) ? $team_lead->name : ''}}</h5>
 
             </div>
         </div>
