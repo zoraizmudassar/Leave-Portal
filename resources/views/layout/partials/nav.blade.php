@@ -1,10 +1,10 @@
 <?php
 
 use App\EmpCategory;
+use Illuminate\Support\Facades\Auth;
 
 $emp_categories = EmpCategory::get();
 ?>
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link">
@@ -32,7 +32,7 @@ $emp_categories = EmpCategory::get();
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                @if(Auth::user()->hasRole('admin'))
+                @if(Auth::user()->hasPermission(['add_department', 'active_inactive_department', 'update_department', 'view_department']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'dep-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'dep-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-building"></i>-->
@@ -50,16 +50,19 @@ $emp_categories = EmpCategory::get();
                                 <p>All</p>
                             </a>
                         </li>
+                        @if(Auth::user()->hasPermission('add_department'))
                         <li class="nav-item">
                             <a href="{{route('dep-add')}}" class="nav-link {{strpos(Request::route()->getName(),'dep-add') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-info"></i>
                                 <p>Add New Department</p>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
+                @endif
 
-
+                @if(Auth::user()->hasPermission(['add_designation', 'update_designation', 'active_inactive_designation', 'view_designation']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'des-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'des-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
@@ -77,15 +80,19 @@ $emp_categories = EmpCategory::get();
                                 <p>All</p>
                             </a>
                         </li>
+                        @if(Auth::user()->hasPermission('add_designation'))
                         <li class="nav-item">
                             <a href="{{route('des-add')}}" class="nav-link {{strpos(Request::route()->getName(),'des-add') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-info"></i>
                                 <p>Add New Designation</p>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
+                @endif
 
+                @if(Auth::user()->hasPermission(['add_role', 'update_role', 'active_inactive_role', 'view_role']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'role-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'role-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
@@ -103,14 +110,17 @@ $emp_categories = EmpCategory::get();
                                 <p>All</p>
                             </a>
                         </li>
+                        @if(Auth::user()->hasPermission('add_role'))
                         <li class="nav-item">
                             <a href="{{route('role-add')}}" class="nav-link {{strpos(Request::route()->getName(),'role-add') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-info"></i>
                                 <p>Add New Role</p>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
+                @endif
 
                 <!--                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -160,7 +170,7 @@ $emp_categories = EmpCategory::get();
                         </li>
                     </ul>
                 </li>-->
-
+                @if(Auth::user()->hasPermission(['add_leave_type', 'update_leave_type', 'active_inactive_leave_type', 'view_leave_type']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'lt-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'lt-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
@@ -178,16 +188,20 @@ $emp_categories = EmpCategory::get();
                                 <p>All</p>
                             </a>
                         </li>
+                        @if(Auth::user()->hasPermission('add_leave_type'))
                         <li class="nav-item">
                             <a href="{{route('lt-add')}}" class="nav-link {{strpos(Request::route()->getName(),'lt-add') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-success"></i>
                                 <p>Add New Leave Type</p>
                             </a>
                         </li>
+                        @endif
 
                     </ul>
                 </li>
+                @endif
 
+                @if(Auth::user()->hasPermission(['add_employee_category', 'update_category', 'active_inactive_employee_category', 'view_employee_category']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'ec-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'ec-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
@@ -205,15 +219,19 @@ $emp_categories = EmpCategory::get();
                                 <p>All</p>
                             </a>
                         </li>
+                        @if(Auth::user()->hasPermission('add_employee_category'))
                         <li class="nav-item">
                             <a href="{{route('ec-add')}}" class="nav-link {{strpos(Request::route()->getName(),'ec-add') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-info"></i>
                                 <p>Add Employee Category</p>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
+                @endif
 
+                @if(Auth::user()->hasPermission(['add_employee', 'update_employee', 'view_employee', 'assign_roles', 'active_inactive_employee']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'emp-') !== false || strpos(Request::route()->getName(),'register') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'emp-') !== false || strpos(Request::route()->getName(),'register') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-users"></i>-->
@@ -242,15 +260,18 @@ $emp_categories = EmpCategory::get();
                         </li>
                         @endforeach
                         @endif
+                        @if(Auth::user()->hasPermission('add_employee'))
                         <li class="nav-item">
                             <a href="{{route('register')}}" class="nav-link {{strpos(Request::route()->getName(),'register') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-info"></i>
                                 <p>Add New</p>
                             </a>
                         </li>
+                        @endif
                     </ul>
 
                 </li>
+                @endif
                 @if(Auth::user()->hasPermission('update_password') )
                 <li class="nav-item has-treeview">
                     @if (Route::has('password.request'))
@@ -268,9 +289,8 @@ $emp_categories = EmpCategory::get();
 
                 </li>
                 @endif
-                @endif
 
-                @if(Auth::user()->hasRole(['admin', 'team_lead']))
+                @if(Auth::user()->hasPermission(['accept_application', 'reject_application', 'update_application', 'view_application']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'app-') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'app-') !== false ? 'active' : '' }}">
                         <!--<i class="nav-icon fas fa-file"></i>-->
@@ -310,7 +330,7 @@ $emp_categories = EmpCategory::get();
                 </li>
                 @endif
 
-                @if(!Auth::user()->hasRole(['admin']))
+                @if(Auth::user()->hasPermission(['apply_application']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'active' : '' }}">
                         <img src="{{URL::asset('assets/images/sidebar-images/my_leaves.png')}}" height="20" />
@@ -360,3 +380,4 @@ $emp_categories = EmpCategory::get();
     </div>
     <!-- /.sidebar -->
 </aside>
+<!-- Main Sidebar Container -->

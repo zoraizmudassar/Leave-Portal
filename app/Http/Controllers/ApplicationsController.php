@@ -35,9 +35,11 @@ class ApplicationsController extends Controller
     {
         if (Auth::user()->hasPermission('view_application')) {
             if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
-                $leaves = Application::where('team_lead', Auth::user()->id)->latest()->get();
+                $leaves = Application::where('team_lead', Auth::user()->id)
+                ->orderby('created_at', 'desc')
+                ->get();
             } else {
-                $leaves = Application::latest()->get();
+                $leaves = Application::orderby('created_at', 'desc')()->get();
             }
             return view('applications.all')->with('data', $leaves);
         } else {

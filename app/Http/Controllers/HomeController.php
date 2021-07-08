@@ -59,7 +59,8 @@ class HomeController extends Controller
         if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
             $latest_app = Application::where('created_at', '>', $date->toDateTimeString())
                 ->where('team_lead', Auth::user()->id)
-                ->latest()
+                ->orderBy('created_at', 'desc')
+                // ->latest()
                 ->get();
             $all_app_count = Application::where('team_lead', Auth::user()->id)->count();
             $pen_app_count = Application::where('status', 2)
@@ -72,7 +73,9 @@ class HomeController extends Controller
                 ->where('team_lead', Auth::user()->id)
                 ->count();
         } else {
-            $latest_app = Application::where('created_at', '>', $date->toDateTimeString())->latest()->get();
+            $latest_app = Application::where('created_at', '>', $date->toDateTimeString())
+            ->orderBy('created_at', 'desc')
+            ->get();
             $all_app_count = Application::count();
             $pen_app_count = Application::where('status', 2)->count();
             $rej_app_count = Application::where('status', 0)->count();
