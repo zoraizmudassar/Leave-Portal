@@ -120,7 +120,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 half-leave-section" style="{{!old('half') ? 'display: none;' : ''}}">
+                                        <div class="col-md-6 half-leave-section" id="half-leave-section">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">

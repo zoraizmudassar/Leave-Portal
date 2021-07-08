@@ -7,7 +7,7 @@ function calLeavesAllowed(date_ = false) {
         var month = new Date(tdate).getMonth();
         var day = new Date(tdate).getDay();
         var per_month = 20 / 12;
-        month = 12-month;
+        month = 12 - month;
         if (day >= 15) {
             month = month + 1;
         }
@@ -16,6 +16,16 @@ function calLeavesAllowed(date_ = false) {
     }
 }
 $(function () {
+    if ($('#short-leave').is(':checked')) 
+    {
+        console.log('here');
+        $('#half-leave-section').css('display', 'block');
+    }
+    else {
+        console.log('here in not');
+        $('#half-leave-section').css('display', 'none');
+    }
+
     calLeavesAllowed();
     $('#leave_type').on('change', function () {
         var leave_type_value = $('#leave_type').val();
@@ -23,7 +33,7 @@ $(function () {
         if (leave_type_value != '') {
             $('#leave_subject').val(leave_type);
         }
-        else{
+        else {
             $('#leave_subject').val('');
         }
     });

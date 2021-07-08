@@ -127,13 +127,18 @@ class LeavesController extends Controller
             return redirect()->route('access-denied');
         }
 
-        $request->validate([
-            'leave_type_id' => 'required',
-            'subject' => 'required',
-            'description' => 'required',
-            'duration' => 'required',
-            'no_of_days' => 'required'
-        ]);
+        $request->validate(
+            [
+                'leave_type_id' => 'required',
+                'subject' => 'required',
+                'description' => 'required',
+                'duration' => 'required',
+                'no_of_days' => 'required'
+            ],
+            [
+                'leave_type_id.required' => 'The leave type field is required'
+            ]
+        );
         $data = $request->input();
         $user_ = Auth::user();
         $unpaid = false;
