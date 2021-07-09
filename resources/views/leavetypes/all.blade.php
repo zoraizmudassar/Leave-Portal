@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>Leave Types Listing</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,7 +28,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List of All Leave Types</h3>
+                            @if(Auth::user()->hasPermission('add_leave_type'))
                             <h3 class="card-title float-right"><a href="{{route('lt-add')}}" class="btn btn-primary">Add New</a></h3>
+                            @endif
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -47,9 +52,11 @@
                                         <th>
                                             Status
                                         </th>
+                                        @if(Auth::user()->hasPermission(['update_leave_type', 'active_inactive_leave_type']))
                                         <th>
                                             Action
                                         </th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,19 +79,24 @@
                                         <td>
                                             <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined') ?></span>
                                         </td>
-                                        <td class="project-actions text-right">
+                                        @if(Auth::user()->hasPermission(['update_leave_type', 'active_inactive_leave_type']))
+                                        <td class="project-actions text-center">
+                                            @if(Auth::user()->hasPermission('active_inactive_leave_type'))
                                             <a href="{{route('lt-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a>
+                                            @endif
+                                            @if(Auth::user()->hasPermission('update_leave_type'))
                                             <a class="btn btn-success btn-sm" href="{{route('lt-edit', ['id' => $model->id])}}">
                                                 <i class="fas fa-pen">
                                                 </i>
                                             </a>
+                                            @endif
                                             <!-- <a class="btn btn-danger btn-sm" href="{{route('lt-delete', ['id' => $model->id])}}">
                                                 <i class="fas fa-trash">
                                                 </i>
                                             </a> -->
                                         </td>
-                                    </tr>
-                                    @endforeach
+                                        <@endif </tr>
+                                            @endforeach
                                 </tbody>
                             </table>
                         </div>

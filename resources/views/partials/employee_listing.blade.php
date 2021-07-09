@@ -52,19 +52,25 @@
                 <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined') ?></span>
             </td>
             <td class="project-actions text-right">
+                @if(Auth::user()->hasPermission('active_inactive_employee'))
                 <a href="{{route('emp-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white mr-2"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a>
+                @endif
                 <a class="btn btn-primary btn-sm" href="{{route('emp-view', ['id' => $model->id])}}">
                     <i class="fas fa-eye">
                     </i>
                 </a>
+                @if(Auth::user()->hasPermission('update_employee'))
                 <a class="btn btn-warning btn-sm ml-2" href="{{route('emp-edit', ['id' => $model->id])}}">
                     <i class="fas fa-pen" style="color: white;">
                     </i>
                 </a>
+                @endif
+                @if(Auth::user()->hasPermission('assign_roles'))
                 <a class="btn btn-success btn-sm ml-2" href="{{route('emp-roles', ['id' => $model->id])}}">
                     <i class="fas fa-tasks">
                     </i>
                 </a>
+                @endif
             </td>
         </tr>
         @endforeach

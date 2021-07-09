@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>Designations Listing</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,14 +28,16 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List of All Designations</h3>
+                            @if(Auth::user()->hasPermission('add_designation'))
                             <h3 class="card-title float-right"><a href="{{route('des-add')}}" class="btn btn-primary">Add New</a></h3>
+                            @endif
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="text-center table table-bordered table-striped projects">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th >
+                                        <th>
                                             #
                                         </th>
                                         <th>
@@ -45,10 +50,13 @@
                                             Created at
                                         </th>
                                         <th>
-                                        Status</th>
-                                        <th>
-                                        Action
+                                            Status
                                         </th>
+                                        @if(Auth::user()->hasPermission(['update_designation', 'active_inactive_designation']))
+                                        <th>
+                                            Action
+                                        </th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,19 +77,25 @@
                                             {{ $model->created_at }}
                                         </td>
                                         <td>
-                                        <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined')?></span>
+                                            <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined') ?></span>
                                         </td>
-                                        <td class="project-actions text-right">
-                                        <a href="{{route('des-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined')?></a>
+                                        @if(Auth::user()->hasPermission(['update_designation', 'active_inactive_designation']))
+                                        <td class="project-actions text-center">
+                                            @if(Auth::user()->hasPermission('active_inactive_designation'))
+                                            <a href="{{route('des-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a>
+                                            @endif
+                                            @if(Auth::user()->hasPermission('update_designation'))
                                             <a class="btn btn-success btn-sm" href="{{route('des-edit', ['id' => $model->id])}}">
                                                 <i class="fas fa-pen">
                                                 </i>
                                             </a>
-<!--                                            <a class="btn btn-danger btn-sm" href="{{route('des-delete', ['id' => $model->id])}}">
+                                            @endif
+                                            <!--                                            <a class="btn btn-danger btn-sm" href="{{route('des-delete', ['id' => $model->id])}}">
                                                 <i class="fas fa-trash">
                                                 </i>
                                             </a>-->
                                         </td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>

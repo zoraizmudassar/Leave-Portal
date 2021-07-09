@@ -55,6 +55,7 @@ Route::prefix('roles')->group(function () {
     Route::get("permissions/{id}", "RolesController@rolesPermissions")->name('roles-permissions');
     Route::get("edit/{id}", "RolesController@edit")->name('role-edit');
     Route::post("update/{id}", "RolesController@update")->name('role-update');
+    Route::get("status/{id}/{status}", "RolesController@status")->name('role-status');
     Route::get("activate/{id}", "RolesController@activate")->name('role-activate');
     Route::get("deactivate/{id}", "RolesController@deactivate")->name('role-deactivate');
 });

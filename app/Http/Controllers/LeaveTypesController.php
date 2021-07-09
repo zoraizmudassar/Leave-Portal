@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
-class LeaveTypesController extends Controller {
+class LeaveTypesController extends Controller
+{
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
         date_default_timezone_set("Asia/Karachi");
     }
@@ -27,7 +29,8 @@ class LeaveTypesController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
+    public function index()
+    {
         if (Auth::user()->hasPermission('view_leave_type')) {
             $des = LeaveType::latest()->get();
             return view('leavetypes.all')->with('data', $des)->with('no', 1);
@@ -36,7 +39,8 @@ class LeaveTypesController extends Controller {
         }
     }
 
-    public function add() {
+    public function add()
+    {
         if (Auth::user()->hasPermission('add_leave_type')) {
             return view('leavetypes.add');
         } else {
@@ -44,7 +48,8 @@ class LeaveTypesController extends Controller {
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         if (Auth::user()->hasPermission('update_leave_type')) {
             $des = LeaveType::find($id);
             return view('leavetypes.edit')->with('data', $des);
@@ -58,12 +63,13 @@ class LeaveTypesController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function insert(Request $request) {
-         
+    public function insert(Request $request)
+    {
+
         $request->validate([
-            'name'=>'required|unique:leave_types',
-            'description'=>'required'
-            ]);
+            'name' => 'required|unique:leave_types',
+            'description' => 'required'
+        ]);
 
         $data = $request->input();
         try {
@@ -86,16 +92,14 @@ class LeaveTypesController extends Controller {
         }
     }
 
-    public function status($id, $status) {
-        if (Auth::user()->hasPermission('update_leave_type')) {
+    public function status($id, $status)
+    {
+        if (Auth::user()->hasPermission('active_inactive_leave_type')) {
             //Department::where('id',$id)->update(array('active_status'=>1));
-            if($status == 0)
-            {
-                LeaveType::where('id',$id)->update(array('active_status'=>1));
-            }
-            else
-            {
-                LeaveType::where('id',$id)->update(array('active_status'=>0));
+            if ($status == 0) {
+                LeaveType::where('id', $id)->update(array('active_status' => 1));
+            } else {
+                LeaveType::where('id', $id)->update(array('active_status' => 0));
             }
             return redirect()->route('lt-all');
         } else {
@@ -108,14 +112,15 @@ class LeaveTypesController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $request->validate([
             // 'name'=>'required | unique:departments',
             'name'   =>  [
                 'required',
-                 Rule::unique('leave_types')->ignore($id),
+                Rule::unique('leave_types')->ignore($id),
             ],
-            'description'=>'required',
+            'description' => 'required',
         ]);
         $data = $request->input();
         try {
@@ -143,7 +148,8 @@ class LeaveTypesController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         if (Auth::user()->hasPermission('delete_leave_type')) {
             try {
                 $dep = LeaveType::find($id);
@@ -156,5 +162,4 @@ class LeaveTypesController extends Controller {
             return redirect()->route('access-denied');
         }
     }
-
 }

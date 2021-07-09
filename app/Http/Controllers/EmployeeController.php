@@ -39,7 +39,15 @@ class EmployeeController extends Controller
     public function all()
     {
         if (Auth::user()->hasPermission('view_employee')) {
-            $users = User::latest()->get();
+            if (!Auth::user()->hasRole('admin')) {
+                if (Auth::user()->hasRole('team_lead')) {
+                    $users = User::where('team_lead', Auth::user()->id)->latest()->get();
+                } else {
+                    $users = User::latest()->get();
+                }
+            } else {
+                $users = User::latest()->get();
+            }
             return view('employee.all')->with('data', $users)->with('no', 1);
         } else {
             return redirect()->route('access-denied');
@@ -49,8 +57,17 @@ class EmployeeController extends Controller
     public function type($id)
     {
         if (Auth::user()->hasPermission('view_employee')) {
-            $users = User::where('emp_category_id', $id)->latest()->get();
-            return view('employee.type')->with('data', $users)->with('no', 1);
+            $type = EmpCategory::where('id', $id)->first();
+            if (!Auth::user()->hasRole('admin')) {
+                if (Auth::user()->hasRole('team_lead')) {
+                    $users = User::where('emp_category_id', $id)->where('team_lead', Auth::user()->id)->latest()->get();
+                } else {
+                    $users = User::where('emp_category_id', $id)->latest()->get();
+                }
+            } else {
+                $users = User::where('emp_category_id', $id)->latest()->get();
+            }
+            return view('employee.type')->with('data', $users)->with('type', $type)->with('no', 1);
         } else {
             return redirect()->route('access-denied');
         }

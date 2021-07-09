@@ -71,7 +71,7 @@ class EmpCategoriesController extends Controller {
     }
 
     public function status($id, $status) {
-        if (Auth::user()->hasPermission('view_employee_category')) {
+        if (Auth::user()->hasPermission('active_inactive_employee_category')) {
             //Department::where('id',$id)->update(array('active_status'=>1));
             if($status == 0)
             {

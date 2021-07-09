@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>Add New Role</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -34,34 +37,34 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" placeholder="Role Name" class="form-control"/>
+                                            <input type="text" name="name" placeholder="Role Name" class="form-control" />
                                             @if ($errors->has('name'))
-                                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                                                @endif
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display Name</label>
-                                            <input type="text" name="display_name" placeholder="Role Display Name" class="form-control"/>
+                                            <input type="text" name="display_name" placeholder="Role Display Name" class="form-control" />
                                             @if ($errors->has('display_name'))
-                                                <span class="text-danger">{{ $errors->first('display_name') }}</span>
-                                                @endif
+                                            <span class="text-danger">{{ $errors->first('display_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea rows="3" name="description"  placeholder="Role Description"class="form-control"></textarea>
+                                            <textarea rows="3" name="description" placeholder="Role Description" class="form-control"></textarea>
                                             @if ($errors->has('description'))
-                                                <span class="text-danger">{{ $errors->first('description') }}</span>
-                                                @endif
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-right">
-                                        <input type="submit" name="submit" value="Add Role" class="btn btn-success"/>
+                                        <input type="submit" name="submit" value="Add Role" class="btn btn-success" />
                                     </div>
                                 </div>
                             </form>

@@ -133,7 +133,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         //        $role_team_lead = \App\Role::where('name', 'team_lead')->get();
-        $users = User::whereRoleIs('team_lead')->get();
+        $users = User::whereRoleIs('team_lead')->where('active_status', 1)->get();
         $ec = EmpCategory::select('id', 'name')->where('active_status', 1)->get()->all();
         $des = Designation::select('id', 'type')->where('active_status', 1)->get()->all();
         $dep = Department::select('id', 'name')->where('active_status', 1)->get()->all();

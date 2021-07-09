@@ -34,12 +34,16 @@ class ApplicationsController extends Controller
     public function index()
     {
         if (Auth::user()->hasPermission('view_application')) {
-            if (Auth::user()->hasRole('team_lead') && !Auth::user()->hasRole('admin')) {
-                $leaves = Application::where('team_lead', Auth::user()->id)
-                ->orderby('created_at', 'desc')
-                ->get();
+            if (!Auth::user()->hasRole('admin')) {
+                if (Auth::user()->hasRole('team_lead')) {
+                    $leaves = Application::where('team_lead', Auth::user()->id)
+                        ->orderby('created_at', 'desc')
+                        ->get();
+                } else {
+                    $leaves = Application::orderby('created_at', 'desc')->get();
+                }
             } else {
-                $leaves = Application::orderby('created_at', 'desc')()->get();
+                $leaves = Application::orderby('created_at', 'desc')->get();
             }
             return view('applications.all')->with('data', $leaves);
         } else {
@@ -136,8 +140,7 @@ class ApplicationsController extends Controller
     {
         if (Auth::user()->hasPermission('accept_application')) {
             $apld_leave = Application::where('id', $id)->first();
-            if($apld_leave->status == 1)
-            {
+            if ($apld_leave->status == 1) {
                 $notification = array(
                     'message' => 'Application already has been accepted!',
                     'alert-type' => 'error'
@@ -196,8 +199,7 @@ class ApplicationsController extends Controller
         if (Auth::user()->hasPermission('reject_application')) {
 
             $app = Application::where('id', $id)->get()->first();
-            if($app->status == 0)
-            {
+            if ($app->status == 0) {
                 $notification = array(
                     'message' => 'Application already has been accepted!',
                     'alert-type' => 'error'

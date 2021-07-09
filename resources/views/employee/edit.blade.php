@@ -1,7 +1,7 @@
 @extends('layout.mainlayout')
 
 @section('title')
-<title>{{$model->name}}</title>
+<title>{{'Update ' . $model->name}}</title>
 @endsection
 @section('content')
 <div class="content-wrapper">

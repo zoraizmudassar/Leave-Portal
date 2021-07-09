@@ -1,6 +1,6 @@
 @extends('layout.mainlayout')
 @section('title')
-<title>Update Leave Type</title>
+<title>Update {{$data->name}}</title>
 @endsection
 @section('content')
 <div class="content-wrapper">

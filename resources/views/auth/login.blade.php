@@ -9,7 +9,7 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{route('home')}}"><img src="{{ URL::asset('assets/images/logo-dark.png') }}"/></a>
+        <a href="{{route('home')}}"><img src="{{ URL::asset('assets/images/logo-dark.png') }}" /></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -26,12 +26,13 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+
                 <div class="input-group mb-3">
                     <input placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     <div class="input-group-append">
@@ -39,12 +40,13 @@
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+
                 <div class="row">
                     <div class="col-12">
                         <div class="icheck-primary">
@@ -57,9 +59,9 @@
                     </div>
                 </div>
                 <div class="social-auth-links text-center mb-3">
-                <button type="submit" class="btn btn-block btn-primary">Sign in
-                </button>
-            </div>
+                    <button type="submit" class="btn btn-block btn-primary">Sign in
+                    </button>
+                </div>
             </form>
         </div>
         <!-- /.login-card-body -->

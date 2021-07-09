@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2021 at 09:03 AM
+-- Generation Time: Jul 09, 2021 at 02:24 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.20
 
@@ -62,6 +62,17 @@ CREATE TABLE `applications` (
   `unpaid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`id`, `user_id`, `leave_type_id`, `start_from`, `end_to`, `no_of_days`, `subject`, `description`, `created_at`, `updated_at`, `status`, `status_changed_by`, `team_lead`, `late_apply`, `half`, `short_leave`, `datetime`, `unpaid`) VALUES
+(261, 31, 6, '07/07/2021', '07/07/2021', '1', 'Sick Leave', 'Sick Leave Reason', '2021-07-06 07:40:35', '2021-07-06 07:41:20', '1', 30, 30, 0, 0, 0, '06-07-2021 12:40:35 PM', '1'),
+(263, 31, 8, '07/08/2021', '07/08/2021', '0.5', 'Annual Leave', 'test', '2021-07-06 10:04:13', '2021-07-07 12:49:20', '0', 10, 30, 0, 2, 1, '06-07-2021 03:04:13 PM', '1'),
+(264, 32, 7, '07/09/2021', '07/12/2021', '2', 'Cadual Leave', 'Cadual Leave Reason', '2021-07-07 09:14:49', '2021-07-07 09:19:15', '1', 30, 30, 1, 0, 0, '07-07-2021 02:14:49 PM', '1'),
+(265, 32, 7, '07/15/2021', '07/15/2021', '1', 'Cadual Leave', 'cadual leave', '2021-07-07 09:19:58', '2021-07-07 12:23:52', '0', 10, 29, 0, 0, 0, '07-07-2021 02:19:58 PM', '1'),
+(266, 31, 7, '07/06/2021', '07/07/2021', '1', 'Cadual Leave', 'cadual leave', '2021-07-07 12:51:34', '2021-07-07 12:51:34', '2', 0, 30, 1, 0, 0, '07-07-2021 05:51:34 PM', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +88,18 @@ CREATE TABLE `departments` (
   `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `name`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
+(8, 'Web Development', 'Website Development', '2021-07-06 07:13:45', '2021-07-06 07:13:45', '1'),
+(9, 'Mobile Development', 'Mobile Development', '2021-07-06 07:14:04', '2021-07-06 07:14:04', '1'),
+(10, 'Blockchain Development', 'Blockchain Development', '2021-07-06 07:14:26', '2021-07-07 06:55:12', '0'),
+(11, 'Quality Assurance', 'Quality Assurance', '2021-07-06 07:14:44', '2021-07-06 07:14:44', '1'),
+(12, 'Digital Marketing', 'Digital Marketingg', '2021-07-06 07:15:02', '2021-07-06 11:05:19', '1'),
+(13, 'Graphics Designing', 'Graphics Designing', '2021-07-06 07:15:27', '2021-07-06 07:15:27', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +114,17 @@ CREATE TABLE `designations` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `designations`
+--
+
+INSERT INTO `designations` (`id`, `type`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
+(6, 'Laravel Developer', 'Laravel Developer', '2021-07-06 07:16:07', '2021-07-06 07:16:07', '1'),
+(7, '.Net Developer', '.Net Developer', '2021-07-06 07:16:25', '2021-07-07 10:18:29', '1'),
+(8, 'Android Developer', 'Android Developer', '2021-07-06 07:16:51', '2021-07-06 07:16:51', '1'),
+(9, 'IOS Developer', 'IOS Developer', '2021-07-06 07:17:11', '2021-07-06 07:17:11', '1'),
+(10, 'PHP Developer', 'PHp developer', '2021-07-06 11:07:01', '2021-07-06 11:36:57', '1');
 
 -- --------------------------------------------------------
 
@@ -134,7 +168,7 @@ INSERT INTO `emp_categories` (`id`, `name`, `description`, `created_at`, `update
 (1, 'Internee', 'Internship', '2021-05-19 07:17:46', '2021-07-05 07:49:23', '1'),
 (2, 'Probation', 'Probation', '2021-05-19 07:18:31', '2021-06-25 07:17:23', '1'),
 (3, 'Permanent', 'Permanent', '2021-05-19 07:18:43', '2021-07-01 00:02:33', '1'),
-(4, 'Traineeee', 'Traineeee', '2021-06-25 07:09:18', '2021-07-01 00:02:31', '1');
+(4, 'Traineeee', 'Traineeees', '2021-06-25 07:09:18', '2021-07-07 06:56:14', '0');
 
 -- --------------------------------------------------------
 
@@ -183,6 +217,16 @@ CREATE TABLE `leave_types` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `active_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `leave_types`
+--
+
+INSERT INTO `leave_types` (`id`, `name`, `description`, `leaves_allow`, `created_at`, `updated_at`, `active_status`) VALUES
+(6, 'Sick Leave', 'Sick Leave', 20, '2021-07-06 07:18:08', '2021-07-06 07:18:08', '1'),
+(7, 'Cadual Leave', 'Cadual Leave', 20, '2021-07-06 07:18:22', '2021-07-06 07:18:22', '1'),
+(8, 'Annual Leave', 'Annual Leave', 20, '2021-07-06 07:19:01', '2021-07-07 05:49:18', '1'),
+(9, 'COVID', 'COVID', 20, '2021-07-07 05:50:18', '2021-07-07 11:01:54', '0');
 
 -- --------------------------------------------------------
 
@@ -297,7 +341,9 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('5ca4a551-2a20-4287-bc32-3e2b8f9f6494', 'App\\Notifications\\LeaveApplied', 'App\\Application', 186, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/186\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:53:56', '2021-06-18 06:53:56'),
 ('604b6aca-c524-4448-b96f-4985bf40fc9b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 239, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/239\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:30:48', '2021-07-01 09:30:48'),
 ('6ae3ab1a-37b8-4a93-bc83-5f66567e7aa6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 226, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/226\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-22 12:44:17', '2021-06-22 12:44:17'),
+('6c08e64e-8184-46b5-95c4-c782e3466958', 'App\\Notifications\\LeaveApplied', 'App\\Application', 265, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/265\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz@gmail.com\",\"team_lead\":\"Atif Iqbal\"}', NULL, '2021-07-07 09:19:58', '2021-07-07 09:19:58'),
 ('710e241a-1292-454d-b4ae-fccd17213468', 'App\\Notifications\\LeaveApplied', 'App\\Application', 222, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/222\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 07:31:18', '2021-06-21 07:31:18'),
+('7167b76c-5511-4ef2-81e6-e49437e1a142', 'App\\Notifications\\LeaveApplied', 'App\\Application', 262, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/262\",\"name\":\"Siraj Ul Haq\",\"useremail\":\"sirajulhaq363@gmail.com\",\"team_lead\":\"Maham Zubair\"}', NULL, '2021-07-06 09:33:11', '2021-07-06 09:33:11'),
 ('71fdf0c2-48a4-432f-92b7-fc64c7dadc9a', 'App\\Notifications\\LeaveApplied', 'App\\Application', 258, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/258\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 06:15:24', '2021-07-05 06:15:24'),
 ('73f6afbf-41e1-4cc4-be69-69a52b182069', 'App\\Notifications\\LeaveApplied', 'App\\Application', 232, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/232\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 08:42:05', '2021-07-01 08:42:05'),
 ('7d053d89-0c35-4f17-b6ef-439f8082add2', 'App\\Notifications\\LeaveApplied', 'App\\Application', 238, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/238\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:27:20', '2021-07-01 09:27:20'),
@@ -310,12 +356,16 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('9d478c40-7712-4352-a450-8617e2942d44', 'App\\Notifications\\LeaveApplied', 'App\\Application', 188, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/188\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:17', '2021-06-18 06:54:17'),
 ('9ea46966-ee1e-4d77-bdfa-057aeb5dde8c', 'App\\Notifications\\LeaveApplied', 'App\\Application', 250, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/250\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:34:26', '2021-07-05 05:34:26'),
 ('a0258b6e-3adb-4aa4-a7d8-03d3f55c12e6', 'App\\Notifications\\LeaveApplied', 'App\\Application', 242, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/242\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:37:44', '2021-07-01 09:37:44'),
+('a7302106-d3bf-4339-9eae-aa6c64b26773', 'App\\Notifications\\LeaveApplied', 'App\\Application', 261, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/261\",\"name\":\"Siraj Ul Haq\",\"useremail\":\"sirajulhaq363@gmail.com\",\"team_lead\":\"Maham Zubair\"}', NULL, '2021-07-06 07:40:35', '2021-07-06 07:40:35'),
 ('a919ab39-317b-4bc6-bae8-e9993369b7a8', 'App\\Notifications\\LeaveApplied', 'App\\Application', 249, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/249\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:06:05', '2021-07-05 05:06:05'),
 ('accb3d07-f002-40ce-84cb-e851b5b61eff', 'App\\Notifications\\LeaveApplied', 'App\\Application', 259, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/259\",\"name\":\"Siraj Ul Haq\",\"useremail\":\"sirajulhaq363@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 11:53:19', '2021-07-05 11:53:19'),
+('afc2f2a9-d135-4dcd-85e1-f614728838d8', 'App\\Notifications\\LeaveApplied', 'App\\Application', 264, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/264\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz@gmail.com\",\"team_lead\":\"Maham Zubair\"}', NULL, '2021-07-07 09:14:50', '2021-07-07 09:14:50'),
 ('aff844c3-df60-467d-9ecb-712550a7b35b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 256, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/256\",\"name\":\"Usama\",\"useremail\":\"usama@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 05:51:38', '2021-07-05 05:51:38'),
 ('bf0e33a2-4c81-45ee-9aaf-4aa228d8db56', 'App\\Notifications\\LeaveApplied', 'App\\Application', 225, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/225\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 09:53:48', '2021-06-21 09:53:48'),
 ('c200b284-27ee-428d-8436-90d0d20e5bde', 'App\\Notifications\\LeaveApplied', 'App\\Application', 184, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/184\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:44:45', '2021-06-18 06:44:45'),
 ('c38c7847-365e-4cc6-befe-c53af79d8a1b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 187, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/187\",\"name\":\"Zoraiz Mudassar\",\"useremail\":\"zoraiz15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-18 06:54:07', '2021-06-18 06:54:07'),
+('c6b54e5a-6adc-4974-904f-ff3882314f7e', 'App\\Notifications\\LeaveApplied', 'App\\Application', 263, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/263\",\"name\":\"Siraj Ul Haq\",\"useremail\":\"sirajulhaq363@gmail.com\",\"team_lead\":\"Maham Zubair\"}', NULL, '2021-07-06 10:04:13', '2021-07-06 10:04:13'),
+('c8197f2b-3c93-4c60-8e3f-433221119584', 'App\\Notifications\\LeaveApplied', 'App\\Application', 266, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/266\",\"name\":\"Siraj Ul Haq\",\"useremail\":\"sirajulhaq363@gmail.com\",\"team_lead\":\"Maham Zubair\"}', NULL, '2021-07-07 12:51:35', '2021-07-07 12:51:35'),
 ('c88c5878-b84e-4cee-a883-dee766d13322', 'App\\Notifications\\LeaveApplied', 'App\\Application', 221, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/221\",\"name\":\"TESTER\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-06-21 01:46:29', '2021-06-21 01:46:29'),
 ('e43f951b-ec74-40d5-b305-13ca7cb949d9', 'App\\Notifications\\LeaveApplied', 'App\\Application', 260, '{\"url\":\"http:\\/\\/localhost\\/leaveportal\\/public\\/applications\\/view\\/260\",\"name\":\"M. Ahmed\",\"useremail\":\"ahmed@gmail.com\",\"team_lead\":\"Admin\"}', NULL, '2021-07-05 12:21:40', '2021-07-05 12:21:40'),
 ('ebe9848f-14db-4084-8b18-698e2cb9ae8b', 'App\\Notifications\\LeaveApplied', 'App\\Application', 243, '{\"url\":\"http:\\/\\/localhost\\/Leave-Portal\\/public\\/applications\\/view\\/243\",\"name\":\"TEST\",\"useremail\":\"tester15@gmail.com\",\"team_lead\":\"Faisal Ashraf\"}', NULL, '2021-07-01 09:41:09', '2021-07-01 09:41:09'),
@@ -342,11 +392,12 @@ CREATE TABLE `password_resets` (
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
-('sirajulhaq363@gmail.com', '$2y$10$FivHRZ.J1LVtKZTuBnNYKuIe3dgLECzhVwJJMRmXNb8i0Zn0zMyv6', '2021-06-03 02:34:39'),
 ('user@gmail.com', '$2y$10$SzC2mhVrLhRttjbwVRbtHeuSXBcPr803A4atHG.HImWc18XPKydAu', '2021-06-04 05:13:25'),
 ('admin@amcoitsystems.com', '$2y$10$lqciuMxBUFAsmuJ3jFLOGu5X8raVZHJaATx2e09gsQvHeQOT2VUjC', '2021-06-10 07:53:09'),
 ('demo@gmail.com', '$2y$10$sP.rGIU74EvcSkjF5ph/veFj0LxntBArAQijV3QQDw6LulDtEI066', '2021-06-15 07:42:58'),
-('Siraaj@gmail.com', '$2y$10$w.KJXW8mPDIzb61NBif/Qej7Uh1V5QMi3KfO/L6a7Uev8vuuIMlXa', '2021-06-15 07:44:06');
+('Siraaj@gmail.com', '$2y$10$w.KJXW8mPDIzb61NBif/Qej7Uh1V5QMi3KfO/L6a7Uev8vuuIMlXa', '2021-06-15 07:44:06'),
+('sirajulhaq363@gmail.com', '$2y$10$LhcZ9.igVIRMvVquDUuyFuwfq6doCSsek0i9hogKVw6dwthx1RS8a', '2021-07-07 03:00:17'),
+('zoraiz@gmail.com', '$2y$10$LBAE0Wq2aATTi587M9k.e.6DWSuVT1rlel7aEr7lh0w.9P.8I20Aq', '2021-07-07 03:02:22');
 
 -- --------------------------------------------------------
 
@@ -453,6 +504,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (5, 1),
 (6, 1),
 (7, 1),
+(7, 2),
 (7, 3),
 (8, 1),
 (8, 3),
@@ -461,20 +513,27 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (10, 1),
 (11, 1),
 (12, 1),
+(12, 7),
 (13, 1),
 (14, 1),
 (15, 1),
+(15, 7),
 (16, 1),
 (17, 1),
 (18, 1),
+(18, 7),
 (19, 1),
+(19, 7),
 (20, 1),
 (21, 1),
 (22, 1),
+(22, 7),
 (23, 1),
 (24, 1),
 (25, 1),
+(25, 7),
 (26, 1),
+(26, 7),
 (27, 1),
 (28, 1),
 (29, 1),
@@ -510,17 +569,19 @@ CREATE TABLE `roles` (
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'Administrator', '2021-05-20 01:02:36', '2021-06-02 06:49:27'),
-(2, 'employee', 'Employee', 'Regular Employee', '2021-05-20 02:40:40', '2021-05-20 04:40:29'),
-(3, 'team_lead', 'Team Lead', 'Regular Employee + Team Lead', '2021-05-20 02:41:03', '2021-05-20 04:40:40');
+INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`, `active_status`) VALUES
+(1, 'admin', 'admin', 'Administrator', '2021-05-20 01:02:36', '2021-06-02 06:49:27', 1),
+(2, 'employee', 'Employee', 'Regular Employee', '2021-05-20 02:40:40', '2021-05-20 04:40:29', 1),
+(3, 'team_lead', 'Team Lead', 'Regular Employee + Team Lead', '2021-05-20 02:41:03', '2021-05-20 04:40:40', 1),
+(7, 'Departments Play', 'Departments Play', 'This role allows user to access all permissions regarding to departments module!', '2021-07-08 10:19:19', '2021-07-09 07:56:02', 0);
 
 -- --------------------------------------------------------
 
@@ -571,7 +632,13 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (2, 25, 'App\\User'),
 (2, 26, 'App\\User'),
 (2, 27, 'App\\User'),
-(2, 28, 'App\\User');
+(2, 28, 'App\\User'),
+(2, 29, 'App\\User'),
+(3, 29, 'App\\User'),
+(2, 30, 'App\\User'),
+(3, 30, 'App\\User'),
+(2, 31, 'App\\User'),
+(2, 32, 'App\\User');
 
 -- --------------------------------------------------------
 
@@ -643,7 +710,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `designation_id`, `department_id`, `emp_category_id`, `team_lead`, `lq_exp`, `start_lq`, `balance_leave`, `used_leave`, `allowed_leave`, `active_status`) VALUES
-(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-07-06 05:50:51', 2, 2, 1, 3, 6, '31-12-2021', '01-01-2021', '20', '0', '20', '1');
+(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-07-07 11:40:04', 2, 2, 1, 3, 6, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(29, 'Atif Iqbal', 'atif@gmail.com', NULL, '$2y$10$RJve9Vvjqjkxa9sWB.CdY.9Pi0PYXopSFzAsPJnokUDbLXwgDyVqW', NULL, '2018-07-19 19:00:00', '2021-07-09 11:56:20', 2, 6, 8, 3, 10, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(30, 'Maham Zubair', 'maham@gmail.com', NULL, '$2y$10$nbfZsXKOczuZUv7KKXTrKOXYF4a4RlgJkNp.pW/UQ9ML1Za3flXJm', NULL, '2020-06-10 19:00:00', '2021-07-07 11:40:04', 2, 6, 8, 3, 29, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(31, 'Siraj Ul Haq', 'sirajulhaq363@gmail.com', NULL, '$2y$10$emthyu2LYUvwR2SVX4bqueAYip73OY9zrqu91GBApVwB/VHzH4Sty', NULL, '2021-04-11 19:00:00', '2021-07-07 10:05:25', 2, 6, 8, 1, 30, '31-12-2021', '12-04-2021', '0', '0', '0', '1'),
+(32, 'Zoraiz Mudassar', 'zoraiz@gmail.com', NULL, '$2y$10$bvbTLh2RzIHl7mQEpkSn9eA84MLLAPhcietZEyDV96h6HDHFc90xi', NULL, '2021-04-05 19:00:00', '2021-07-07 09:17:17', 2, 6, 8, 1, 29, '31-12-2021', '06-04-2021', '0', '0', '0', '1');
 
 --
 -- Indexes for dumped tables
@@ -790,19 +861,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `employee_details`
@@ -832,7 +903,7 @@ ALTER TABLE `leave_details`
 -- AUTO_INCREMENT for table `leave_types`
 --
 ALTER TABLE `leave_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -856,7 +927,7 @@ ALTER TABLE `permissions_groups`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `userdetail`
@@ -868,7 +939,7 @@ ALTER TABLE `userdetail`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables

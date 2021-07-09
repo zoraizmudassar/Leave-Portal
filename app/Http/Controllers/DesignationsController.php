@@ -60,7 +60,7 @@ class DesignationsController extends Controller
 
     public function status($id, $status)
     {
-        if (Auth::user()->hasPermission('update_designation')) {
+        if (Auth::user()->hasPermission('active_inactive_designation')) {
             //Department::where('id',$id)->update(array('active_status'=>1));
             if ($status == 0) {
                 Designation::where('id', $id)->update(array('active_status' => 1));

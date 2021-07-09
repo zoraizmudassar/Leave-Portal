@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>{{'Update '. $data->name}}</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -34,13 +37,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Role Name" class="form-control"/>
+                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Role Name" class="form-control" />
+                                            @if ($errors->has('name'))
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Name</label>
-                                            <input value="{{$data->name}}" type="text" name="display_name" placeholder="Role Display Name" class="form-control"/>
+                                            <label>Display Name</label>
+                                            <input value="{{$data->name}}" type="text" name="display_name" placeholder="Role Display Name" class="form-control" />
+                                            @if ($errors->has('display_name'))
+                                            <span class="text-danger">{{ $errors->first('display_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -48,11 +57,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea rows="3" name="description"  placeholder="Role Description"class="form-control">{{$data->description}}</textarea>
+                                            <textarea rows="3" name="description" placeholder="Role Description" class="form-control">{{$data->description}}</textarea>
+                                            @if ($errors->has('description'))
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">
-                                        <input type="submit" name="submit" value="Update Role" class="btn btn-success"/>
+                                        <input type="submit" name="submit" value="Update Role" class="btn btn-success" />
                                     </div>
                                 </div>
                             </form>

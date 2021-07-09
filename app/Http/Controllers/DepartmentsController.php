@@ -53,7 +53,7 @@ class DepartmentsController extends Controller {
     }
 
     public function status($id, $status) {
-        if (Auth::user()->hasPermission('update_department')) {
+        if (Auth::user()->hasPermission('active_inactive_department')) {
             //Department::where('id',$id)->update(array('active_status'=>1));
             if($status == 0)
             {

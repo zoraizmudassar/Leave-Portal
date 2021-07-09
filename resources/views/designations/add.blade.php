@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>Add New Designation</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

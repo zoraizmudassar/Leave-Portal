@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>{{'Update ' . $data->name}}</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -34,25 +37,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Department Name" class="form-control"/>
+                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Department Name" class="form-control" />
                                             @if ($errors->has('name'))
-                                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                                                @endif
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea rows="1" name="description"  placeholder="Department Description"class="form-control">{{$data->description}}</textarea>
-                                            @if ($errors->has('type'))
-                                                <span class="text-danger">{{ $errors->first('type') }}</span>
-                                                @endif
+                                            <textarea rows="1" name="description" placeholder="Department Description" class="form-control">{{$data->description}}</textarea>
+                                            @if ($errors->has('description'))
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-right">
-                                        <input type="submit" name="submit" value="Update Department" class="btn btn-success"/>
+                                        <input type="submit" name="submit" value="Update Department" class="btn btn-success" />
                                     </div>
                                 </div>
                             </form>

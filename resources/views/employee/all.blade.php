@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>Employee Listing</title>
+@endsection
 @section('content')
 <style>
     .project-actions {
@@ -30,8 +33,12 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List of All Employee</h3>
+                            @if(Auth::user()->hasPermission('add_employee'))
                             <a href="{{route('register')}}" class="float-right btn btn-primary">Add New</a>
+                            @endif
+                            @if(Auth::user()->hasPermission('update_leave_quota'))
                             <a class="float-right mr-3 btn btn-success" href="{{route('quota')}}">Update Leave Quota</a>
+                            @endif
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
