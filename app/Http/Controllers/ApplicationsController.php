@@ -119,7 +119,7 @@ class ApplicationsController extends Controller
             if (isset($user_[0])) {
                 $st_by = $user_[0]->name;
             }
-            $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->where('status', 1)->count();
+            $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
             return view('applications.view')->with('data', $leave)->with('status_changed_by', $st_by)
                 ->with('used', $leave->user->used_leave)
                 ->with('balance', $leave->user->balance_leave)

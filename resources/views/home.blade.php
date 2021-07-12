@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Crypt;
 $view_route_name = 'app-view';
 ?>
 @section('title')
-<title> Admin Dashboard</title>
+<title>Dashboard</title>
 @endsection
 @extends('layout.mainlayout')
 
