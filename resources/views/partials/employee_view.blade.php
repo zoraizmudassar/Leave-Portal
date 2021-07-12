@@ -78,5 +78,15 @@
             </div>
             <!-- /.col -->
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="info-box bg-light mt-3">
+                    <div class="info-box-content">
+                        <span class="info-box-text text-center text-muted">Balance Leaves</span>
+                        <span class="info-box-number text-center text-muted mb-0">{{$user->balance_leave}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

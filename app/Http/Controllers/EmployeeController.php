@@ -216,9 +216,30 @@ class EmployeeController extends Controller
                 'emp_category_id.required' => 'The Employee category field is required'
             ]
         );
-        $employee = User::where('id', $id)->get();
-        $data = $request->input();
+        $employee = User::where('id', $id)->first();
+        $balance_ = $employee->balance_leave;
+        $allowed_ = $employee->allowed_leave;
+        $used_ = $employee->used_leave;
 
+        $data = $request->input();
+        if ($data['emp_category_id'] != $employee->emp_category_id) {
+            if ($data['emp_category_id'] != 3) {
+                $allowed_ = 0;
+                $balance_ = 0;
+                $used_ = 0;
+            } else {
+                $month = date('m');
+                $day = date('d');
+                $per_month = 20 / 12;
+                $month = 12 - $month;
+                if ($day <= 15) {
+                    $month = $month + 1;
+                }
+                $allowed_ = $per_month * $month;
+                $used_ = 0;
+                $balance_ = $allowed_ - $used_;
+            }
+        }
         $user = User::where('id', $id)
             ->update([
                 'name' => $data['name'],
@@ -227,6 +248,9 @@ class EmployeeController extends Controller
                 'department_id' => $data['department_id'],
                 'emp_category_id' => $data['emp_category_id'],
                 'team_lead' => $data['team_lead'],
+                'allowed_leave' => $allowed_,
+                'used_leave' => $used_,
+                'balance_leave' => $balance_
             ]);
         if (!$user) {
             $notification = array(

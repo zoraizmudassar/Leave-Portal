@@ -8,7 +8,7 @@ function calLeavesAllowed(date_ = false) {
         var day = new Date(tdate).getDay();
         var per_month = 20 / 12;
         month = 12 - month;
-        if (day >= 15) {
+        if (day <= 15) {
             month = month + 1;
         }
         var allowed = per_month * month;

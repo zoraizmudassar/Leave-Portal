@@ -88,6 +88,7 @@ class DesignationsController extends Controller
             ],
             [
                 'type.required' => "The designation name field is required",
+                'type.unique' => "The name has already been taken",
             ]
         );
 
@@ -128,6 +129,7 @@ class DesignationsController extends Controller
             ],
             [
                 'type.required' => "The designation name field is required",
+                'type.unique' => "The name has already been taken",
             ]
         );
         $data = $request->input();

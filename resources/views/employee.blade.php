@@ -12,12 +12,17 @@ $view_route_name = 'leave-view';
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">    
-                <h1 class="m-0 text-dark">Dashboard</h1>
-                <a href="{{route('leave-apply')}}" class="btn btn-info mt-1">Apply New Leave</a>
-                
+                <div class="col-sm-4">
+                    <h1 class="m-0 text-dark">Dashboard</h1>
+                    <a href="{{route('leave-apply')}}" class="btn btn-info mt-1">Apply New Leave</a>
+                    <div class="info-box bg-light mt-3">
+                        <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Balance Leaves</span>
+                            <span class="info-box-number text-center text-muted mb-0">{{Auth::user()->balance_leave}}</span>
+                        </div>
+                    </div>
                 </div><!-- /.col -->
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
@@ -125,7 +130,7 @@ $view_route_name = 'leave-view';
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                            @include('partials.applications_listing')
+                                                @include('partials.applications_listing')
                                             </div>
                                             <!-- /.table-responsive -->
                                         </div>
@@ -145,7 +150,8 @@ $view_route_name = 'leave-view';
                 </div>
                 <!-- /.col -->
             </div>
-        </div><!--/. container-fluid -->
+        </div>
+        <!--/. container-fluid -->
     </section>
     <!-- /.content -->
 </div>

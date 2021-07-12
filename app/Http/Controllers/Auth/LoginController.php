@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
-class LoginController extends Controller {
+class LoginController extends Controller
+{
     /*
       |--------------------------------------------------------------------------
       | Login Controller
@@ -18,7 +20,7 @@ class LoginController extends Controller {
       |
      */
 
-use AuthenticatesUsers;
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -27,20 +29,25 @@ use AuthenticatesUsers;
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-//    protected $redirectTo = RouteServiceProvider::HOME;
+    //    protected $redirectTo = RouteServiceProvider::HOME;
 
 
-//    public function redirectTo() {
-//         return $next($request);
-//    }
+    //    public function redirectTo() {
+    //         return $next($request);
+    //    }
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest')->except('logout');
     }
 
+    protected function credentials(Request $request)
+    {
+        return array_merge($request->only($this->username(), 'password'), ['active_status' => 1]);
+    }
 }
