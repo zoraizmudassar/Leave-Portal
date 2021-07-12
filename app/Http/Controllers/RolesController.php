@@ -32,7 +32,7 @@ class RolesController extends Controller
     public function index()
     {
         if (Auth::user()->hasPermission('view_role')) {
-            $deps = Role::all();
+            $deps = Role::latest()->get();
             return view('roles.all')->with('data', $deps)->with('no', 1);
         } else {
             return redirect()->route('access-denied');
@@ -183,6 +183,7 @@ class RolesController extends Controller
 
     public function status($id, $status)
     {
+        return redirect()->route('access-denied');
         if (Auth::user()->hasPermission('active_inactive_role')) {
             $role = Role::where('id', $id)->first();
             //Department::where('id',$id)->update(array('active_status'=>1));

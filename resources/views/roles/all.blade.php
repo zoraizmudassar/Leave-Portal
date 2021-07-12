@@ -76,7 +76,7 @@
                                         </td>
                                         <td class="project-actions text-center">
                                             @if(Auth::user()->hasPermission('active_inactive_role'))
-                                            <a href="{{route('role-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a>
+                                            <!-- <a href="{{route('role-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a> -->
                                             @endif
                                             <a class="btn btn-success btn-sm" href="{{route('role-edit', ['id' => $model->id])}}">
                                                 <i class="fas fa-pen">
