@@ -92,14 +92,21 @@ $(function () {
 
     $('.select2').select2();
     $("#example1").DataTable({
-        "responsive": true,
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "aaSorting": [],
+        "info": true,
         "autoWidth": false,
+        "responsive": true,
     });
     $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": false,
         "ordering": true,
+        "aaSorting": [],
         "info": true,
         "autoWidth": false,
         "responsive": true,
