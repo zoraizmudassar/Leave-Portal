@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2021 at 11:06 AM
+-- Generation Time: Jul 12, 2021 at 12:48 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.20
 
@@ -503,7 +503,6 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (3, 1),
 (5, 1),
 (6, 1),
-(7, 1),
 (7, 2),
 (7, 3),
 (8, 1),
@@ -714,7 +713,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (29, 'Atif Iqbal', 'atif@gmail.com', NULL, '$2y$10$RJve9Vvjqjkxa9sWB.CdY.9Pi0PYXopSFzAsPJnokUDbLXwgDyVqW', NULL, '2018-07-19 19:00:00', '2021-07-12 07:57:06', 2, 6, 8, 3, 10, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
 (30, 'Maham Zubair', 'maham@gmail.com', NULL, '$2y$10$nbfZsXKOczuZUv7KKXTrKOXYF4a4RlgJkNp.pW/UQ9ML1Za3flXJm', NULL, '2020-06-10 19:00:00', '2021-07-12 07:57:06', 2, 6, 8, 3, 29, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
 (31, 'Siraj Ul Haq', 'sirajulhaq363@gmail.com', NULL, '$2y$10$emthyu2LYUvwR2SVX4bqueAYip73OY9zrqu91GBApVwB/VHzH4Sty', NULL, '2021-04-11 19:00:00', '2021-07-12 07:57:06', 2, 6, 8, 3, 30, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
-(32, 'Zoraiz Mudassar', 'zoraiz@gmail.com', NULL, '$2y$10$VCEv2fy9.s3zFwWVuzYiOen3gd9TibRCjfPecjwtuvH/u5BJPkgj2', 'EzdsoQGBBS8jH3WDConckS2zcFpEi2dmUR8ZO7YDlIZ3QpaJvJLWkQfroGxa', '2021-04-05 19:00:00', '2021-07-12 07:24:28', 2, 6, 8, 1, 29, '31-12-2021', '06-04-2021', '0', '0', '0', '1');
+(32, 'Zoraiz Mudassar', 'zoraiz@gmail.com', NULL, '$2y$10$VCEv2fy9.s3zFwWVuzYiOen3gd9TibRCjfPecjwtuvH/u5BJPkgj2', 'EzdsoQGBBS8jH3WDConckS2zcFpEi2dmUR8ZO7YDlIZ3QpaJvJLWkQfroGxa', '2021-04-05 19:00:00', '2021-07-12 09:46:07', 2, 6, 8, 2, 29, '31-12-2021', '06-04-2021', '0', '0', '0', '1');
 
 --
 -- Indexes for dumped tables
