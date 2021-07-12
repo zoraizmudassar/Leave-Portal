@@ -37,7 +37,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input value="{{$data->name}}" type="text" name="name" placeholder="Role Name" class="form-control" />
+                                            <input readonly value="{{$data->name}}" type="text" name="name" placeholder="Role Name" class="form-control" />
                                             @if ($errors->has('name'))
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
                                             @endif
@@ -46,7 +46,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display Name</label>
-                                            <input value="{{$data->name}}" type="text" name="display_name" placeholder="Role Display Name" class="form-control" />
+                                            <input value="{{$data->display_name}}" type="text" name="display_name" placeholder="Role Display Name" class="form-control" />
                                             @if ($errors->has('display_name'))
                                             <span class="text-danger">{{ $errors->first('display_name') }}</span>
                                             @endif
