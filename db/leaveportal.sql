@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2021 at 02:24 PM
+-- Generation Time: Jul 12, 2021 at 11:06 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.20
 
@@ -397,7 +397,7 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('demo@gmail.com', '$2y$10$sP.rGIU74EvcSkjF5ph/veFj0LxntBArAQijV3QQDw6LulDtEI066', '2021-06-15 07:42:58'),
 ('Siraaj@gmail.com', '$2y$10$w.KJXW8mPDIzb61NBif/Qej7Uh1V5QMi3KfO/L6a7Uev8vuuIMlXa', '2021-06-15 07:44:06'),
 ('sirajulhaq363@gmail.com', '$2y$10$LhcZ9.igVIRMvVquDUuyFuwfq6doCSsek0i9hogKVw6dwthx1RS8a', '2021-07-07 03:00:17'),
-('zoraiz@gmail.com', '$2y$10$LBAE0Wq2aATTi587M9k.e.6DWSuVT1rlel7aEr7lh0w.9P.8I20Aq', '2021-07-07 03:02:22');
+('zoraiz@gmail.com', '$2y$10$bbv6GyaPqrABYimSFQlERee1efRvHSvCUEwjgN890AgYib7HF.zgO', '2021-07-12 02:26:53');
 
 -- --------------------------------------------------------
 
@@ -710,11 +710,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `designation_id`, `department_id`, `emp_category_id`, `team_lead`, `lq_exp`, `start_lq`, `balance_leave`, `used_leave`, `allowed_leave`, `active_status`) VALUES
-(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-07-07 11:40:04', 2, 2, 1, 3, 6, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
-(29, 'Atif Iqbal', 'atif@gmail.com', NULL, '$2y$10$RJve9Vvjqjkxa9sWB.CdY.9Pi0PYXopSFzAsPJnokUDbLXwgDyVqW', NULL, '2018-07-19 19:00:00', '2021-07-09 11:56:20', 2, 6, 8, 3, 10, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
-(30, 'Maham Zubair', 'maham@gmail.com', NULL, '$2y$10$nbfZsXKOczuZUv7KKXTrKOXYF4a4RlgJkNp.pW/UQ9ML1Za3flXJm', NULL, '2020-06-10 19:00:00', '2021-07-07 11:40:04', 2, 6, 8, 3, 29, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
-(31, 'Siraj Ul Haq', 'sirajulhaq363@gmail.com', NULL, '$2y$10$emthyu2LYUvwR2SVX4bqueAYip73OY9zrqu91GBApVwB/VHzH4Sty', NULL, '2021-04-11 19:00:00', '2021-07-07 10:05:25', 2, 6, 8, 1, 30, '31-12-2021', '12-04-2021', '0', '0', '0', '1'),
-(32, 'Zoraiz Mudassar', 'zoraiz@gmail.com', NULL, '$2y$10$bvbTLh2RzIHl7mQEpkSn9eA84MLLAPhcietZEyDV96h6HDHFc90xi', NULL, '2021-04-05 19:00:00', '2021-07-07 09:17:17', 2, 6, 8, 1, 29, '31-12-2021', '06-04-2021', '0', '0', '0', '1');
+(10, 'Admin', 'admin@amcoitsystems.com', NULL, '$2y$10$3sH64Vux2J5ttRh6Z2S21OTohzrONuIpxBaA1y2ZgWiTb8trS.HBa', NULL, '2021-05-21 04:54:21', '2021-07-12 07:57:06', 2, 2, 1, 3, 6, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(29, 'Atif Iqbal', 'atif@gmail.com', NULL, '$2y$10$RJve9Vvjqjkxa9sWB.CdY.9Pi0PYXopSFzAsPJnokUDbLXwgDyVqW', NULL, '2018-07-19 19:00:00', '2021-07-12 07:57:06', 2, 6, 8, 3, 10, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(30, 'Maham Zubair', 'maham@gmail.com', NULL, '$2y$10$nbfZsXKOczuZUv7KKXTrKOXYF4a4RlgJkNp.pW/UQ9ML1Za3flXJm', NULL, '2020-06-10 19:00:00', '2021-07-12 07:57:06', 2, 6, 8, 3, 29, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(31, 'Siraj Ul Haq', 'sirajulhaq363@gmail.com', NULL, '$2y$10$emthyu2LYUvwR2SVX4bqueAYip73OY9zrqu91GBApVwB/VHzH4Sty', NULL, '2021-04-11 19:00:00', '2021-07-12 07:57:06', 2, 6, 8, 3, 30, '31-12-2021', '01-01-2021', '20', '0', '20', '1'),
+(32, 'Zoraiz Mudassar', 'zoraiz@gmail.com', NULL, '$2y$10$VCEv2fy9.s3zFwWVuzYiOen3gd9TibRCjfPecjwtuvH/u5BJPkgj2', 'EzdsoQGBBS8jH3WDConckS2zcFpEi2dmUR8ZO7YDlIZ3QpaJvJLWkQfroGxa', '2021-04-05 19:00:00', '2021-07-12 07:24:28', 2, 6, 8, 1, 29, '31-12-2021', '06-04-2021', '0', '0', '0', '1');
 
 --
 -- Indexes for dumped tables
