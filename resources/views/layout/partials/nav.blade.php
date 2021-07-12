@@ -330,7 +330,7 @@ $emp_categories = EmpCategory::get();
                 </li>
                 @endif
 
-                @if(Auth::user()->hasPermission(['apply_application']))
+                @if(!Auth::user()->hasRole('admin') && Auth::user()->hasPermission(['apply_application']))
                 <li class="nav-item has-treeview {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{strpos(Request::route()->getName(),'leave') !== false || strpos(Request::route()->getName(),'emp-home') !== false ? 'active' : '' }}">
                         <img src="{{URL::asset('assets/images/sidebar-images/my_leaves.png')}}" height="20" />
