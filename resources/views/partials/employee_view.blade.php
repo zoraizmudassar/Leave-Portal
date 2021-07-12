@@ -79,11 +79,21 @@
             <!-- /.col -->
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="info-box bg-light mt-3">
                     <div class="info-box-content">
                         <span class="info-box-text text-center text-muted">Balance Leaves</span>
                         <span class="info-box-number text-center text-muted mb-0">{{$user->balance_leave}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="info-box bg-light mt-3">
+                    <div class="info-box-content text-center">
+                        <span class="info-box-text text-center text-muted">{{$user->name }}'s Roles</span>
+                        @foreach($user->getRoles() as $role)
+                        <span class="badge badge-info">{{$role}}</span>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -2,10 +2,9 @@ function calLeavesAllowed(date_ = false) {
     var etype = $('#emp_type').val();
     var ecat = $('#emp_category_id').val();
     var tdate = $('#reg_date').val();
-    console.log(tdate);
     if (etype == '1' && ecat == '3') {
-        var month = new Date(tdate).getMonth();
-        var day = new Date(tdate).getDay();
+        var month = new Date(tdate).getMonth() + 1;
+        var day = new Date(tdate).getDate();
         var per_month = 20 / 12;
         month = 12 - month;
         if (day <= 15) {
