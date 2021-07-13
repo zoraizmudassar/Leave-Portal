@@ -1,5 +1,7 @@
 @extends('layout.mainlayout')
-
+@section('title')
+<title>Employee Registration</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Notifications\LeaveApplied;
+use Carbon\Carbon;
 
 class LeavesController extends Controller
 {
@@ -94,7 +95,7 @@ class LeavesController extends Controller
         if (isset($user_[0])) {
             $st_by = $user_[0]->name;
         }
-        $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->where('status', 1)->count();
+        $unpaid_leaves = Application::where('user_id', $leave->user_id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
         return view('applications.view')->with('data', $leave)->with('status_changed_by', $st_by)
             ->with('used', $leave->user->used_leave)
             ->with('balance', $leave->user->balance_leave)
@@ -113,6 +114,15 @@ class LeavesController extends Controller
             return redirect()->route('access-denied');
         }
         $leavetypes = LeaveType::where('active_status', 1)->latest()->get();
+
+        $disable_dates = [];
+        $users_leaves = Application::where(function ($q) {
+            $q->where('status', 1)->orwhere('status', 2);
+        })->where('start_from', '>=', date('d/m/Y', strtotime(Carbon::today()->startOfYear())))
+            ->where('end_to', '<=', date('d/m/Y', strtotime(Carbon::today()->endOfYear())))->get();
+        foreach ($users_leaves as $leave) {
+            $date_range = $leave->start_from;
+        }
         return view('leaves.apply')->with('leavetypes', $leavetypes)->with('balance', Auth::user()->balance_leave);
     }
 

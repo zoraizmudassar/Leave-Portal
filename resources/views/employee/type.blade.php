@@ -1,4 +1,7 @@
 @extends('layout.mainlayout')
+@section('title')
+<title>{{$type->name . ' Employee Listing'}}</title>
+@endsection
 @section('content')
 <style>
     .project-actions{

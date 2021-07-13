@@ -15,8 +15,7 @@ function calLeavesAllowed(date_ = false) {
     }
 }
 $(function () {
-    if ($('#short-leave').is(':checked')) 
-    {
+    if ($('#short-leave').is(':checked')) {
         console.log('here');
         $('#half-leave-section').css('display', 'block');
     }
@@ -120,9 +119,29 @@ $(function () {
     $('#leave_date').daterangepicker({
         minDate: new Date(),
         isInvalidDate: function (date) {
+            // console.log(date);
             if (date.day() == 0 || date.day() == 6)
                 return true;
+            var disabled = [moment("2021-07-14")];
+            console.log(disabled);
+            var mdate = moment("2017-10-10")
+            if (date && disabled.indexOf(date) > -1) {
+                console.log('here in if');
+                return true;
+            } else {
+                console.log('here in else');
+                return false;
+            }
             return false;
+        },
+        disableDates: function (date) {
+            console.log(date);
+            var disabled = [13, 14, 20, 21];
+            if (date && disabled.indexOf(date.getDate()) > -1) {
+                return true;
+            } else {
+                return false;
+            }
         },
         singleDatePicker: $('#leave_date').attr('single') == 1 ? true : singleDate,
     }).focus(function () {

@@ -30,15 +30,17 @@ class HomeController extends Controller
         $date->subDays(7); // or $date->subDays(7),  2014-03-27 13:58:25
 
         $latest_app = Application::where('user_id', $user_id)->where('created_at', '>', $date->toDateTimeString())->latest()->get();
-        $all_app_count = Application::where('user_id', $user_id)->count();
-        $pen_app_count = Application::where('status', 2)->where('user_id', $user_id)->count();
-        $rej_app_count = Application::where('status', 0)->where('user_id', $user_id)->count();
-        $acc_app_count = Application::where('status', 1)->where('user_id', $user_id)->count();
+        $all_app_count = Application::where('user_id', $user_id)->sum('no_of_days');
+        $pen_app_count = Application::where('status', 2)->where('user_id', $user_id)->sum('no_of_days');
+        $rej_app_count = Application::where('status', 0)->where('user_id', $user_id)->sum('no_of_days');
+        $acc_app_count = Application::where('status', 1)->where('user_id', $user_id)->sum('no_of_days');
+        $unpaid_leaves = Application::where('user_id', Auth::user()->id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
         return view('employee')
             ->with('all_count', $all_app_count)
             ->with('acc_count', $acc_app_count)
             ->with('rej_count', $rej_app_count)
             ->with('pen_count', $pen_app_count)
+            ->with('unpaid', $unpaid_leaves)
             ->with('data', $latest_app);
     }
 
@@ -62,24 +64,24 @@ class HomeController extends Controller
                 ->orderBy('created_at', 'desc')
                 // ->latest()
                 ->get();
-            $all_app_count = Application::where('team_lead', Auth::user()->id)->count();
+            $all_app_count = Application::where('team_lead', Auth::user()->id)->sum('no_of_days');
             $pen_app_count = Application::where('status', 2)
                 ->where('team_lead', Auth::user()->id)
-                ->count();
+                ->sum('no_of_days');
             $rej_app_count = Application::where('status', 0)
                 ->where('team_lead', Auth::user()->id)
-                ->count();
+                ->sum('no_of_days');
             $acc_app_count = Application::where('status', 1)
                 ->where('team_lead', Auth::user()->id)
-                ->count();
+                ->sum('no_of_days');
         } else {
             $latest_app = Application::where('created_at', '>', $date->toDateTimeString())
             ->orderBy('created_at', 'desc')
             ->get();
-            $all_app_count = Application::count();
-            $pen_app_count = Application::where('status', 2)->count();
-            $rej_app_count = Application::where('status', 0)->count();
-            $acc_app_count = Application::where('status', 1)->count();
+            $all_app_count = Application::sum('no_of_days');
+            $pen_app_count = Application::where('status', 2)->sum('no_of_days');
+            $rej_app_count = Application::where('status', 0)->sum('no_of_days');
+            $acc_app_count = Application::where('status', 1)->sum('no_of_days');
         }
         return view('home')
             ->with('all_count', $all_app_count)

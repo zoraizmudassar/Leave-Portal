@@ -104,18 +104,20 @@ class EmployeeController extends Controller
     public function view($id)
     {
         if (Auth::user()->hasPermission('view_employee')) {
-            $all_count = Application::where('user_id', $id)->count();
-            $pen_count = Application::where('user_id', $id)->where('status', 2)->count();
-            $acc_count = Application::where('user_id', $id)->where('status', 1)->count();
-            $rej_count = Application::where('user_id', $id)->where('status', 0)->count();
+            $all_count = Application::where('user_id', $id)->sum('no_of_days');
+            $pen_count = Application::where('user_id', $id)->where('status', 2)->sum('no_of_days');
+            $acc_count = Application::where('user_id', $id)->where('status', 1)->sum('no_of_days');
+            $rej_count = Application::where('user_id', $id)->where('status', 0)->sum('no_of_days');
             $user = User::find($id);
             $team_lead = user::where('id', $user->team_lead)->get()->first();
+            $unpaid_leaves = Application::where('user_id', $user->id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
             return view('employee.view')
                 ->with('user', $user)
                 ->with('all_count', $all_count)
                 ->with('pen_count', $pen_count)
                 ->with('acc_count', $acc_count)
                 ->with('team_lead', $team_lead)
+                ->with('unpaid', $unpaid_leaves)
                 ->with('rej_count', $rej_count);
         } else {
             return redirect()->route('access-denied');
@@ -124,18 +126,20 @@ class EmployeeController extends Controller
 
     public function viewProfile($id)
     {
-        $all_count = Application::where('user_id', $id)->count();
-        $pen_count = Application::where('user_id', $id)->where('status', 2)->count();
-        $acc_count = Application::where('user_id', $id)->where('status', 1)->count();
-        $rej_count = Application::where('user_id', $id)->where('status', 0)->count();
+        $all_count = Application::where('user_id', $id)->sum('no_of_days');
+        $pen_count = Application::where('user_id', $id)->where('status', 2)->sum('no_of_days');
+        $acc_count = Application::where('user_id', $id)->where('status', 1)->sum('no_of_days');
+        $rej_count = Application::where('user_id', $id)->where('status', 0)->sum('no_of_days');
         $user = User::find($id);
         $team_lead = user::where('id', $user->team_lead)->get()->first();
+        $unpaid_leaves = Application::where('user_id', $user->id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
         return view('employee.profile')
             ->with('user', $user)
             ->with('all_count', $all_count)
             ->with('pen_count', $pen_count)
             ->with('acc_count', $acc_count)
             ->with('team_lead', $team_lead)
+            ->with('unpaid', $unpaid_leaves)
             ->with('rej_count', $rej_count);
     }
 

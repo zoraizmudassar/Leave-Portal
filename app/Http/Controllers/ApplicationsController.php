@@ -147,7 +147,7 @@ class ApplicationsController extends Controller
                 );
                 return redirect()->route('app-view', ['id' => $apld_leave->id])->with($notification);
             }
-            if (strtotime($apld_leave->start_from) < strtotime(date('Y-m-d'))) {
+            if (strtotime($apld_leave->start_from) > strtotime(date('Y-m-d'))) {
                 $notification = array(
                     'message' => 'Application has been expired!',
                     'alert-type' => 'error'
@@ -206,7 +206,7 @@ class ApplicationsController extends Controller
                 );
                 return redirect()->route('app-view', ['id' => $app->id])->with($notification);
             }
-            if (strtotime($app->start_from) <= strtotime(date('Y-m-d'))) {
+            if (strtotime($app->start_from) > strtotime(date('Y-m-d'))) {
                 $notification = array(
                     'message' => 'Application has been expired!',
                     'alert-type' => 'error'

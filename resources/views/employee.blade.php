@@ -15,12 +15,6 @@ $view_route_name = 'leave-view';
                 <div class="col-sm-4">
                     <h1 class="m-0 text-dark">Dashboard</h1>
                     <a href="{{route('leave-apply')}}" class="btn btn-info mt-1">Apply New Leave</a>
-                    <div class="info-box bg-light mt-3">
-                        <div class="info-box-content">
-                            <span class="info-box-text text-center text-muted">Balance Leaves</span>
-                            <span class="info-box-number text-center text-muted mb-0">{{Auth::user()->balance_leave}}</span>
-                        </div>
-                    </div>
                 </div><!-- /.col -->
                 <div class="col-sm-8">
                     <ol class="breadcrumb float-sm-right">
@@ -29,6 +23,24 @@ $view_route_name = 'leave-view';
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-box mt-3">
+                        <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Balance Leaves</span>
+                            <span class="info-box-number text-center text-muted mb-0">{{Auth::user()->balance_leave}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box mt-3" style="background-color: #ffc107 !important;">
+                        <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Unpaid Leaves</span>
+                            <span class="info-box-number text-center text-muted mb-0">{{$unpaid}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->

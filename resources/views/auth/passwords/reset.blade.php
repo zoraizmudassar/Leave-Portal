@@ -2,6 +2,9 @@
 @section('auth_css')
 <script src="{{ asset('css/app.css') }}"></script>
 @endsection
+@section('title')
+<title>Reset Password</title>
+@endsection
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">

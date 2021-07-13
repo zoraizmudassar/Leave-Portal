@@ -15,7 +15,14 @@
                 <h5 class="text-muted text-center">{{$user->email}}</h5>
                 <p class="text-muted text-center">{{isset($user->designation) ? $user->designation->type : ''}} ({{isset($user->department) ? $user->department->name : ''}})</p>
                 <h5 class="text-muted text-center">Team Lead: {{isset($team_lead) ? $team_lead->name : ''}}</h5>
-
+                <div class="info-box mt-3">
+                    <div class="info-box-content text-center">
+                        <span class="info-box-text text-center font-weight-bold">Roles</span>
+                        @foreach($user->getRoles() as $role)
+                        <span class="badge badge-info">{{$role}}</span>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -79,21 +86,21 @@
             <!-- /.col -->
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="info-box bg-light mt-3">
+            <div class="col-sm-6">
+                <div class="info-box mt-3">
                     <div class="info-box-content">
-                        <span class="info-box-text text-center text-muted">Balance Leaves</span>
+                        <span class="info-box-text text-center">Balance Leaves</span>
                         <span class="info-box-number text-center text-muted mb-0">{{$user->balance_leave}}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="info-box bg-light mt-3">
-                    <div class="info-box-content text-center">
-                        <span class="info-box-text text-center text-muted">{{$user->name }}'s Roles</span>
-                        @foreach($user->getRoles() as $role)
-                        <span class="badge badge-info">{{$role}}</span>
-                        @endforeach
+            <div class="col-sm-6">
+                <div class="info-box bg-light" style="background-color: #ffc107 !important;">
+                    <div class="info-box-content">
+                        <!-- <span style="color: white;font-style: italic; font-size: 14px;" class="ml-2 p-2 badge badge-warning">Unpaid</span> -->
+                        <span style="color: white !important;font-weight: bold;;" class="info-box-text text-center text-muted">Unpaid Leaves
+                        </span>
+                        <span style="color: white !important;font-weight: bold;" class="info-box-number text-center text-muted mb-0">{{$unpaid}}</span>
                     </div>
                 </div>
             </div>
