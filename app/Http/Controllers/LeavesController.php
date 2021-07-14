@@ -114,7 +114,6 @@ class LeavesController extends Controller
             return redirect()->route('access-denied');
         }
         $leavetypes = LeaveType::where('active_status', 1)->latest()->get();
-
         $disable_dates = [];
         $users_leaves = Application::where(function ($q) {
             $q->where('status', 1)->orwhere('status', 2);

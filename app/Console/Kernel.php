@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\UpdateExpiredLeaves::class
     ];
 
     /**
@@ -24,6 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('daily:expiredLeavesUpdate')->daily();
+        //          ->hourly();
         // $schedule->command('inspire')
         //          ->hourly();
     }
