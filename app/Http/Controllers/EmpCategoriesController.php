@@ -45,6 +45,9 @@ class EmpCategoriesController extends Controller {
     public function edit($id) {
         if (Auth::user()->hasPermission('update_category')) {
             $des = EmpCategory::find($id);
+            if (!$des) {
+                return redirect()->route("not-found");
+            }
             return view('empcategories.edit')->with('data', $des);
         } else {
             return redirect()->route('access-denied');

@@ -46,6 +46,9 @@ class DepartmentsController extends Controller {
     public function edit($id) {
         if (Auth::user()->hasPermission('update_department')) {
             $dep = Department::find($id);
+            if (!$dep) {
+                return redirect()->route("not-found");
+            }
             return view('departments.edit')->with('data', $dep);
         } else {
             return redirect()->route('access-denied');
@@ -75,9 +78,7 @@ class DepartmentsController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function insert(Request $request) {
-
         
-            
         if (Auth::user()->hasPermission('add_department')) {
             $request->validate([
                 'name'=>'required | unique:departments',

@@ -52,6 +52,9 @@ class LeaveTypesController extends Controller
     {
         if (Auth::user()->hasPermission('update_leave_type')) {
             $des = LeaveType::find($id);
+            if (!$des) {
+                return redirect()->route("not-found");
+            }
             return view('leavetypes.edit')->with('data', $des);
         } else {
             return redirect()->route('access-denied');

@@ -58,6 +58,9 @@ class EmployeeController extends Controller
     {
         if (Auth::user()->hasPermission('view_employee')) {
             $type = EmpCategory::where('id', $id)->first();
+            if (!$type) {
+                return redirect()->route("not-found");
+            }
             if (!Auth::user()->hasRole('admin')) {
                 if (Auth::user()->hasRole('team_lead')) {
                     $users = User::where('emp_category_id', $id)->where('team_lead', Auth::user()->id)->latest()->get();
@@ -114,6 +117,9 @@ class EmployeeController extends Controller
             $acc_count = Application::where('user_id', $id)->where('status', 1)->sum('no_of_days');
             $rej_count = Application::where('user_id', $id)->where('status', 0)->sum('no_of_days');
             $user = User::find($id);
+            if (!$user) {
+                return redirect()->route("not-found");
+            }
             $team_lead = user::where('id', $user->team_lead)->get()->first();
             $unpaid_leaves = Application::where('user_id', $user->id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
             return view('employee.view')
@@ -136,6 +142,9 @@ class EmployeeController extends Controller
         $acc_count = Application::where('user_id', $id)->where('status', 1)->sum('no_of_days');
         $rej_count = Application::where('user_id', $id)->where('status', 0)->sum('no_of_days');
         $user = User::find($id);
+        if (!$user) {
+            return redirect()->route("not-found");
+        }
         $team_lead = user::where('id', $user->team_lead)->get()->first();
         $unpaid_leaves = Application::where('user_id', $user->id)->where('unpaid', true)->where('status', 1)->sum('no_of_days');
         return view('employee.profile')
@@ -152,6 +161,9 @@ class EmployeeController extends Controller
     {
         if (Auth::user()->hasPermission('assign_roles')) {
             $user = User::find($id);
+            if (!$user) {
+                return redirect()->route("not-found");
+            }
             $roles = Role::get();
             $user_roles = isset($user->roles) ? $user->roles->toArray() : [];
             $roles_keys = [];
@@ -190,6 +202,9 @@ class EmployeeController extends Controller
     {
         if (Auth::user()->hasPermission('update_employee')) {
             $user = User::where('id', $id)->first();
+            if (!$user) {
+                return redirect()->route("not-found");
+            }
             $users = User::whereRoleIs('team_lead')->get();
             $ec = EmpCategory::select('id', 'name')->where('active_status', 1)->get()->all();
             $des = Designation::select('id', 'type')->where('active_status', 1)->get()->all();

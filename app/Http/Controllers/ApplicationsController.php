@@ -114,6 +114,9 @@ class ApplicationsController extends Controller
     {
         if (Auth::user()->hasPermission('view_application')) {
             $leave = Application::find($id);
+            if (!$leave) {
+                return redirect()->route("not-found");
+            }
             $user_ = \App\User::where('id', $leave->status_changed_by)->get();
             $st_by = '';
             if (isset($user_[0])) {
@@ -140,6 +143,9 @@ class ApplicationsController extends Controller
     {
         if (Auth::user()->hasPermission('accept_application')) {
             $apld_leave = Application::where('id', $id)->first();
+            if (!$apld_leave) {
+                return redirect()->route("not-found");
+            }
             if ($apld_leave->status == 1) {
                 $notification = array(
                     'message' => 'Application already has been accepted!',
@@ -199,6 +205,9 @@ class ApplicationsController extends Controller
         if (Auth::user()->hasPermission('reject_application')) {
 
             $app = Application::where('id', $id)->get()->first();
+            if (!$app) {
+                return redirect()->route("not-found");
+            }
             if ($app->status == 0) {
                 $notification = array(
                     'message' => 'Application already has been accepted!',

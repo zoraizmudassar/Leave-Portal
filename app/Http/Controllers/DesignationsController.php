@@ -51,6 +51,9 @@ class DesignationsController extends Controller
     {
         if (Auth::user()->hasPermission('update_designation')) {
             $des = Designation::find($id);
+            if (!$des) {
+                return redirect()->route("not-found");
+            }
             return view('designations.edit')->with('data', $des);
         } else {
             return redirect()->route('access-denied');

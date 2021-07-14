@@ -11,10 +11,14 @@
   |
  */
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/access-denied', function () {
     return view('access_denied');
 })->name('access-denied');
 
+Route::get('/not-found', function () {
+    return view('not_found');
+})->name('not-found');
 Route::get('/portal', 'HomeController@empHome')->name('emp-home')->middleware('auth', 'employee');
 
 Route::prefix('applications')->group(function () {

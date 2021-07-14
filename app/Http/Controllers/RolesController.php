@@ -52,6 +52,9 @@ class RolesController extends Controller
     {
         if (Auth::user()->hasPermission('update_role')) {
             $dep = Role::find($id);
+            if (!$dep) {
+                return redirect()->route("not-found");
+            }
             return view('roles.edit')->with('data', $dep);
         } else {
             return redirect()->route('access-denied');
@@ -166,6 +169,9 @@ class RolesController extends Controller
     {
         if (Auth::user()->hasPermission('assign_permissions')) {
             $role = Role::find($id);
+            if (!$role) {
+                return redirect()->route("not-found");
+            }
             $per_groups = \App\PermissionsGroup::get();
             $role_per = isset($role->permissions) ? $role->permissions->toArray() : [];
             $per_keys = [];

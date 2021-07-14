@@ -93,6 +93,9 @@ class LeavesController extends Controller
             return redirect()->route('access-denied');
         }
         $leave = Application::find($id);
+        if (!$leave) {
+            return redirect()->route("not-found");
+        }
         $user_ = \App\User::where('id', $leave->status_changed_by)->get();
         $st_by = '';
         if (isset($user_[0])) {
