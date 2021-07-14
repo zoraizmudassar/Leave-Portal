@@ -52,7 +52,7 @@
                 <span class="badge badge-{{$model->active_status == '0' ? 'danger' : ($model->active_status == '1' ? 'success' : 'warning')}}"><?= $model->active_status == 0 ? 'InActive' : ($model->active_status == 1 ? 'Active' : 'Not defined') ?></span>
             </td>
             <td class="project-actions text-right">
-                @if(Auth::user()->hasPermission('active_inactive_employee'))
+                @if(Auth::user()->hasPermission('active_inactive_employee') && !$model->hasRole('admin'))
                 <a href="{{route('emp-status', ['id' => $model->id, 'status'=> $model->active_status])}}" class="btn btn-dark btn-sm text-white mr-2"><?= $model->active_status == 0 ? 'Active' : ($model->active_status == 1 ? 'InActive' : 'Not Defined') ?></a>
                 @endif
                 <a class="btn btn-primary btn-sm" href="{{route('emp-view', ['id' => $model->id])}}">

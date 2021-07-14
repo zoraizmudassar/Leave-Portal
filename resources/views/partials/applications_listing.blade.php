@@ -36,7 +36,7 @@
                 {{ $model->no_of_days }} <b><?= $model->no_of_days == '0.5' ? ($model->half == 1 ? 'F' : ($model->half == 2 ? 'S' : '')) : ''; ?></b>
             </td>
             <td class="project-state">
-                <span class="badge badge-{{$model->status == '0' ? 'danger' : ($model->status == '1' ? 'success' : 'warning')}}"><?= $model->status == 0 ? 'Rejected' : ($model->status == 1 ? 'Accepted' : 'Pending') ?></span>
+                <span class="badge badge-{{$model->status == '0' ? 'danger' : ($model->status == '1' ? 'success' : ($model->status == '3' ? 'info' : 'warning'))}}"><?= $model->status == 0 ? 'Rejected' : ($model->status == 1 ? 'Accepted' : ($model->status == 3 ? 'Expired' : 'Pending')) ?></span>
             </td>
             <td>
                 {{date('d-M-Y h:i A', strtotime($model->datetime))}}

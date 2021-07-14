@@ -75,7 +75,12 @@ class EmployeeController extends Controller
 
     public function status($id, $status)
     {
-        if (Auth::user()->hasPermission('update_designation')) {
+        if (Auth::user()->hasPermission('active_inactive_employee')) {
+            $user_ = User::where('id', $id)->first();
+            if($user_->hasRole('admin'))
+            {
+                return redirect()->route('access-denied');
+            }
             //Department::where('id',$id)->update(array('active_status'=>1));
             if ($status == 0) {
                 User::where('id', $id)->update(array('active_status' => 1));

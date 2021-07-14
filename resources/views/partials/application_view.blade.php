@@ -65,7 +65,7 @@
                         <p class="mb-0"><b>Subject:</b> {{$data->subject}}</p>
                         <p><b>Description:</b> {{$data->description}}</p>
 
-                        <h3 class="badge badge-{{$data->status == '0' ? 'danger' : ($data->status == '1' ? 'success' : 'warning')}}" style="font-weight: bold;color: white;">{{$data->status == '0' ? 'Rejected' : ($data->status == '1' ? 'Accepted' : 'Pending')}} {{isset($status_changed_by) && $status_changed_by != '' ? 'by '. $status_changed_by : ''}}</h3>
+                        <h3 class="badge badge-{{$data->status == '0' ? 'danger' : ($data->status == '1' ? 'success' : ($data->status == '3' ? 'info' : 'warning'))}}" style="font-weight: bold;color: white;">{{$data->status == '0' ? 'Rejected' : ($data->status == '1' ? 'Accepted' : ($data->status == '3' ? 'Expired' : 'Pending'))}} {{isset($status_changed_by) && $status_changed_by != '' ? 'by '. $status_changed_by : ''}}</h3>
                         <h4>{{isset($data->short_leave) && $data->short_leave == true ? 'Half day' : $data->no_of_days . ' days'}} Leave</h4>
                         @if($data->short_leave == 1)
                         <div class="text-muted">

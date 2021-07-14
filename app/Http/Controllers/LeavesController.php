@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Notifications\LeaveApplied;
 use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 
 class LeavesController extends Controller
 {
@@ -114,14 +117,6 @@ class LeavesController extends Controller
             return redirect()->route('access-denied');
         }
         $leavetypes = LeaveType::where('active_status', 1)->latest()->get();
-        $disable_dates = [];
-        $users_leaves = Application::where(function ($q) {
-            $q->where('status', 1)->orwhere('status', 2);
-        })->where('start_from', '>=', date('d/m/Y', strtotime(Carbon::today()->startOfYear())))
-            ->where('end_to', '<=', date('d/m/Y', strtotime(Carbon::today()->endOfYear())))->get();
-        foreach ($users_leaves as $leave) {
-            $date_range = $leave->start_from;
-        }
         return view('leaves.apply')->with('leavetypes', $leavetypes)->with('balance', Auth::user()->balance_leave);
     }
 
@@ -149,15 +144,52 @@ class LeavesController extends Controller
             ]
         );
         $data = $request->input();
+        date_default_timezone_set("Asia/Karachi");
+        $date = date('d-m-Y h:i:s A');
+        $date_new = date('d-m-Y');
+        if (isset($data['short_leave']) && $data['short_leave'] == true) {
+            $dates[0] = $data['duration'];
+            $dates[1] = $data['duration'];
+        } else {
+            $dates = explode(' - ', $data['duration']);
+        }
+
         $user_ = Auth::user();
         $unpaid = false;
-        $count_app = Application::where('user_id', $user_->id)->where('status', 2)->get()->count();
-        if ($count_app > 0) {
-            $notification = array(
-                'message' => 'Your last application is already in pending state!',
-                'alert-type' => 'warning'
-            );
-            return redirect()->route('leave-apply')->with($notification);
+        $count_app = Application::where('user_id', $user_->id)->where('status', 2)->get();
+        if (count($count_app) > 0) {
+            $users_leaves = Application::where(function ($q) {
+                $q->where('status', 1)->orwhere('status', 2);
+            })->get();
+
+            // Declare an empty array
+            $dates_ = array();
+
+            // Variable that store the date interval
+            // of period 1 day
+            $interval = new DateInterval('P1D');
+
+            $realEnd = new DateTime($dates[1]);
+            $realEnd->add($interval);
+
+            $period = new DatePeriod(new DateTime($dates[0]), $interval, $realEnd);
+
+            // Use loop to store date into array
+            foreach ($period as $date) {
+                $dates_[] = $date->format('m/d/Y');
+            }
+            foreach ($users_leaves as $leave) {
+                if (in_array($leave->start_from, $dates_) || in_array($leave->end_to, $dates_)) {
+                    $applied = true;
+                }
+            }
+            if (isset($applied) && $applied == true) {
+                $notification = array(
+                    'message' => 'Your selected dates already in applied leaves!',
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('leave-apply')->with($notification);
+            }
         }
         if ($user_->balance_leave > 0) {
             if ($data['no_of_days'] > $user_->balance_leave) {
@@ -170,15 +202,7 @@ class LeavesController extends Controller
         } else {
             $unpaid = true;
         }
-        date_default_timezone_set("Asia/Karachi");
-        $date = date('d-m-Y h:i:s A');
-        $date_new = date('d-m-Y');
-        if (isset($data['short_leave']) && $data['short_leave'] == true) {
-            $dates[0] = $data['duration'];
-            $dates[1] = $data['duration'];
-        } else {
-            $dates = explode(' - ', $data['duration']);
-        }
+
 
         $islate = $this->isLate($dates[0], $data['no_of_days']);
         try {

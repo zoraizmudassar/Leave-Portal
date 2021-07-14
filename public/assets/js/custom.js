@@ -93,22 +93,26 @@ $(function () {
     $("#example1").DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "aaSorting": [],
         "info": true,
         "autoWidth": false,
         "responsive": true,
+        "select": true,
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
     });
     $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "aaSorting": [],
         "info": true,
         "autoWidth": false,
         "responsive": true,
+        "select": true,
+        "lengthMenu": [[10, 25, 50, "All"]]
     });
     //    $("#reservationdate").datepicker({
     //        minDate: new Date()
