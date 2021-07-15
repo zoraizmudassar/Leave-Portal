@@ -44,12 +44,14 @@ $emp_categories = EmpCategory::get();
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+					@if(Auth::user()->hasPermission('view_department'))
                         <li class="nav-item">
                             <a href="{{route('dep-all')}}" class="nav-link {{strpos(Request::route()->getName(),'dep-all') !== false ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon text-success"></i>
                                 <p>All</p>
                             </a>
                         </li>
+						@endif
                         @if(Auth::user()->hasPermission('add_department'))
                         <li class="nav-item">
                             <a href="{{route('dep-add')}}" class="nav-link {{strpos(Request::route()->getName(),'dep-add') !== false ? 'active' : '' }}">
